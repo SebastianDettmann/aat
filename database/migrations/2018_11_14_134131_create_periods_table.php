@@ -18,7 +18,12 @@ class CreatePeriodsTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->date('confirmed')->nullable();
+            $table->string('reason_id')->unsigned();
             $table->timestamps();
+            $table
+                ->foreign('reason_id')
+                ->references('id')
+                ->on('reasons');
         });
     }
 

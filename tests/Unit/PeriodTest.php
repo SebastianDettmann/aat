@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Period;
+use App\Reason;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -33,6 +34,18 @@ class PeriodTest extends TestCase
     {
         $period = factory(Period::class)->create();
         $this->dbAssertion($period);
+    }
+
+    /**
+     * @test
+     */
+    public function period_reason_relationship()
+    {
+        $reason = factory(Reason::class)->create();
+        $period = factory(Period::class)->reason()->associate($reason)->create();
+#        $period->reason()->associate($reason);
+
+        $this->assertEquals($period->reason(), $period);
     }
 
     private function dbAssertion(Period $period)

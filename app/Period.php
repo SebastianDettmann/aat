@@ -16,4 +16,9 @@ class Period extends Model
        'end',
        'confirmed'
    ];
+
+   public function reason()
+   {
+       return $this->belongsTo(Reason::class);
+   }
 }

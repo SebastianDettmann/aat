@@ -22,7 +22,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
         $this->withoutMiddleware();
-        $this->withoutExceptionHandling();
+        #$this->withoutExceptionHandling();
         $this->artisan('db:seed');
         $this->faker = Faker::create();
         $this->user = factory(User::class)->create();
