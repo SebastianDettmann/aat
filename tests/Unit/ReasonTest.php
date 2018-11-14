@@ -22,13 +22,7 @@ class ReasonTest extends TestCase
         ];
 
         $reason = Reason::create($data);
-
-        $reason->fresh();
-
-        $this->assertEquals($reason->title, $data['title']);
-        $this->assertEquals($reason->description, $data['description']);
-        $this->assertEquals($reason->color, $data['color']);
-        $this->assertEquals($reason->has_to_confirm, $data['has_to_confirm']);
+        $this->dbAassertion($reason);
     }
 
     /**
@@ -36,21 +30,17 @@ class ReasonTest extends TestCase
      */
     public function save_any_reason_in_db()
     {
-        $reason = factory(Reason::class)->make();
+        $reason = factory(Reason::class)->create();
+        $this->dbAassertion($reason);
+    }
 
-        $data = [
+    private function dbAassertion(Reason $reason)
+    {
+        $this->assertDatabaseHas('reasons', [
             'title' => $reason->title,
             'description' => $reason->description,
             'color' => $reason->color,
-            'has_to_confirm' => $reason->has_to_confirm,
-        ];
-
-        $reason->save();
-        $reason->fresh();
-
-        $this->assertEquals($reason->title, $data['title']);
-        $this->assertEquals($reason->description, $data['description']);
-        $this->assertEquals($reason->color, $data['color']);
-        $this->assertEquals($reason->has_to_confirm, $data['has_to_confirm']);
+            'has_to_confirm' => $reason->has_to_confirm
+        ]);
     }
 }

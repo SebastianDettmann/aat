@@ -23,14 +23,7 @@ class UserTest extends TestCase
         ];
 
         $user = User::create($data);
-
-        $user->fresh();
-
-        $this->assertEquals($user->firstname, $data['firstname']);
-        $this->assertEquals($user->lastname, $data['lastname']);
-        $this->assertEquals($user->email, $data['email']);
-        $this->assertEquals($user->admin, $data['admin']);
-        $this->assertEquals($user->password, $data['password']);
+        $this->dbAssertion($user);
     }
 
     /**
@@ -38,23 +31,18 @@ class UserTest extends TestCase
      */
     public function save_any_user_in_db()
     {
-        $user = factory(User::class)->make();
+        $user = factory(User::class)->create();
+        $this->dbAssertion($user);
+    }
 
-        $data = [
+    private function dbAssertion(User $user)
+    {
+        $this->assertDatabaseHas('users', [
             'firstname' => $user->firstname,
             'lastname' => $user->lastname,
             'email' => $user->email,
-            'admin' => $user->admin,
+            'admin' => (bool)$user->admin,
             'password' => $user->password,
-        ];
-
-        $user->save();
-        $user->fresh();
-
-        $this->assertEquals($user->firstname, $data['firstname']);
-        $this->assertEquals($user->lastname, $data['lastname']);
-        $this->assertEquals($user->email, $data['email']);
-        $this->assertEquals($user->admin, $data['admin']);
-        $this->assertEquals($user->password, $data['password']);
+        ]);
     }
 }

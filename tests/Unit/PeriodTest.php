@@ -23,12 +23,7 @@ class PeriodTest extends TestCase
 
         $period = Period::create($data);
 
-        $period->fresh();
-
-        $this->assertEquals($period->start, $data['start']);
-        $this->assertEquals($period->end, $data['end']);
-        $this->assertEquals($period->confirmed, $data['confirmed']);
-
+        $this->dbAssertion($period);
     }
 
     /**
@@ -36,20 +31,17 @@ class PeriodTest extends TestCase
      */
     public function save_any_period_in_db()
     {
-        $period = factory(Period::class)->make();
+        $period = factory(Period::class)->create();
+        $this->dbAssertion($period);
+    }
 
-        $data = [
+    private function dbAssertion(Period $period)
+    {
+
+        $this->assertDatabaseHas('periods', [
             'start' => $period->start,
             'end' => $period->end,
-            'confirmed' => $period->confirmed,
-
-        ];
-
-        $period->save();
-        $period->fresh();
-
-        $this->assertEquals($period->start, $data['start']);
-        $this->assertEquals($period->end, $data['end']);
-        $this->assertEquals($period->confirmed, $data['confirmed']);
+            'confirmed' => $period->confirmed
+        ]);
     }
 }
