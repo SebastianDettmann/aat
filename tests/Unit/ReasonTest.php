@@ -12,10 +12,7 @@ class ReasonTest extends TestCase
     /**
      * @test
      */
-    /**
-     * @test
-     */
-    public function save_a_user_in_db()
+    public function save_a_reason_in_db()
     {
         $data = [
             'title' => 'Urlaub',
@@ -37,7 +34,7 @@ class ReasonTest extends TestCase
     /**
      * @test
      */
-    public function save_any_user_in_db()
+    public function save_any_reason_in_db()
     {
         $reason = factory(Reason::class)->make();
 
