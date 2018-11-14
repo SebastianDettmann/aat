@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Auth::routes();
+
+Route::group([
+    'prefix' => 'app',
+    'middleware' => ['auth']
+], function () {
+    Route::resource('user', UserController::class);
 });
