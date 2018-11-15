@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
     }
 
     /**
@@ -78,6 +78,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        #TODO filter für 'admin'
         //
     }
 

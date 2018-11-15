@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+     * !!! attention requests from default user has to filter 'admin' attribute
      * @var array
      */
     protected $fillable = [
@@ -29,7 +29,8 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
-        'language'
+        'language',
+        'admin'
     ];
 
     /**
@@ -40,6 +41,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'admin',
     ];
+
 }
