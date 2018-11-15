@@ -14,6 +14,7 @@ abstract class TestCase extends BaseTestCase
 
     protected $faker;
     protected $user;
+    protected $admin;
 
     public function createApplication()
     {
@@ -41,6 +42,7 @@ abstract class TestCase extends BaseTestCase
         $this->artisan('db:seed');
         $this->faker = Faker::create();
         $this->user = factory(User::class)->create();
+        $this->admin = factory(User::class)->states('admin')->create();
     }
     /**
      * Reset the migrations
