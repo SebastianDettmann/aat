@@ -13,7 +13,7 @@
 
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::group([
     'prefix' => 'app',
