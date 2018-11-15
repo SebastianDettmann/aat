@@ -15,12 +15,27 @@ abstract class TestCase extends BaseTestCase
     protected $faker;
     protected $user;
 
+    public function createApplication()
+    {
+        $app = require __DIR__.'/../bootstrap/app.php';
+
+        $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+        // when using sqlite, allow foreign keys
+        if (\DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
+            \DB::statement(\DB::raw('PRAGMA foreign_keys=1'));
+        }
+
+        return $app;
+    }
+
     /**
      * Set up the test
      */
     public function setUp()
     {
         parent::setUp();
+
         $this->withoutMiddleware();
         #$this->withoutExceptionHandling();
         $this->artisan('db:seed');

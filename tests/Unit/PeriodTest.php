@@ -51,7 +51,6 @@ class PeriodTest extends TestCase
 
     private function dbAssertion(Period $period)
     {
-
         $this->assertDatabaseHas('periods', [
             'start' => $period->start,
             'end' => $period->end,
