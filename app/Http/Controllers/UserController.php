@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * UserController constructor.
+     * handles admin middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('admin', ['only' => ['index', 'store', 'create', 'destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

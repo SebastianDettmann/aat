@@ -15,6 +15,9 @@ class UserControllerTest extends TestCase
      */
     public function admin_can_access_all_controller_functions()
     {
+        $this->withMiddleware();
+        $this->actingAs($this->admin);
+
         $user = factory(User::class)->create();
 
         $this->get(route('user.index'))->assertStatus(200);
@@ -32,6 +35,9 @@ class UserControllerTest extends TestCase
      */
     public function default_user_can_access_show_update_edit_controller_functions()
     {
+        $this->withMiddleware();
+        $this->actingAs($this->user);
+
         $user = factory(User::class)->create();
 
         $this->get(route('user.show', [$user->id]))->assertStatus(200);
@@ -44,6 +50,9 @@ class UserControllerTest extends TestCase
      */
     public function default_user_cant_access_index_store_create_destroy_controller_functions()
     {
+        $this->withMiddleware();
+        $this->actingAs($this->user);
+
         $user = factory(User::class)->create();
 
         $this->get(route('user.index'))->assertStatus(404);
