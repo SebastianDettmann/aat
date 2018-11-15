@@ -18,7 +18,7 @@ class CreatePeriodsTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->date('confirmed')->nullable();
-            $table->string('reason_id')->unsigned();
+            $table->integer('reason_id')->unsigned()->nullable();
             $table->timestamps();
             $table
                 ->foreign('reason_id')
@@ -34,6 +34,11 @@ class CreatePeriodsTable extends Migration
      */
     public function down()
     {
+        Schema::table('periods', function(Blueprint $table) {
+            if (DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign('periods_reason_id_foreign');
+            }
+        });
         Schema::dropIfExists('periods');
     }
 }

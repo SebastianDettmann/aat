@@ -20,6 +20,7 @@ class PeriodTest extends TestCase
             'start' => Carbon::today(),
             'end' => Carbon::tomorrow(),
             'confirmed' => null,
+            'reason_id' => factory(Reason::class)->create()->id
         ];
 
         $period = Period::create($data);
@@ -42,10 +43,10 @@ class PeriodTest extends TestCase
     public function period_reason_relationship()
     {
         $reason = factory(Reason::class)->create();
-        $period = factory(Period::class)->reason()->associate($reason)->create();
-#        $period->reason()->associate($reason);
+        $period = factory(Period::class)->make();
+        $period->reason()->associate($reason)->save();
 
-        $this->assertEquals($period->reason(), $period);
+        $this->assertEquals($period->reason, $reason);
     }
 
     private function dbAssertion(Period $period)
@@ -54,7 +55,8 @@ class PeriodTest extends TestCase
         $this->assertDatabaseHas('periods', [
             'start' => $period->start,
             'end' => $period->end,
-            'confirmed' => $period->confirmed
+            'confirmed' => $period->confirmed,
+            'reason_id' => $period->reason_id
         ]);
     }
 }
