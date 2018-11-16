@@ -15,15 +15,15 @@ class UserControllerTest extends TestCase
      */
     public function admin_can_access_all_controller_functions()
     {
-        $this->admin_test();
+        $this->adminTest();
         $user = factory(User::class)->create();
-        $data = $this->generate_user_data();
+        $data = $this->generateUserData();
 
         $this->get(route('user.index'))->assertStatus(200);
         $this->post(route('user.store'), $data)->assertStatus(200);
         $this->get(route('user.create'))->assertStatus(200);
         $this->get(route('user.show', [$user->id]))->assertStatus(200);
-        $this->put(route('user.update', [$user->id]))->assertStatus(200);
+        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
         $this->get(route('user.edit', [$user->id]))->assertStatus(200);
         $this->delete(route('user.destroy' , [$user->id]))->assertStatus(200);
     }
@@ -34,11 +34,12 @@ class UserControllerTest extends TestCase
      */
     public function default_user_can_access_show_update_edit_controller_functions()
     {
-        $this->default_user_test();
+        $this->defaultUserTest();
         $user = factory(User::class)->create();
+        $data = $this->generateUserData();
 
         $this->get(route('user.show', [$user->id]))->assertStatus(200);
-        $this->put(route('user.update', [$user->id]))->assertStatus(200);
+        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
         $this->get(route('user.edit', [$user->id]))->assertStatus(200);
     }
 
@@ -47,7 +48,7 @@ class UserControllerTest extends TestCase
      */
     public function default_user_cant_access_index_store_create_destroy_controller_functions()
     {
-        $this->default_user_test();
+        $this->defaultUserTest();
         $user = factory(User::class)->create();
 
         $this->get(route('user.index'))->assertStatus(404);
@@ -61,27 +62,60 @@ class UserControllerTest extends TestCase
      */
     public function admin_can_store_user()
     {
-        $this->admin_test();
-        $data = $this->generate_user_data();
+        $this->adminTest();
+        $data = $this->generateUserData();
 
         $this->post(route('user.store'), $data);
 
         $this->dbAssertion($data);
     }
 
-     private function admin_test()
+    /**
+     * @test
+     */
+    public function admin_can_delete_user()
+    {
+        $this->adminTest();
+        $user = factory(User::class)->create();
+
+        $this->delete(route('user.destroy' , [$user->id]))->assertStatus(200);
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function user_can_update_user()
+    {
+        $this->defaultUserTest();
+        $user = factory(User::class)->create();
+        $data = $this->generateUserData();
+
+        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
+
+        $this->dbAssertion($data);
+    }
+
+    private function adminTest()
     {
         $this->withMiddleware();
         $this->actingAs($this->admin);
+        session()->regenerateToken();
+        $this->withHeader('X-CSRF-TOKEN', csrf_token());
+
     }
 
-    private function default_user_test()
+    private function defaultUserTest()
     {
         $this->withMiddleware();
         $this->actingAs($this->user);
+        session()->regenerateToken();
+        $this->withHeader('X-CSRF-TOKEN', csrf_token());
     }
 
-    private function generate_user_data()
+    private function generateUserData()
     {
         $user = factory(User::class)->make();
         $data = [

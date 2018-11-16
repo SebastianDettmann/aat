@@ -40,11 +40,11 @@ class CreateUserFormRequest extends FormRequest
                 'unique:users,email',
             ],
             'language' => [
-                'optional',
+                'nullable',
                 'in:' . Datamap::getAppLanguages()->pluck('locale')->implode(','),
             ],
             'admin' => [
-                'optional'
+                'nullable'
             ]
         ];
     }

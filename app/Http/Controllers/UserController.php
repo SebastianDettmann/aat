@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserFormRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserFormRequest $request)
     {
         User::create($request->all());
     }
@@ -78,8 +79,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        #TODO filter für 'admin'
-        //
+        #dd($user);
+       # dd($request->all());
+        #$data = [
+         #   "firstname" => "Mr. Kane Kihn",
+        #    "lastname" => "Jaunita Ullrich",
+         #   "email" => "valentine52@example.net",
+         #   "admin" => false
+       # ];
+        #dd($data);
+        #TODO filter für 'admin', autorization for logged in user can only update logged in user
+       $x =  $user->update($request->all());
+       #$x =  $user->update($data);
+       # dd($x);
     }
 
     /**
@@ -90,6 +102,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
     }
 }
