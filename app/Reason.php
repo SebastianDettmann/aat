@@ -18,6 +18,7 @@ class Reason extends Model
         'title',
         'description',
         'color',
+        'hex_color',
         'has_to_confirm'
     ];
 }

@@ -17,7 +17,7 @@ class ReasonTest extends TestCase
         $data = [
             'title' => 'Urlaub',
             'description' => 'Erholungsurlaub',
-            'color' => '#4169e1',
+            'hex_color' => '#123456',
             'has_to_confirm' => true,
         ];
 
@@ -39,7 +39,7 @@ class ReasonTest extends TestCase
         $this->assertDatabaseHas('reasons', [
             'title' => $reason->title,
             'description' => $reason->description,
-            'color' => $reason->color,
+            'hex_color' => $reason->hex_color,
             'has_to_confirm' => $reason->has_to_confirm
         ]);
     }

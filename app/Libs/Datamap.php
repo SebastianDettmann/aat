@@ -32,29 +32,39 @@ class Datamap
             [
                 'id' => 1,
                 'display_name' => __('Urlaub'),
-                'farbe' => 'LimeGreen',
-                'hex_farbe' => '#32cd32',
+                'color' => 'LimeGreen',
+                'hex_color' => '#32cd32',
+                'has_to_confirm' => true,
             ], [
                 'id' => 2,
                 'display_name' => __('Home Office'),
-                'farbe' => 'SkyeBlue',
-                'hex_farbe' => '#87ceeb',
+                'color' => 'SkyeBlue',
+                'hex_color' => '#87ceeb',
+                'has_to_confirm' => true,
             ], [
                 'id' => 3,
                 'display_name' => __('Krank'),
-                'farbe' => 'Orange',
-                'hex_farbe' => 'ffa500',
+                'color' => 'Orange',
+                'hex_color' => 'ffa500',
+                'has_to_confirm' => false,
             ], [
                 'id' => 4,
                 'display_name' => __('Außer Haus'),
-                'farbe' => 'Aquamarine',
-                'hex_farbe' => '7fffd4',
+                'color' => 'Aquamarine',
+                'hex_color' => '7fffd4',
+                'has_to_confirm' => false,
             ], [
                 'id' => 5,
                 'display_name' => __('andere'),
-                'farbe' => 'DarkGray',
-                'hex_farbe' => 'a9a9a9',
+                'color' => 'DarkGray',
+                'hex_color' => 'a9a9a9',
+                'has_to_confirm' => false,
             ]
         ])->sortBy('display_name');
+    }
+
+    public static function getOneReason($id)
+    {
+        return self::getAbsenceReasons()->where('id', $id)->first();
     }
 }

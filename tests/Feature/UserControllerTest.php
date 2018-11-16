@@ -91,42 +91,16 @@ class UserControllerTest extends TestCase
     public function user_can_update_user()
     {
         $this->defaultUserTest();
-        $user = factory(User::class)->create();
-        $data = $this->generateUserData();
-
-        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
-
-        $this->dbAssertion($data);
+        $this->can_update_user();
     }
 
-    private function adminTest()
+    /**
+     * @test
+     */
+    public function admin_can_update_user()
     {
-        $this->withMiddleware();
-        $this->actingAs($this->admin);
-        session()->regenerateToken();
-        $this->withHeader('X-CSRF-TOKEN', csrf_token());
-
-    }
-
-    private function defaultUserTest()
-    {
-        $this->withMiddleware();
-        $this->actingAs($this->user);
-        session()->regenerateToken();
-        $this->withHeader('X-CSRF-TOKEN', csrf_token());
-    }
-
-    private function generateUserData()
-    {
-        $user = factory(User::class)->make();
-        $data = [
-            'firstname' => $user->firstname,
-            'lastname' => $user->lastname,
-            'email' => $user->email,
-            'admin' => (bool)$user->admin,
-        ];
-
-        return $data;
+        $this->adminTest();
+        $this->can_update_user();
     }
 
     private function dbAssertion(array $data)
@@ -137,5 +111,13 @@ class UserControllerTest extends TestCase
             'email' => $data['email'],
             'admin' => (bool)$data['admin'],
         ]);
+    }
+
+    private function can_update_user()
+    {
+        $user = factory(User::class)->create();
+        $data = $this->generateUserData();
+        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
+        $this->dbAssertion($data);
     }
 }
