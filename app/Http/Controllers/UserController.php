@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserFormRequest;
+use App\Http\Requests\UpdateUserFormRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -77,21 +78,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserFormRequest $request, User $user)
     {
-        #dd($user);
-       # dd($request->all());
-        #$data = [
-         #   "firstname" => "Mr. Kane Kihn",
-        #    "lastname" => "Jaunita Ullrich",
-         #   "email" => "valentine52@example.net",
-         #   "admin" => false
-       # ];
-        #dd($data);
         #TODO filter für 'admin', autorization for logged in user can only update logged in user
-       $x =  $user->update($request->all());
-       #$x =  $user->update($data);
-       # dd($x);
+        $user->update($request->all());
     }
 
     /**
