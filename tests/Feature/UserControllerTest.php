@@ -34,7 +34,9 @@ class UserControllerTest extends TestCase
         $this->followingRedirects()
             ->put(route('user.update', [$user->id]), $data)
             ->assertStatus(200);
-        $this->delete(route('user.destroy' , [$user->id]))->assertStatus(200);
+        $this->followingRedirects()
+            ->delete(route('user.destroy' , [$user->id]))
+            ->assertStatus(200);
     }
 
 
@@ -142,8 +144,7 @@ class UserControllerTest extends TestCase
     private function can_update_user($user)
     {
         $data = $this->generateUserData($user);
-        $this->followingRedirects()
-            ->put(route('user.update', [$user->id]), $data)->assertStatus(200);
+        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
         $this->dbAssertion($data);
     }
 }

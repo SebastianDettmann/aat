@@ -12,6 +12,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DatabaseMigrations, DatabaseTransactions;
 
+    protected $followRedirects = true;
+
     protected $faker;
     protected $user;
     protected $admin;
