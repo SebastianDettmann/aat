@@ -50,18 +50,8 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
+     * used to, for displaying the user
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
