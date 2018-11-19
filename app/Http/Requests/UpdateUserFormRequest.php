@@ -15,7 +15,6 @@ class UpdateUserFormRequest extends FormRequest
      */
     public function authorize()
     {
-        # TODO user autorization
         return true;
     }
 

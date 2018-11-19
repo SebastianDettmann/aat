@@ -25,7 +25,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::get()->toArray();
+
+        return view('user.index')->with([
+            'users' => $user
+        ]);
     }
 
     /**
@@ -35,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -58,7 +62,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize('edit', $user);
+
+        return view('user.show_and_edit')->with([
+            'user' => $user
+        ]);
     }
 
     /**
@@ -70,7 +78,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserFormRequest $request, User $user)
     {
-        #TODO filter für 'admin', autorization for logged in user can only update logged in user
+        $this->authorize('edit', $user);
         $user->update($request->all());
     }
 

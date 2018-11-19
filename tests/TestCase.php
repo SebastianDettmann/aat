@@ -52,9 +52,8 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
-    protected function  generateUserData()
+    protected function  generateUserData($user)
     {
-        $user = factory(User::class)->make();
         $data = [
             'firstname' => $user->firstname,
             'lastname' => $user->lastname,
@@ -65,22 +64,11 @@ abstract class TestCase extends BaseTestCase
         return $data;
     }
 
-    protected function withMiddlewareAndXCRSF()
+    protected function withAutorization($user)
     {
+        $this->actingAs($user);
         $this->withMiddleware();
         session()->regenerateToken();
         $this->withHeader('X-CSRF-TOKEN', csrf_token());
-    }
-
-    protected function adminTest()
-    {
-        $this->actingAs($this->admin);
-        $this->withMiddlewareAndXCRSF();
-    }
-
-    protected function defaultUserTest()
-    {
-        $this->actingAs($this->user);
-        $this->withMiddlewareAndXCRSF();
     }
 }
