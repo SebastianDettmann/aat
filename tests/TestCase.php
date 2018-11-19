@@ -54,6 +54,14 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
+    protected function withAutorization($user)
+    {
+        $this->actingAs($user);
+        $this->withMiddleware();
+        session()->regenerateToken();
+        $this->withHeader('X-CSRF-TOKEN', csrf_token());
+    }
+
     protected function  generateUserData($user)
     {
         $data = [
@@ -64,13 +72,5 @@ abstract class TestCase extends BaseTestCase
         ];
 
         return $data;
-    }
-
-    protected function withAutorization($user)
-    {
-        $this->actingAs($user);
-        $this->withMiddleware();
-        session()->regenerateToken();
-        $this->withHeader('X-CSRF-TOKEN', csrf_token());
     }
 }

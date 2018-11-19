@@ -19,9 +19,11 @@ Route::group([
     'prefix' => 'app',
     'middleware' => ['auth']
 ], function () {
-    Route::resource('user', UserController::class)->except(['show']);
     # Todo change to propper route
     Route::get('app/dashboard', function (){
-       return view('home');
+        return view('home');
     })->name('dashboard');
+    Route::resource('user', UserController::class)->except(['show']);
+    Route::resource('reason', ReasonController::class)->except(['show'])->middleware('admin');
+
 });

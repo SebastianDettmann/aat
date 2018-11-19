@@ -15,7 +15,7 @@ class CreateReasonsTable extends Migration
     {
         Schema::create('reasons', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->text('description')->nullable();
             $table->string('color')->nullable();
             $table->string('hex_color')->default('#a0a0a0');
