@@ -20,4 +20,8 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
     Route::resource('user', UserController::class)->except(['show']);
+    # Todo change to propper route
+    Route::get('app/dashboard', function (){
+       return view('home');
+    })->name('dashboard');
 });

@@ -20,7 +20,9 @@ class UserControllerTest extends TestCase
         $data = $this->generateUserData(factory(User::class)->make());
 
         $this->get(route('user.index'))->assertStatus(200);
-        $this->post(route('user.store'), $data)->assertStatus(200);
+        $this->followingRedirects()
+            ->post(route('user.store'), $data)
+            ->assertStatus(200);
         $this->get(route('user.create'))->assertStatus(200);
         // removed show route, use edit route for showing user
         // $this->get(route('user.show', [$user->id]))->assertStatus(200);
@@ -29,7 +31,9 @@ class UserControllerTest extends TestCase
         $data = $this->generateUserData(factory(User::class)->make());
 
         $this->get(route('user.edit', [$user->id]))->assertStatus(200);
-        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
+        $this->followingRedirects()
+            ->put(route('user.update', [$user->id]), $data)
+            ->assertStatus(200);
         $this->delete(route('user.destroy' , [$user->id]))->assertStatus(200);
     }
 
@@ -46,7 +50,9 @@ class UserControllerTest extends TestCase
         // removed show route, use edit route for showing user
         // $this->get(route('user.show', [$user->id]))->assertStatus(200);
         $this->get(route('user.edit', [$user->id]))->assertStatus(200);
-        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
+        $this->followingRedirects()
+            ->put(route('user.update', [$user->id]), $data)
+            ->assertStatus(200);
 
     }
 
@@ -136,7 +142,8 @@ class UserControllerTest extends TestCase
     private function can_update_user($user)
     {
         $data = $this->generateUserData($user);
-        $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
+        $this->followingRedirects()
+            ->put(route('user.update', [$user->id]), $data)->assertStatus(200);
         $this->dbAssertion($data);
     }
 }
