@@ -28,7 +28,7 @@ Route::group([
 
     Route::resource('reason', ReasonController::class)->except(['show'])->middleware('admin');
 
-    Route::resource('period', PeriodController::class)->except(['show', 'index']);
+    Route::resource('period', PeriodController::class)->except(['show', 'index', 'edit', 'update']);
     Route::get('app/period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
     Route::get('app/period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
     Route::patch('app/period/confirm/{period}', 'PeriodController@confirm')->name('period.confirm')->middleware('admin');

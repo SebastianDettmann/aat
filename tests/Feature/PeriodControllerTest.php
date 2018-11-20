@@ -27,10 +27,6 @@ class PeriodControllerTest extends TestCase
 
         $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
-        $this->get(route('period.edit', [$period->id]))->assertStatus(200);
-        $this->followingRedirects()
-            ->put(route('period.update', [$period->id]), factory(Period::class)->make()->getAttributes())
-            ->assertStatus(200);
         $this->followingRedirects()
             ->delete(route('period.destroy' , [$period->id]))
             ->assertStatus(200);
@@ -78,23 +74,7 @@ class PeriodControllerTest extends TestCase
         ]);
     }
 
-    #TODO cant delete and update old periods and periods with confirmed reasons
-
-    /**
-     * @test
-     */
-    public function can_update_period()
-    {
-        $this->withAutorization($this->user);
-        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
-        $data = factory(Period::class)->make()->getAttributes();
-
-        $this->put(route('period.update', [$period->id]), $data)->assertStatus(200);
-        $this->assertDatabaseHas('periods', [
-            'start' => $data['start'],
-            'end' => $data['end']
-        ]);
-    }
+    #TODO cant delete old periods
 
     /**
      * @test

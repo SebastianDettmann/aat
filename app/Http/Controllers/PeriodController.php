@@ -51,7 +51,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
-        //
+        return view('period.create');
     }
 
     /**
@@ -64,18 +64,6 @@ class PeriodController extends Controller
     {
         $period = Period::make($request->all(''));
         auth()->user()->periods()->save($period);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Period  $period
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Period $period)
-    {
-        #todo userpolicy
-        //
     }
 
     /**
@@ -108,5 +96,7 @@ class PeriodController extends Controller
     {
         #todo on update email notification
         //
+
+        return redirect()->back();
     }
 }
