@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUserFormRequest;
+use App\Http\Requests\StoreUserFormRequest;
 use App\Http\Requests\UpdateUserFormRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUserFormRequest $request)
+    public function store(StoreUserFormRequest $request)
     {
         User::create($request->all());
 

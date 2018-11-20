@@ -24,11 +24,11 @@ class ReasonControllerTest extends TestCase
             ->post(route('reason.store'), $reason->getAttributes())
             ->assertStatus(200);
 
-        $reason->refresh();
+        $reason = factory(Reason::class)->create();
 
         $this->get(route('reason.edit', [$reason->id]))->assertStatus(200);
         $this->followingRedirects()
-            ->put(route('user.update', [$reason->id]), factory(Reason::class)->make()->getAttributes())
+            ->put(route('reason.update', [$reason->id]), factory(Reason::class)->make()->getAttributes())
             ->assertStatus(200);
         $this->followingRedirects()
             ->delete(route('reason.destroy' , [$reason->id]))
@@ -48,7 +48,7 @@ class ReasonControllerTest extends TestCase
         $this->get(route('reason.create'))->assertStatus(404);
         $this->post(route('reason.store'), $reason->getAttributes())->assertStatus(404);
         $this->get(route('reason.edit', [$reason->id]))->assertStatus(404);
-        $this->put(route('user.update', [$reason->id]), $reason->getAttributes())->assertStatus(404);
+        $this->put(route('reason.update', [$reason->id]), [])->assertStatus(404);
         $this->delete(route('reason.destroy' , [$reason->id]))->assertStatus(404);
     }
 
@@ -59,10 +59,11 @@ class ReasonControllerTest extends TestCase
      */
     public function can_store_reason()
     {
+
         $this->withAutorization($this->admin);
         $data = factory(Reason::class)->make()->getAttributes();
 
-        $this->post(route('user.store'), $data);
+        $this->post(route('reason.store'), $data);
 
         $this->assertDatabaseHas('reasons', $data);
     }
@@ -74,12 +75,13 @@ class ReasonControllerTest extends TestCase
      */
     public function can_update_reason()
     {
+
         $this->withAutorization($this->admin);
         $reason = factory(Reason::class)->create();
         $data = factory(Reason::class)->make()->getAttributes();
 
-        $this->put(route('user.update', [$reason->id]), $data)->assertStatus(200);
-        $this->assertDatabaseHas('reason', $data);
+        $this->put(route('reason.update', [$reason->id]), $data)->assertStatus(200);
+        $this->assertDatabaseHas('reasons', $data);
     }
 
     /**

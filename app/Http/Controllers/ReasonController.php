@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReasonFormRequest;
+use App\Http\Requests\UpdateReasonFormRequest;
 use App\Reason;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,7 @@ class ReasonController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -33,23 +35,12 @@ class ReasonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReasonFormRequest $request)
     {
-        //
+        Reason::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Reason  $reason
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reason $reason)
-    {
-        //
-    }
-
-    /**
+     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Reason  $reason
@@ -67,9 +58,9 @@ class ReasonController extends Controller
      * @param  \App\Reason  $reason
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reason $reason)
+    public function update(UpdateReasonFormRequest $request, Reason $reason)
     {
-        //
+        $reason->update($request->all());
     }
 
     /**
@@ -80,6 +71,6 @@ class ReasonController extends Controller
      */
     public function destroy(Reason $reason)
     {
-        //
+        $reason->delete();
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Libs\Datamap;
-use App\User;
+use App\Reason;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserFormRequest extends FormRequest
+class StoreReasonFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,24 +26,24 @@ class CreateUserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => [
+            'title' => [
                 'required',
-                'string'
+                'string',
+                'unique:reasons,title'
             ],
-            'lastname' => [
-                'required',
-                'string'
-            ],
-            'email' => [
-                'email',
-                'required',
-                'unique:users,email',
-            ],
-            'language' => [
+            'description' => [
                 'nullable',
-                'in:' . Datamap::getAppLanguages()->pluck('locale')->implode(','),
+                'string'
             ],
-            'admin' => [
+            'color' => [
+                'nullable',
+                'string'
+            ],
+            'hex_color' => [
+                'nullable',
+                'string'
+            ],
+            'has_to_confirm' => [
                 'nullable'
             ]
         ];

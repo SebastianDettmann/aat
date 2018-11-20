@@ -15,7 +15,7 @@ class ReasonTest extends TestCase
     public function save_a_reason_in_db()
     {
         $data = [
-            'title' => 'Urlaub',
+            'title' => 'Test Urlaub',
             'description' => 'Erholungsurlaub',
             'hex_color' => '#123456',
             'has_to_confirm' => true,
