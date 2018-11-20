@@ -22,7 +22,7 @@ class ReasonTest extends TestCase
         ];
 
         $reason = Reason::create($data);
-        $this->dbAassertion($reason);
+        $this->assertDatabaseHas('reasons', $reason->getAttributes());
     }
 
     /**
@@ -31,16 +31,6 @@ class ReasonTest extends TestCase
     public function save_any_reason_in_db()
     {
         $reason = factory(Reason::class)->create();
-        $this->dbAassertion($reason);
-    }
-
-    private function dbAassertion(Reason $reason)
-    {
-        $this->assertDatabaseHas('reasons', [
-            'title' => $reason->title,
-            'description' => $reason->description,
-            'hex_color' => $reason->hex_color,
-            'has_to_confirm' => $reason->has_to_confirm
-        ]);
+        $this->assertDatabaseHas('reasons', $reason->getAttributes());
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-use App\Reason;
 use App\Period;
+use App\Reason;
+use App\User;
 use App\Libs\Datamap;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +24,7 @@ class PeriodsReasonsTableSeeder extends Seeder
             ]);
 
             factory(Period::class)->create([
-                'reason_id' => $reason->getKey()
+                'reason_id' => $reason->getKey(),
             ]);
         }
     }

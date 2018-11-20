@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Period;
 use App\Reason;
+use App\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,27 +15,10 @@ class PeriodTest extends TestCase
     /**
      * @test
      */
-    public function save_a_period_in_db()
-    {
-        $data = [
-            'start' => Carbon::today(),
-            'end' => Carbon::tomorrow(),
-            'confirmed' => null,
-            'reason_id' => factory(Reason::class)->create()->id
-        ];
-
-        $period = Period::create($data);
-
-        $this->dbAssertion($period);
-    }
-
-    /**
-     * @test
-     */
     public function save_any_period_in_db()
     {
         $period = factory(Period::class)->create();
-        $this->dbAssertion($period);
+        $this->assertDatabaseHas('periods', $period->getAttributes());
     }
 
     /**
@@ -49,13 +33,15 @@ class PeriodTest extends TestCase
         $this->assertEquals($period->reason, $reason);
     }
 
-    private function dbAssertion(Period $period)
+    /**
+     * @test
+     */
+    public function period_user_relationship()
     {
-        $this->assertDatabaseHas('periods', [
-            'start' => $period->start,
-            'end' => $period->end,
-            'confirmed' => $period->confirmed,
-            'reason_id' => $period->reason_id
-        ]);
+        $user = factory(User::class)->create();
+        $period = factory(Period::class)->make();
+        $period->user()->associate($user)->save();
+
+        $this->assertEquals($period->user, $user);
     }
 }

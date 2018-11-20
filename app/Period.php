@@ -30,4 +30,10 @@ class Period extends Model
    {
        return $this->belongsTo(Reason::class);
    }
+
+   public function user()
+   {
+       return $this->belongsTo(User::class);
+   }
+
 }

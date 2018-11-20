@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Period;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -33,6 +34,18 @@ class UserTest extends TestCase
     {
         $user = factory(User::class)->create();
         $this->dbAssertion($user);
+    }
+
+    /**
+     * @test
+     */
+    public function user_period_relationship()
+    {
+        $user = factory(User::class)->create();
+        $period = factory(Period::class)->make();
+        $user->periods()->save($period);
+
+        $this->assertEquals($user->period, $period);
     }
 
     private function dbAssertion(User $user)

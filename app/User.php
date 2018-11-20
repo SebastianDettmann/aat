@@ -43,4 +43,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function periods()
+    {
+        return $this->hasMany(Period::class);
+    }
 }
