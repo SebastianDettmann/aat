@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Zeitraum anzeigen</div>
+                <div class="card-header">Zeitraum bestätigen</div>
 
                 <div class="card-body">
                     @if (session('status'))

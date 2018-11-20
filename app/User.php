@@ -48,4 +48,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Period::class);
     }
+
+    #todo check for update holidays
+    #todo add soft deletes?
 }

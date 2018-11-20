@@ -28,6 +28,9 @@ class PeriodControllerTest extends TestCase
         $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
         $this->followingRedirects()
+            ->get(route('period.show', [$period->id]))
+            ->assertStatus(200);
+        $this->followingRedirects()
             ->delete(route('period.destroy' , [$period->id]))
             ->assertStatus(200);
     }
@@ -41,7 +44,11 @@ class PeriodControllerTest extends TestCase
         $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
         $this->followingRedirects()
-            ->patch(route('period.confirm' , [$period->id]), ['confirmed' => rand(0, 1)])
+            ->get(route('period.edit_confirm', [$period->id]))
+            ->assertStatus(404);
+
+        $this->followingRedirects()
+            ->patch(route('period.patch_confirm', [$period->id]), ['confirmed' => rand(0, 1)])
             ->assertStatus(404);
     }
 
@@ -54,7 +61,10 @@ class PeriodControllerTest extends TestCase
         $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
         $this->followingRedirects()
-            ->patch(route('period.confirm', [$period->id]), ['confirmed' => rand(0, 1)])
+            ->get(route('period.edit_confirm' , [$period->id]))
+            ->assertStatus(200);
+        $this->followingRedirects()
+            ->patch(route('period.patch_confirm', [$period->id]), ['confirmed' => rand(0, 1)])
             ->assertStatus(200);
     }
 
@@ -88,5 +98,11 @@ class PeriodControllerTest extends TestCase
         $this->assertDatabaseMissing('periods', [
             'id' => $period->id
         ]);
+    }
+
+    public function admin_can_confirm_period()
+    {
+        $this->assertTrue(true);
+        #Todo test
     }
 }

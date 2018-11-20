@@ -10,9 +10,19 @@ class PeriodController extends Controller
 {
     protected $redirect = 'period.index'; #todo check for usability
 
-
-
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Period $period)
+    {
+        #todo userpolicy
+        return view('period.show')->with([
+           'period' => $period
+        ]);
+    }
 
     /**
      * Display a listing of the resource.
@@ -71,20 +81,6 @@ class PeriodController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Period  $period
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Period $period)
-    {
-        #todo userpolicy
-        $period->update($request->all());
-        auth()->user()->periods()->save($period);
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Period  $period
@@ -96,11 +92,20 @@ class PeriodController extends Controller
         $period->delete();
     }
 
-    public function confirm(Request $request, Period $period)
+    public function editConfirm(Period $period)
+    {
+        return view('period.confirm')->with([
+            'period' => $period
+        ]);
+    }
+
+    public function patchConfirm(Request $request, Period $period)
     {
         #todo on update email notification
         //
 
-        return redirect()->back();
+       # return redirect()->back();
     }
+
+    #todo summery of all leave requests off the year
 }
