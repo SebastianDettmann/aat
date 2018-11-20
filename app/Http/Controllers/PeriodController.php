@@ -10,6 +10,10 @@ class PeriodController extends Controller
 {
     protected $redirect = 'period.index'; #todo check for usability
 
+
+
+
+
     /**
      * Display a listing of the resource.
      *
