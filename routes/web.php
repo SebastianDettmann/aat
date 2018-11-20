@@ -23,10 +23,13 @@ Route::group([
     Route::get('app/dashboard', function (){
         return view('home');
     })->name('dashboard');
+
     Route::resource('user', UserController::class)->except(['show']);
+
+    Route::resource('reason', ReasonController::class)->except(['show'])->middleware('admin');
+
     Route::resource('period', PeriodController::class)->except(['show', 'index']);
     Route::get('app/period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
-    Route::get('app/period/indexall/{year}/{month}', 'PeriodController@index')->name('period.indexAll');
+    Route::get('app/period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
     Route::patch('app/period/confirm/{period}', 'PeriodController@confirm')->name('period.confirm')->middleware('admin');
-    Route::resource('reason', ReasonController::class)->except(['show'])->middleware('admin');
 });

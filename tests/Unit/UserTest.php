@@ -42,10 +42,10 @@ class UserTest extends TestCase
     public function user_period_relationship()
     {
         $user = factory(User::class)->create();
-        $period = factory(Period::class)->make();
+        $period = factory(Period::class)->create();
         $user->periods()->save($period);
 
-        $this->assertEquals($user->period, $period);
+        $this->assertEquals($user->periods->find($period->id)->id, $period->id);
     }
 
     private function dbAssertion(User $user)

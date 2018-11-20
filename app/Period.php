@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Period newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Period query()
  * @mixin \Eloquent
+ * @property-read \App\User $user
  */
 class Period extends Model
 {

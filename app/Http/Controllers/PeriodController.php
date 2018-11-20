@@ -20,10 +20,10 @@ class PeriodController extends Controller
         #todo check for use ajax
         #todo check for current month
 
-        $periods = Period::get()->toArray();
+        $periods = auth()->user()->periods()->with('reasons');
 
-        return view('reason.index')->with([
-            'reasons' => $reasons
+        return view('period.index')->with([
+            'periods' => $periods
         ]);
     }
 
@@ -34,7 +34,14 @@ class PeriodController extends Controller
      */
     public function indexAll($year, $month)
     {
-        //
+        #todo check for use ajax
+        #todo check for current month
+
+        $periods = Period::with('reason')->get();
+
+        return view('period.indexall')->with([
+            'periods' => $periods
+        ]);
     }
 
     /**
@@ -55,7 +62,8 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $period = Period::make($request->all(''));
+        auth()->user()->periods()->save($period);
     }
 
     /**
@@ -80,7 +88,8 @@ class PeriodController extends Controller
     public function update(Request $request, Period $period)
     {
         #todo userpolicy
-        //
+        $period->update($request->all());
+        auth()->user()->periods()->save($period);
     }
 
     /**
@@ -92,11 +101,12 @@ class PeriodController extends Controller
     public function destroy(Period $period)
     {
         #todo userpolicy
-        //
+        $period->delete();
     }
 
     public function confirm(Request $request, Period $period)
     {
+        #todo on update email notification
         //
     }
 }

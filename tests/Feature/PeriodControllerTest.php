@@ -42,10 +42,10 @@ class PeriodControllerTest extends TestCase
     public function user_cant_access_confirm()
     {
         $this->withAutorization($this->user);
-        $period = factory(Period::class)->make(['user_id' => $this->user->id]);
+        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
         $this->followingRedirects()
-            ->patch(route('period.confirm' , [$period->id]))
+            ->patch(route('period.confirm' , [$period->id]), ['confirmed' => rand(0, 1)])
             ->assertStatus(404);
     }
 
@@ -55,10 +55,10 @@ class PeriodControllerTest extends TestCase
     public function admin_can_access_confirm()
     {
         $this->withAutorization($this->admin);
-        $period = factory(Period::class)->make(['user_id' => $this->user->id]);
+        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
         $this->followingRedirects()
-            ->patch(route('period.confirm' , [$period->id]))
+            ->patch(route('period.confirm', [$period->id]), ['confirmed' => rand(0, 1)])
             ->assertStatus(200);
     }
 
@@ -72,7 +72,10 @@ class PeriodControllerTest extends TestCase
 
         $this->post(route('period.store'), $data);
 
-        $this->assertDatabaseHas('periods', $data);
+        $this->assertDatabaseHas('periods', [
+            'start' => $data['start'],
+            'end' => $data['end']
+        ]);
     }
 
     #TODO cant delete and update old periods and periods with confirmed reasons
@@ -82,20 +85,22 @@ class PeriodControllerTest extends TestCase
      */
     public function can_update_period()
     {
-
         $this->withAutorization($this->user);
         $period = factory(Period::class)->create(['user_id' => $this->user->id]);
         $data = factory(Period::class)->make()->getAttributes();
 
         $this->put(route('period.update', [$period->id]), $data)->assertStatus(200);
-        $this->assertDatabaseHas('periods', $data);
+        $this->assertDatabaseHas('periods', [
+            'start' => $data['start'],
+            'end' => $data['end']
+        ]);
     }
 
     /**
      * @test
      */
     public function can_delete_period()
-    {
+    {$this->assertTrue(true);
         $this->withAutorization($this->user);
         $period = factory(Period::class)->create(['user_id' => $this->user->id]);
 
