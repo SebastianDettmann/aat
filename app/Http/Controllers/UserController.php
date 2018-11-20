@@ -28,10 +28,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::get()->toArray();
+        $users = User::get()->toArray();
 
         return view('user.index')->with([
-            'users' => $user
+            'users' => $users
         ]);
     }
 

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class ReasonController extends Controller
 {
+    protected $redirect = 'reason.index';
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +18,11 @@ class ReasonController extends Controller
      */
     public function index()
     {
-        //
+        $reasons = Reason::get()->toArray();
+
+        return view('reason.index')->with([
+            'reasons' => $reasons
+        ]);
     }
 
     /**
@@ -26,7 +32,7 @@ class ReasonController extends Controller
      */
     public function create()
     {
-       //
+        return view('reason.create');
     }
 
     /**
@@ -38,6 +44,8 @@ class ReasonController extends Controller
     public function store(StoreReasonFormRequest $request)
     {
         Reason::create($request->all());
+
+        return redirect(route($this->redirect));
     }
 
      /**
@@ -48,7 +56,9 @@ class ReasonController extends Controller
      */
     public function edit(Reason $reason)
     {
-        //
+        return view('reason.show_and_edit')->with([
+            'reason' => $reason
+        ]);
     }
 
     /**
@@ -61,6 +71,8 @@ class ReasonController extends Controller
     public function update(UpdateReasonFormRequest $request, Reason $reason)
     {
         $reason->update($request->all());
+
+        return redirect(route($this->redirect));
     }
 
     /**
@@ -72,5 +84,7 @@ class ReasonController extends Controller
     public function destroy(Reason $reason)
     {
         $reason->delete();
+
+        return redirect(route($this->redirect));
     }
 }
