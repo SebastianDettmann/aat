@@ -25,7 +25,8 @@ class PeriodControllerTest extends TestCase
             ->post(route('period.store'), $period->getAttributes())
             ->assertStatus(200);
 
-        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
+        $period = factory(Period::class)->create();
+        $this->user->periods()->save($period);
 
         $this->followingRedirects()
             ->get(route('period.show', [$period->id]))
@@ -41,7 +42,8 @@ class PeriodControllerTest extends TestCase
     public function user_cant_access_confirm()
     {
         $this->withAutorization($this->user);
-        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
+        $period = factory(Period::class)->create();
+        $this->user->periods()->save($period);
 
         $this->followingRedirects()
             ->get(route('period.edit_confirm', [$period->id]))
@@ -90,9 +92,10 @@ class PeriodControllerTest extends TestCase
      * @test
      */
     public function can_delete_period()
-    {$this->assertTrue(true);
+    {
         $this->withAutorization($this->user);
-        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
+        $period = factory(Period::class)->create();
+        $this->user->periods()->save($period);
 
         $this->delete(route('period.destroy' , [$period->id]))->assertStatus(200);
         $this->assertDatabaseMissing('periods', [

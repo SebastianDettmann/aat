@@ -48,7 +48,8 @@ class PeriodControllerViewTest extends TestCase
     public function can_see_period_show()
     {
         $this->withAutorization($this->user);
-        $period = Period::first();
+        $period = factory(Period::class)->create();
+        $this->user->periods()->save($period);
 
         $this->get(route('period.show', [$period->id]))->assertSee('Zeitraum anzeigen');
         $this->get(route('period.show', [$period->id]))->assertViewHas('period');

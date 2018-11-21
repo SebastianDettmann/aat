@@ -18,9 +18,6 @@ class UserPolicy
      */
     public function edit(User $auth, User $user)
     {
-
-
         return $auth->admin ? true : $auth->id == $user->id;
-        return true;
     }
 }

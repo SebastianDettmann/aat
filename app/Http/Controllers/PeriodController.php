@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePeriodFormRequest;
 use App\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,7 +19,8 @@ class PeriodController extends Controller
      */
     public function show(Period $period)
     {
-        #todo userpolicy
+        $this->authorize('access', $period);
+
         return view('period.show')->with([
            'period' => $period
         ]);
@@ -74,7 +76,7 @@ class PeriodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePeriodFormRequest $request)
     {
         $period = Period::make($request->all(''));
         auth()->user()->periods()->save($period);
@@ -88,7 +90,8 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
-        #todo userpolicy
+        $this->authorize('access', $period);
+
         $period->delete();
     }
 
