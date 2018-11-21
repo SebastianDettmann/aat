@@ -19,7 +19,7 @@ class Period extends Model
    protected $fillable = [
        'start',
        'end',
-       'comment'
+       'comment',
    ];
 
    protected $dates = [

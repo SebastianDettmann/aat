@@ -54,16 +54,4 @@ class PeriodControllerViewTest extends TestCase
         $this->get(route('period.show', [$period->id]))->assertSee('Zeitraum anzeigen');
         $this->get(route('period.show', [$period->id]))->assertViewHas('period');
     }
-
-    /**
-     * @test
-     */
-    public function admin_can_see_period_confirm_edit()
-    {
-        $this->withAutorization($this->admin);
-        $period = Period::first();
-
-        $this->get(route('period.edit_confirm', [$period->id]))->assertSee('Zeitraum bestätigen');
-        $this->get(route('period.edit_confirm', [$period->id]))->assertViewHas('period');
-    }
 }

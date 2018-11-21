@@ -90,6 +90,8 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
+        #email notification
+
         $this->authorize('access', $period);
 
         $period->delete();
@@ -102,13 +104,7 @@ class PeriodController extends Controller
         ]);
     }
 
-    public function patchConfirm(Request $request, Period $period)
-    {
-        #todo on update email notification
-        //
 
-       # return redirect()->back();
-    }
 
     #todo summery of all leave requests off the year
 }

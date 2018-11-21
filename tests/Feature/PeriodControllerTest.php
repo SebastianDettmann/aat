@@ -36,39 +36,7 @@ class PeriodControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    /**
-     * @test
-     */
-    public function user_cant_access_confirm()
-    {
-        $this->withAutorization($this->user);
-        $period = factory(Period::class)->create();
-        $this->user->periods()->save($period);
 
-        $this->followingRedirects()
-            ->get(route('period.edit_confirm', [$period->id]))
-            ->assertStatus(404);
-
-        $this->followingRedirects()
-            ->patch(route('period.patch_confirm', [$period->id]), ['confirmed' => rand(0, 1)])
-            ->assertStatus(404);
-    }
-
-    /**
-     * @test
-     */
-    public function admin_can_access_confirm()
-    {
-        $this->withAutorization($this->admin);
-        $period = factory(Period::class)->create(['user_id' => $this->user->id]);
-
-        $this->followingRedirects()
-            ->get(route('period.edit_confirm' , [$period->id]))
-            ->assertStatus(200);
-        $this->followingRedirects()
-            ->patch(route('period.patch_confirm', [$period->id]), ['confirmed' => rand(0, 1)])
-            ->assertStatus(200);
-    }
 
     /**
      * @test
@@ -86,7 +54,7 @@ class PeriodControllerTest extends TestCase
         ]);
     }
 
-    #TODO cant delete old periods
+    //TODO cant delete old periods
 
     /**
      * @test
@@ -101,11 +69,5 @@ class PeriodControllerTest extends TestCase
         $this->assertDatabaseMissing('periods', [
             'id' => $period->id
         ]);
-    }
-
-    public function admin_can_confirm_period()
-    {
-        $this->assertTrue(true);
-        #Todo test
     }
 }

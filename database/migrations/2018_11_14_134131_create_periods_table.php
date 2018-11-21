@@ -18,7 +18,7 @@ class CreatePeriodsTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->text('comment')->nullable();
-            $table->date('confirmed')->nullable();
+            $table->dateTime('confirmed')->nullable();
             #todo check using nullable
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('reason_id')->unsigned()->nullable();

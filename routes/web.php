@@ -31,6 +31,17 @@ Route::group([
     Route::resource('period', PeriodController::class)->except(['index', 'edit', 'update']);
     Route::get('app/period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
     Route::get('app/period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
-    Route::get('app/period/confirm/{period}', 'PeriodController@editConfirm')->name('period.edit_confirm')->middleware('admin');
-    Route::patch('app/period/confirm/{period}', 'PeriodController@patchConfirm')->name('period.patch_confirm')->middleware('admin');
 });
+
+//Routes / Controllers for admins
+
+Route::group([
+    'prefix' => 'app',
+    'middleware' => ['auth', 'admin']
+], function () {
+    Route::resource('reason', ReasonController::class)->except(['show']);
+
+    Route::get('app/confirm/', 'ConfirmController@index')->name('confirm.index');
+    Route::post('app/confirm/', 'ConfirmController@confirm')->name('confirm.confirm');
+});
+

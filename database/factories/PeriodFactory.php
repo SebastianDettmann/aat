@@ -11,7 +11,7 @@ $factory->define(Period::class, function (Faker $faker) {
         'start' => Carbon::today()->toDateString(),
         'end' => Carbon::today()->addDays(rand(1, 10))->toDateString(),
         'comment' => $faker->text(),
-        'confirmed' => $faker->date(),
+      #  'confirmed' => Carbon::today()->addDays(rand(1, 10))->toDateString(),
         'reason_id' => function() {
                 return factory(Reason::class)->create()->id;
         },
