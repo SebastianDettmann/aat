@@ -1,5 +1,7 @@
 <?php
 
+use App\Reason;
+use App\Libs\Datamap;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +24,13 @@ class CreateReasonsTable extends Migration
             $table->boolean('has_to_confirm')->default(false);
             $table->timestamps();
         });
+
+
+        Reason::flushEventListeners();
+        foreach (Datamap::getAbsenceReasons() as $reason){
+            array_forget($reason, 'id');
+            Reason::forceCreate($reason);
+        }
     }
 
     /**

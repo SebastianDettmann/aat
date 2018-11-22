@@ -96,15 +96,5 @@ class PeriodController extends Controller
 
         $period->delete();
     }
-
-    public function editConfirm(Period $period)
-    {
-        return view('period.confirm')->with([
-            'period' => $period
-        ]);
-    }
-
-
-
     #todo summery of all leave requests off the year
 }

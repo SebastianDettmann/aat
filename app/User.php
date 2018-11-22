@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,6 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Period[] $periods
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Access[] $accesses
  */
 class User extends Authenticatable
 {
@@ -48,6 +51,33 @@ class User extends Authenticatable
     {
         return $this->hasMany(Period::class);
     }
+
+    public function accesses()
+    {
+        return $this->belongsToMany(Access::class);
+    }
+
+    public function scopeByAccess(Builder $query, String $access_slug_title)
+    {
+        return $query->accesses()->where('slug', $access_slug_title);
+    }
+
+    public function getAccesses(String $access_slug_title)
+    {
+        $accesses = cache()->remember('accesses_' . $access_slug_title, 10, function() use ($access_slug_title) {
+            self::byAccess($access_slug_title)->get('user_id')->toArray(); //Todo check can an array saved in cache
+        });
+        return $accesses;
+    }
+
+    public function hasAccess(String $access_slug_title)
+    {
+        return in_array($this->id, $this->getAccesses($access_slug_title));
+    }
+
+
+
+
 
     #todo check for update holidays
     #todo add soft deletes?

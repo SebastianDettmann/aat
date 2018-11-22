@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Period query()
  * @mixin \Eloquent
  * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Period byConfirmed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Period byNotConfirmed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Period byOld()
  */
 class Period extends Model
 {
@@ -38,18 +43,34 @@ class Period extends Model
        return $this->belongsTo(User::class);
    }
 
-    public function scopeByNotConfirmed()
+    public function scopeByConfirmed(Builder $query)
     {
-
+        return $query->reason()->where('has_to_confirm', true)->whereNotNull('confirmed');
     }
 
-    public function scopeByConfirmed()
+    public function scopeByNotConfirmed(Builder $query)
     {
-
+        return $query->reason()->where('has_to_confirm', true)->whereNull('confirmed');
     }
 
-    public function scopeByOld()
+    public function scopeByOlderThen(Builder $query, Carbon $date)
     {
+        return $query->whereDate('start', '<',  $date);
+    }
 
+    public function scopeByInMonth(Builder $query, Carbon $date)
+    {
+        $firstDayofMonth = $date->startOfMonth()->toDateString();
+        $lastDayofMonth = $date->endOfMonth()->toDateString();
+
+        return $query
+            ->whereBetween('start', [$firstDayofMonth, $lastDayofMonth])
+            ->orWhereBetween('end', [$firstDayofMonth, $lastDayofMonth])
+            ->orWhere(function($query) use ($firstDayofMonth, $lastDayofMonth){
+                $query->where([
+                    ['start', '<', $firstDayofMonth],
+                    ['end', '>', $lastDayofMonth]
+                    ]);
+            });
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use App\Libs\Datamap;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -26,6 +27,9 @@ class CreateUsersTable extends Migration
             $table->string('language')->default(Datamap::getAppLanguages()->pluck('locale')->first());
             $table->timestamps();
         });
+
+        User::flushEventListeners();
+        User::forceCreate(Datamap::getFirstAdmin());
     }
 
     /**
