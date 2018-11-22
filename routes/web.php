@@ -19,29 +19,37 @@ Route::group([
     'prefix' => 'app',
     'middleware' => ['auth']
 ], function () {
+    //generel routes
     # Todo change to propper route
     Route::get('app/dashboard', function (){
         return view('home');
     })->name('dashboard');
 
     Route::resource('user', UserController::class)->except(['show']);
+    Route::resource('access', AccessController::class)->except(['show'])->middleware('admin');
 
-    Route::resource('reason', ReasonController::class)->except(['show'])->middleware('admin');
+    // absence tool routes
+    Route::group(['middleware' => ['absence']
+    ], function () {
+        Route::resource('period', PeriodController::class)->except(['index', 'edit', 'update']);
+        Route::get('app/period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
+        Route::get('app/period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
 
-    Route::resource('period', PeriodController::class)->except(['index', 'edit', 'update']);
-    Route::get('app/period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
-    Route::get('app/period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
+        //Routes / Controllers for admins
+        Route::group([
+            'prefix' => 'app',
+            'middleware' => ['auth', 'admin']
+        ], function () {
+            Route::resource('reason', ReasonController::class)->except(['show']);
+            Route::get('app/confirm/', 'ConfirmController@index')->name('confirm.index');
+            Route::post('app/confirm/', 'ConfirmController@confirm')->name('confirm.confirm');
+        });
+    });
 });
 
-//Routes / Controllers for admins
 
-Route::group([
-    'prefix' => 'app',
-    'middleware' => ['auth', 'admin']
-], function () {
-    Route::resource('reason', ReasonController::class)->except(['show']);
 
-    Route::get('app/confirm/', 'ConfirmController@index')->name('confirm.index');
-    Route::post('app/confirm/', 'ConfirmController@confirm')->name('confirm.confirm');
-});
+
+
+
 

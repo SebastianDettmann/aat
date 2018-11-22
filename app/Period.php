@@ -38,4 +38,18 @@ class Period extends Model
        return $this->belongsTo(User::class);
    }
 
+    public function scopeByNotConfirmed()
+    {
+
+    }
+
+    public function scopeByConfirmed()
+    {
+
+    }
+
+    public function scopeByOld()
+    {
+
+    }
 }
