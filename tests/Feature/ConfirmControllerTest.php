@@ -2,21 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\UserController;
 use App\Period;
-use Carbon\Carbon;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ConfirmControllerTest extends TestCase
 {
-       /**
-     * @test
-     */
+    /**@test */
     public function user_cant_access_functions()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
 
         $this->followingRedirects()
             ->get(route('confirm.index'))
@@ -27,12 +21,10 @@ class ConfirmControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    /**@test */
     public function admin_can_access_functions()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
 
         $this->followingRedirects()
             ->get(route('confirm.index'))

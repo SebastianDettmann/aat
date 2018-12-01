@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePeriodFormRequest;
 use App\Period;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class PeriodController extends Controller
 {
     protected $redirect = 'period.index'; #todo check for usability
 
     /**
-     * Display the specified resource.
+     * Display the specified \App\Period.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Period $period
+     * by model-key-binding
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * rendered as 404
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(Period $period)
     {
@@ -27,9 +28,9 @@ class PeriodController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing \App\Period by user.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index($year, $month)
     {
@@ -44,9 +45,9 @@ class PeriodController extends Controller
     }
 
     /**
-     * Display a listing of the resource for all users.
+     * Display a listing of all \App\Period.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function indexAll($year, $month)
     {
@@ -61,9 +62,9 @@ class PeriodController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new /App/User.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -71,26 +72,31 @@ class PeriodController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created \App\Period in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePeriodFormRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StorePeriodFormRequest $request)
     {
         $period = Period::make($request->all(''));
         auth()->user()->periods()->save($period);
+        // Todo redirect, update phpdoc
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified \App\Period from Database.
      *
      * @param  \App\Period  $period
+     * by model-key-binding
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * rendered as 404
      * @return \Illuminate\Http\Response
      */
     public function destroy(Period $period)
     {
-        #email notification
+        #Todo email notification, redirect, update phpdoc
 
         $this->authorize('access', $period);
 

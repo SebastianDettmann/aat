@@ -2,11 +2,9 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\User
@@ -59,13 +57,14 @@ class User extends Authenticatable
 
     public function scopeByAccess(Builder $query, String $access_slug_title)
     {
-        return $query->accesses()->where('slug', $access_slug_title);
+        return $query->where('slug', $access_slug_title);
     }
 
     public function getAccesses(String $access_slug_title)
     {
         $accesses = cache()->remember('accesses_' . $access_slug_title, 10, function() use ($access_slug_title) {
             self::byAccess($access_slug_title)->get('user_id')->toArray(); //Todo check can an array saved in cache
+            //todo model observer user is deleted
         });
         return $accesses;
     }

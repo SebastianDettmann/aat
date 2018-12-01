@@ -2,20 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\UserController;
 use App\Reason;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReasonControllerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_access_all_controller_functions()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $reason = factory(Reason::class)->make();
 
         $this->get(route('reason.index'))->assertStatus(200);
@@ -35,13 +30,10 @@ class ReasonControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-
-    /**
-     * @test
-     */
+    /** @test */
     public function user_cant_access_any_controller_functions()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $reason = factory(Reason::class)->create();
 
         $this->get(route('reason.index'))->assertStatus(404);
@@ -52,15 +44,11 @@ class ReasonControllerTest extends TestCase
         $this->delete(route('reason.destroy' , [$reason->id]))->assertStatus(404);
     }
 
-
-
-    /**
-     * @test
-     */
+    /** @test */
     public function can_store_reason()
     {
 
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $data = factory(Reason::class)->make()->getAttributes();
 
         $this->post(route('reason.store'), $data);
@@ -70,13 +58,11 @@ class ReasonControllerTest extends TestCase
 
     #TODO cant delete used reasons
 
-    /**
-     * @test
-     */
+    /** @test */
     public function can_update_reason()
     {
 
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $reason = factory(Reason::class)->create();
         $data = factory(Reason::class)->make()->getAttributes();
 
@@ -84,12 +70,10 @@ class ReasonControllerTest extends TestCase
         $this->assertDatabaseHas('reasons', $data);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function can_delete_reason()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $reason = factory(Reason::class)->create();
 
         $this->delete(route('reason.destroy' , [$reason->id]))->assertStatus(200);

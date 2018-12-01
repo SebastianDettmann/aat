@@ -2,20 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\UserController;
 use App\Period;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PeriodControllerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /**@test */
     public function user_can_access_controller_functions()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $period = factory(Period::class)->make(['user_id' => $this->user->id]);
 
         $this->get(route('period.index', [rand(2000, 2020), rand(1, 12)]))->assertStatus(200);
@@ -36,14 +31,10 @@ class PeriodControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-
-
-    /**
-     * @test
-     */
+    /**@test */
     public function can_store_period()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $data = factory(Period::class)->make()->getAttributes();
 
         $this->post(route('period.store'), $data);
@@ -56,12 +47,10 @@ class PeriodControllerTest extends TestCase
 
     //TODO cant delete old periods
 
-    /**
-     * @test
-     */
+    /**@test */
     public function can_delete_period()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $period = factory(Period::class)->create();
         $this->user->periods()->save($period);
 

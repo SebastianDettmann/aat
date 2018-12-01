@@ -33,6 +33,8 @@ class Period extends Model
        'confirmed'
    ];
 
+    protected $with = ['reason'];
+
    public function reason()
    {
        return $this->belongsTo(Reason::class);
@@ -45,12 +47,12 @@ class Period extends Model
 
     public function scopeByConfirmed(Builder $query)
     {
-        return $query->reason()->where('has_to_confirm', true)->whereNotNull('confirmed');
+        return $query->where('has_to_confirm', true)->whereNotNull('confirmed');
     }
 
     public function scopeByNotConfirmed(Builder $query)
     {
-        return $query->reason()->where('has_to_confirm', true)->whereNull('confirmed');
+        return $query->where('has_to_confirm', true)->whereNull('confirmed');
     }
 
     public function scopeByOlderThen(Builder $query, Carbon $date)

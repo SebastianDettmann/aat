@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserFormRequest;
 use App\Http\Requests\UpdateUserFormRequest;
 use App\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**@var string */
     protected $redirectAdmin = 'user.index';
+    /**@var string */
     protected $redirectUser = 'dashboard'; #TODO  has to change to dashboard or something else
 
     /**
@@ -22,9 +23,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of \App\User.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -36,9 +37,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new \App\User.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -46,10 +47,10 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created \App\User in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreUserFormRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreUserFormRequest $request)
     {
@@ -59,11 +60,14 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified \App\User.
      * used to, for displaying the user
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * rendered as 404
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(User $user)
     {
@@ -75,11 +79,14 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified \App\User in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateUserFormRequest $request
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * rendered as 404
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateUserFormRequest $request, User $user)
     {
@@ -93,6 +100,9 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
+     * @throws \Exception
+     * my throws an Exception if the User not Exists,
+     * not validated, because is only available for Admins
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

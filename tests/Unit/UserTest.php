@@ -5,14 +5,10 @@ namespace Tests\Unit;
 use App\Period;
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function save_a_user_in_db()
     {
         $data = [
@@ -27,18 +23,14 @@ class UserTest extends TestCase
         $this->dbAssertion($user);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function save_any_user_in_db()
     {
         $user = factory(User::class)->create();
         $this->dbAssertion($user);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function user_period_relationship()
     {
         $user = factory(User::class)->create();

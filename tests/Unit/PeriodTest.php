@@ -5,25 +5,18 @@ namespace Tests\Unit;
 use App\Period;
 use App\Reason;
 use App\User;
-use Carbon\Carbon;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PeriodTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /**test*/
     public function save_any_period_in_db()
     {
         $period = factory(Period::class)->create();
         $this->assertDatabaseHas('periods', $period->getAttributes());
     }
 
-    /**
-     * @test
-     */
+    /**@test */
     public function period_reason_relationship()
     {
         $reason = factory(Reason::class)->create();
@@ -33,9 +26,7 @@ class PeriodTest extends TestCase
         $this->assertEquals($period->reason, $reason);
     }
 
-    /**
-     * @test
-     */
+    /**@test */
     public function period_user_relationship()
     {
         $user = factory(User::class)->create();

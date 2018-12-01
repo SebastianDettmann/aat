@@ -2,20 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\UserController;
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserControllerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_access_all_controller_functions()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $user = factory(User::class)->create();
         $data = $this->generateUserData(factory(User::class)->make());
 
@@ -40,12 +35,10 @@ class UserControllerTest extends TestCase
     }
 
 
-    /**
-     * @test
-     */
+    /** @test */
     public function default_user_can_access_default_user_update_edit_controller_functions()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $user = auth()->user();
         $data = $this->generateUserData(factory(User::class)->make());
 
@@ -58,12 +51,10 @@ class UserControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function default_user_cant_access_other_user_edit_update_controller_functions()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $user = factory(User::class)->create();
         $data = $this->generateUserData(factory(User::class)->make());
 
@@ -71,12 +62,10 @@ class UserControllerTest extends TestCase
         $this->put(route('user.update', [$user->id]), $data)->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function default_user_cant_access_index_store_create_destroy_controller_functions()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $user = factory(User::class)->create();
 
         $this->get(route('user.index'))->assertStatus(404);
@@ -85,12 +74,10 @@ class UserControllerTest extends TestCase
         $this->delete(route('user.destroy' , [$user->id]))->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_store_user()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $data = $this->generateUserData(factory(User::class)->make());
 
         $this->post(route('user.store'), $data);
@@ -98,12 +85,10 @@ class UserControllerTest extends TestCase
         $this->dbAssertion($data);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_delete_user()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $user = factory(User::class)->create();
 
         $this->delete(route('user.destroy' , [$user->id]))->assertStatus(200);
@@ -112,21 +97,17 @@ class UserControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function user_can_update_self()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $this->can_update_user(auth()->user());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_update_user()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $user = factory(User::class)->create();
         $this->can_update_user($user);
     }

@@ -4,14 +4,10 @@ namespace Tests\Unit;
 
 use App\Reason;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReasonTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function save_a_reason_in_db()
     {
         $data = [
@@ -25,9 +21,7 @@ class ReasonTest extends TestCase
         $this->assertDatabaseHas('reasons', $reason->getAttributes());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function save_any_reason_in_db()
     {
         $reason = factory(Reason::class)->create();

@@ -2,9 +2,9 @@
 
 use App\Access;
 use App\Libs\Datamap;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAccessesTable extends Migration
 {
@@ -27,6 +27,7 @@ class CreateAccessesTable extends Migration
         Access::flushEventListeners();
         foreach (Datamap::getAccessPoints() as $access){
             array_forget($access, 'id');
+            dd($access);
             Access::forceCreate($access);
         }
     }

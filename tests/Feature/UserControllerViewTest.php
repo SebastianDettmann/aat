@@ -2,53 +2,42 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\UserController;
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserControllerViewTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_see_user_index()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
 
         $this->get(route('user.index'))->assertSee('Alle User');
         $this->get(route('user.index'))->assertViewHas('users');
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_see_user_create()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
 
         $this->get(route('user.create'))->assertSee('User anlegen');
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_can_see_user_edit()
     {
-        $this->withAutorization($this->admin);
+        $this->withAutentification($this->admin);
         $user = User::first();
 
         $this->get(route('user.edit', [$user->id]))->assertSee('User bearbeiten');
         $this->get(route('user.edit', [$user->id]))->assertViewHas('user');
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function default_user_can_see_default_user_edit()
     {
-        $this->withAutorization($this->user);
+        $this->withAutentification($this->user);
         $user = auth()->user();
 
         $this->get(route('user.edit', [$user->id]))->assertSee('User bearbeiten');

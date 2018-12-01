@@ -3,9 +3,9 @@
 namespace Tests;
 
 use App\User;
+use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -54,7 +54,7 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
-    protected function withAutorization($user)
+    protected function withAutentification($user)
     {
         $this->actingAs($user);
         $this->withMiddleware();

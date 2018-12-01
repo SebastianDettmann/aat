@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReasonFormRequest;
 use App\Http\Requests\UpdateReasonFormRequest;
 use App\Reason;
-use Illuminate\Http\Request;
 
 class ReasonController extends Controller
 {
     protected $redirect = 'reason.index';
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of \App\Reason.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -26,9 +25,9 @@ class ReasonController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new \App\Reason.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -36,10 +35,10 @@ class ReasonController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created \App\Reason in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreReasonFormRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreReasonFormRequest $request)
     {
@@ -49,10 +48,12 @@ class ReasonController extends Controller
     }
 
      /**
-     * Show the form for editing the specified resource.
+      * Show the form for editing \App\Reason.
+      * used to as show view
      *
      * @param  \App\Reason  $reason
-     * @return \Illuminate\Http\Response
+      * by model-key-binding
+      * @return \Illuminate\Contracts\View\View
      */
     public function edit(Reason $reason)
     {
@@ -62,11 +63,12 @@ class ReasonController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified \App\Reason in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateReasonFormRequest $request
      * @param  \App\Reason  $reason
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateReasonFormRequest $request, Reason $reason)
     {
@@ -76,13 +78,18 @@ class ReasonController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified \App\Reason From Database.
      *
      * @param  \App\Reason  $reason
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @throws \Exception
+     * my throws an Exception if the Reason not Exists,
+     * not validated, because is only available for Admins
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Reason $reason)
     {
+        #todo check if it used
         $reason->delete();
 
         return redirect(route($this->redirect));

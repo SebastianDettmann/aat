@@ -10,9 +10,9 @@ class AccessController extends Controller
     protected $redirect = 'access.index';
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of \App\Access.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -22,9 +22,9 @@ class AccessController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new \App\Access.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -32,10 +32,10 @@ class AccessController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created \App\Access in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -45,10 +45,11 @@ class AccessController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing \App\Access.
      *
      * @param  \App\Access  $access
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Access $access)
     {
@@ -56,11 +57,12 @@ class AccessController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified \App\Access in Database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Access  $access
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Access $access)
     {
@@ -70,15 +72,16 @@ class AccessController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified \App\Access from Database.
      *
      * @param  \App\Access  $access
-     * @return \Illuminate\Http\Response
+     * by model-key-binding
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Access $access)
     {
         #Todo check if this Access is in use
-        $access->delete();
+        $access->deleteOrFail();
 
         return redirect(route($this->redirect));
     }
