@@ -40,6 +40,13 @@ class UserTest extends TestCase
         $this->assertEquals($user->periods->find($period->id)->id, $period->id);
     }
 
+    /** @test */
+    public function user_fullname_is_firstname_plus_lastname()
+    {
+        $user = factory(User::class)->make();
+        $this->assertEquals($user->firstname . ' ' . $user->lastname, $user->fullName());
+    }
+
     private function dbAssertion(User $user)
     {
         $this->assertDatabaseHas('users', [

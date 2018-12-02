@@ -19,7 +19,7 @@ Route::group([
 ], function () {
     //general routes
     # Todo change to propper route
-    Route::get('app/dashboard', function (){
+    Route::get('dashboard', function () {
         return view('home');
     })->name('dashboard');
 
@@ -30,17 +30,21 @@ Route::group([
     Route::group(['middleware' => ['absence']
     ], function () {
         Route::resource('period', PeriodController::class)->except(['index', 'edit', 'update']);
-        Route::get('app/period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
-        Route::get('app/period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
+        Route::get('period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
+        Route::get('period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
 
         //Routes / Controllers for admins
         Route::group([
-            'prefix' => 'app',
             'middleware' => ['auth', 'admin']
         ], function () {
             Route::resource('reason', ReasonController::class)->except(['show']);
-            Route::get('app/confirm/', 'ConfirmController@index')->name('confirm.index');
-            Route::post('app/confirm/', 'ConfirmController@confirm')->name('confirm.confirm');
+            Route::get('confirm/', 'ConfirmController@index')->name('confirm.index');
+            Route::post('confirm/', 'ConfirmController@confirm')->name('confirm.confirm');
+
+
+            Route::get('report', function () {
+                return 'dummy reporting daten';
+            })->name('report');
         });
     });
 });

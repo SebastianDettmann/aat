@@ -12,8 +12,9 @@ class UserControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('user.index'))->assertSee('Alle User');
-        $this->get(route('user.index'))->assertViewHas('users');
+        $this->get(route('user.index'))
+            ->assertSee('Alle User')
+            ->assertViewHas('users');
     }
 
     /** @test */
@@ -21,7 +22,9 @@ class UserControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('user.create'))->assertSee('User anlegen');
+        $this->get(route('user.create'))
+            ->assertSee('User anlegen')
+            ->assertViewHas('accesses');
     }
 
     /** @test */

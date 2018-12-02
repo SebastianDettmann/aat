@@ -44,6 +44,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function fullName()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
     public function periods()
     {
         return $this->hasMany(Period::class);

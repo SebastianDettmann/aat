@@ -5,6 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * Class Admin
+ * @package App\Http\Middleware
+ */
 class Admin
 {
     /**
@@ -12,6 +16,8 @@ class Admin
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * if not admin returns 404
      * @return mixed
      */
     public function handle($request, Closure $next)

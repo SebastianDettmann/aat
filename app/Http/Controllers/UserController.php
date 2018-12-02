@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Access;
 use App\Http\Requests\StoreUserFormRequest;
 use App\Http\Requests\UpdateUserFormRequest;
 use App\User;
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get()->toArray();
+        $users = User::with('accesses')->get();
 
         return view('user.index')->with([
             'users' => $users
@@ -43,7 +44,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $accesses = Access::all();
+
+        return view('user.create')->with([
+            'accesses' => $accesses
+        ]);
     }
 
     /**

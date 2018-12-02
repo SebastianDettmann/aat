@@ -90,8 +90,8 @@ class Datamap
                 'id' => 1,
                 'title' => $titles[0],
                 'slug' => str_slug($titles[0], '_'),
-                'url' => config('app.url'),
-                'image' => 'absolute.svg'
+                'url' => config('app.url' . '/app/dashboard'),
+                'image' => 'img/absolute.png'
             ]
         ]);
     }
