@@ -92,11 +92,13 @@ class PeriodController extends Controller
      * by model-key-binding
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * rendered as 404
+     * @throws \Exception
+     * my throws an Exception if the Reason not Exists,
      * @return \Illuminate\Http\Response
      */
     public function destroy(Period $period)
     {
-        #Todo email notification, redirect, update phpdoc
+        #Todo email notification, redirect, validation $period exist update phpdoc
 
         $this->authorize('access', $period);
 

@@ -53,7 +53,9 @@ class AccessController extends Controller
      */
     public function edit(Access $access)
     {
-        return view('access.show_and_edit');
+        return view('access.show_and_edit')->with([
+            'access' => $access
+        ]);
     }
 
     /**
@@ -76,12 +78,15 @@ class AccessController extends Controller
      *
      * @param  \App\Access  $access
      * by model-key-binding
+     * @throws \Exception
+     * my throws an Exception if the Reason not Exists,
+     * not validated, because is only available for Admins
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Access $access)
     {
         #Todo check if this Access is in use
-        $access->deleteOrFail();
+        $access->delete();
 
         return redirect(route($this->redirect));
     }
