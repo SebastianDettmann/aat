@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Access;
 use App\User;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,6 +18,7 @@ abstract class TestCase extends BaseTestCase
     protected $faker;
     protected $user;
     protected $admin;
+    protected $acccess;
 
     public function createApplication()
     {
@@ -45,7 +47,13 @@ abstract class TestCase extends BaseTestCase
         $this->faker = Faker::create();
         $this->user = factory(User::class)->create();
         $this->admin = factory(User::class)->states('admin')->create();
+        $this->access = Access::firstOrFail();
+        $this->access->users()->attach([
+            $this->admin->id,
+            $this->user->id
+        ]);
     }
+
     /**
      * Reset the migrations
      */

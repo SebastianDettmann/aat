@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,10 +20,15 @@ class Access extends Model
         'title',
         'url',
         'image'
-        ];
+    ];
 
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function scopeByAccess(Builder $query, String $access_slug_title)
+    {
+        return $query->where('slug', $access_slug_title);
     }
 }

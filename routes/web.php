@@ -11,15 +11,13 @@
 |
 */
 
-
-
 Auth::routes(['register' => false]);
 
 Route::group([
     'prefix' => 'app',
     'middleware' => ['auth']
 ], function () {
-    //generel routes
+    //general routes
     # Todo change to propper route
     Route::get('app/dashboard', function (){
         return view('home');

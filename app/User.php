@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -55,15 +54,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Access::class);
     }
 
-    public function scopeByAccess(Builder $query, String $access_slug_title)
-    {
-        return $query->where('slug', $access_slug_title);
-    }
-
     public function getAccesses(String $access_slug_title)
     {
         $accesses = cache()->remember('accesses_' . $access_slug_title, 10, function() use ($access_slug_title) {
-            self::byAccess($access_slug_title)->get('user_id')->toArray(); //Todo check can an array saved in cache
+            return self::whereHas('accesses', function ($q) use ($access_slug_title) {
+                $q->where('slug', $access_slug_title);
+            })->get()->pluck('id')->toArray();
             //todo model observer user is deleted
         });
         return $accesses;
@@ -73,10 +69,6 @@ class User extends Authenticatable
     {
         return in_array($this->id, $this->getAccesses($access_slug_title));
     }
-
-
-
-
 
     #todo check for update holidays
     #todo add soft deletes?

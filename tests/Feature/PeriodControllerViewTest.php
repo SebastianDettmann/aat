@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class PeriodControllerViewTest extends TestCase
 {
-    /**@test */
+    /** @test */
     public function can_see_period_index()
     {
         $this->withAutentification($this->user);
@@ -16,7 +16,7 @@ class PeriodControllerViewTest extends TestCase
         $this->get(route('period.index',[rand(2000, 2020), rand(1, 12)]))->assertViewHas('periods');
     }
 
-    /**@test */
+    /** @test */
     public function can_see_period_index_all()
     {
         $this->withAutentification($this->user);
@@ -25,7 +25,7 @@ class PeriodControllerViewTest extends TestCase
         $this->get(route('period.indexall',[rand(2000, 2020), rand(1, 12)]))->assertViewHas('periods');
     }
 
-    /**@test */
+    /** @test */
     public function can_see_period_create()
     {
         $this->withAutentification($this->user);
@@ -33,7 +33,7 @@ class PeriodControllerViewTest extends TestCase
         $this->get(route('period.create'))->assertSee('Zeitraum anlegen');
     }
 
-    /**@test */
+    /** @test */
     public function can_see_period_show()
     {
         $this->withAutentification($this->user);

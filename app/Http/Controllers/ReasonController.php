@@ -8,6 +8,9 @@ use App\Reason;
 
 class ReasonController extends Controller
 {
+    /**
+     * @var string
+     */
     protected $redirect = 'reason.index';
 
     /**

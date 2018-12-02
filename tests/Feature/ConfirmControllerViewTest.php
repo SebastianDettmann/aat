@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ConfirmControllerViewTest extends TestCase
 {
-    /**@test */
+    /** @test */
     public function admin_can_see_confirm_index()
     {
         $this->withAutentification($this->admin);

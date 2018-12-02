@@ -25,9 +25,9 @@ class CreateAccessesTable extends Migration
         });
 
         Access::flushEventListeners();
+
         foreach (Datamap::getAccessPoints() as $access){
             array_forget($access, 'id');
-            dd($access);
             Access::forceCreate($access);
         }
     }

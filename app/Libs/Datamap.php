@@ -2,8 +2,16 @@
 
 namespace App\Libs;
 
+/**
+ * Class Datamap
+ * stores same basic static data
+ * @package App\Libs
+ */
 class Datamap
 {
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public static function getAppLanguages()
     {
         return collect([
@@ -19,6 +27,9 @@ class Datamap
         ]);
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public static function getAbsenceReasons()
     {
         return collect([
@@ -56,11 +67,18 @@ class Datamap
         ])->sortBy('title');
     }
 
+    /**
+     * @param $id
+     * @return array|null
+     */
     public static function getOneReason($id)
     {
         return self::getAbsenceReasons()->where('id', $id)->first();
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public static function getAccessPoints()
     {
         $titles = [
@@ -68,19 +86,28 @@ class Datamap
         ];
 
         return collect([
-           'id' => 1,
-           'title' => $titles[1],
-           'slug' => str_slug($titles[1], '_'),
-           'url' => config('app.url'),
-           'image' => 'absolute.svg'
+            [
+                'id' => 1,
+                'title' => $titles[0],
+                'slug' => str_slug($titles[0], '_'),
+                'url' => config('app.url'),
+                'image' => 'absolute.svg'
+            ]
         ]);
     }
 
+    /**
+     * @param $id
+     * @return array|null
+     */
     public static function getOneAccessPoint($id)
     {
         return self::getAccessPoints()->where('id', $id)->first();
     }
 
+    /**
+     * @return array
+     */
     public static function getFirstAdmin()
     {
         return [

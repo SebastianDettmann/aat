@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class PeriodControllerTest extends TestCase
 {
-    /**@test */
+    /** @test */
     public function user_can_access_controller_functions()
     {
         $this->withAutentification($this->user);
@@ -31,7 +31,7 @@ class PeriodControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    /**@test */
+    /** @test */
     public function can_store_period()
     {
         $this->withAutentification($this->user);
@@ -47,7 +47,7 @@ class PeriodControllerTest extends TestCase
 
     //TODO cant delete old periods
 
-    /**@test */
+    /** @test */
     public function can_delete_period()
     {
         $this->withAutentification($this->user);

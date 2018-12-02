@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         factory(User::class, 3)->create();
         factory(User::class, 2)->state('admin')->create();
 
-        $user_id = User::get('id')->toArray();
+        $user_id = User::pluck('id');
         $access = Access::first();
         $access->users()->sync($user_id);
     }

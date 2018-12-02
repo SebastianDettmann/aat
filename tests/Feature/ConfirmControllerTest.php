@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class ConfirmControllerTest extends TestCase
 {
-    /**@test */
+    /** @test */
     public function user_cant_access_functions()
     {
         $this->withAutentification($this->user);
@@ -21,7 +21,7 @@ class ConfirmControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    /**@test */
+    /** @test */
     public function admin_can_access_functions()
     {
         $this->withAutentification($this->admin);
