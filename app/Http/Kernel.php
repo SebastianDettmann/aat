@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Absence;
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\XSSProtection;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -21,6 +22,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+        XSSProtection::class,
     ];
 
     /**
