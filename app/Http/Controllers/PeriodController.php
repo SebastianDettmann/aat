@@ -62,16 +62,6 @@ class PeriodController extends Controller
     }
 
     /**
-     * Show the form for creating a new /App/User.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function create()
-    {
-        return view('period.create');
-    }
-
-    /**
      * Store a newly created \App\Period in Database.
      *
      * @param  \App\Http\Requests\StorePeriodFormRequest $request

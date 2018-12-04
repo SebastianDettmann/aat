@@ -15,7 +15,6 @@ class PeriodControllerTest extends TestCase
 
         $this->get(route('period.index', [rand(2000, 2020), rand(1, 12)]))->assertStatus(200);
         $this->get(route('period.indexall',[rand(2000, 2020), rand(1, 12)]))->assertStatus(200);
-        $this->get(route('period.create'))->assertStatus(200);
         $this->followingRedirects()
             ->post(route('period.store'), $period->getAttributes())
             ->assertStatus(200);

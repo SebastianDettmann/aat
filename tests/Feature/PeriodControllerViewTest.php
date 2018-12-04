@@ -25,13 +25,6 @@ class PeriodControllerViewTest extends TestCase
         $this->get(route('period.indexall',[rand(2000, 2020), rand(1, 12)]))->assertViewHas('periods');
     }
 
-    /** @test */
-    public function can_see_period_create()
-    {
-        $this->withAutentification($this->user);
-
-        $this->get(route('period.create'))->assertSee('Zeitraum anlegen');
-    }
 
     /** @test */
     public function can_see_period_show()

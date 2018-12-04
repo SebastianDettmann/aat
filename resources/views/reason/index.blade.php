@@ -39,7 +39,7 @@
                                             'method' => 'DELETE'
                                         ]) !!}
                                         <button class="btn btn-danger btn-icon" type="submit" dusk="button-delete">
-                                            <i class="fa fa-sm fa-trash-o"></i>
+                                            <i class="fa fa-sm fa-trash"></i>
                                         </button>
                                         {!! \Form::close() !!}
                                         {{--@endif--}}
