@@ -20,7 +20,7 @@
                             <th>{{ __('Beschreibung') }}</th>
                             <th></th>
                             <th>{{ __('Farbe') }}</th>
-                            <th>{{ __('zu bestätigen?') }}</th>
+                            <th>{{ __('Zu bestätigen?') }}</th>
                         </tr>
                         </thead>
                         <tbody class="list">

@@ -31,19 +31,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <input type="color" name="hex_color" value="{{ $reason->hex_color }}"
+                                    <label for="hexcolor">{{ __('Picker') }}</label>
+                                    <input type="color" name="hex_color" id="hex_color" value="{{ $reason->hex_color }}"
                                            style="width: 30px">
                                 </div>
                                 <div class="col-md-10">
                                     {!! BTForm::text('color') !!}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-1">
-                                    {!! \Form::checkbox('has_to_confirm', true) !!}
-                                </div>
-                                <div class="col-md-11">
-                                    {{ __('Muß bestätigt werden') }}
+                            <div class="row mt-3">
+                                <div class="form-group col-md-12 ">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="has_to_confirm" type="checkbox"
+                                                   value="{{ $reason->has_to_confirm }}">
+                                            {{ __('Muß bestätigt werden') }}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
