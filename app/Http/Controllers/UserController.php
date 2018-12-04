@@ -78,8 +78,11 @@ class UserController extends Controller
     {
         $this->authorize('edit', $user);
 
+        $accesses = Access::all();
+
         return view('user.show_and_edit')->with([
-            'user' => $user
+            'user' => $user,
+            'accesses' => $accesses
         ]);
     }
 
@@ -112,7 +115,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        if ($user->id !== 1) {
+            $user->delete();
+        }
 
         return redirect(route($this->redirectAdmin));
     }

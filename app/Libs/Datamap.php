@@ -91,7 +91,7 @@ class Datamap
                 'title' => $titles[0],
                 'slug' => str_slug($titles[0], '_'),
                 'url' => config('app.url' . '/app/dashboard'),
-                'image' => 'img/absolute.png'
+                'image' => 'images/absolute.png'
             ]
         ]);
     }

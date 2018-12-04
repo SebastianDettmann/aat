@@ -43,6 +43,7 @@ return [
         'start_at' => __('Von'),
         'end_at' => __('Bis'),
         'description' => __('Beschreibung'),
+        'admin' => __('Admin')
     ],
 
 ];

@@ -20,7 +20,7 @@ class ReasonController extends Controller
      */
     public function index()
     {
-        $reasons = Reason::get()->toArray();
+        $reasons = Reason::get();
 
         return view('reason.index')->with([
             'reasons' => $reasons

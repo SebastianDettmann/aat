@@ -67,6 +67,7 @@ class User extends Authenticatable
             })->get()->pluck('id')->toArray();
             //todo model observer user is deleted
         });
+
         return $accesses;
     }
 

@@ -19,8 +19,8 @@ class CreateAccessesTable extends Migration
             $table->increments('id');
             $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->string('url');
-            $table->string('image');
+            $table->string('url')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
 
