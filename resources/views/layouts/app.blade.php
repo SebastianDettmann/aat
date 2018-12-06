@@ -30,7 +30,6 @@
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
     @if($calendar ?? false)
         <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/fullcalendar.print.css') }}" rel="stylesheet">
     @endif
 
 </head>

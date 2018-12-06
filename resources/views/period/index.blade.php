@@ -1,17 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
-
     <div class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Monat: {{ request('month') . ', ' . request('year') }} </div>
-
-
-                {{--   {{Carbon\Carbon::setlocale('de')--}}
-                {{--Carbon\Carbon::createFromFormat('m', 12)->format('F')}}--}}
+                <div class="card-header">Meine Abwesenheiten</div>
                 <div class="card-body">
                     {!! $calendar->calendar() !!}
                     @if (session('status'))
@@ -34,14 +28,30 @@
         </div>
     </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">{{ __('Meine Abwesenheiten') }}</div>
+                    <div class="card-header">{{ __('Abwesenheiten in diesem Jahr') }}</div>
                     <div class="card-body">
-                        @foreach($periods as $period)
+                        <h5>zukünftig</h5>
+                        @foreach($periods_year_now_future as $period)
+                            <div class="row m-1 my-2 pl-5"
+                                 style="background-color: {{ $period->pendingColor()}}; color: #000000 ">
+                                {{ $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText() }}
+                            </div>
+                        @endforeach
+                        <hr/>
+                        <h5>aktuell</h5>
+                        @foreach($periods_year_now_current as $period)
+                            <div class="row m-1 my-2 pl-5"
+                                 style="background-color: {{ $period->pendingColor()}}; color: #000000 ">
+                                {{ $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText() }}
+                            </div>
+                        @endforeach
+                        <hr/>
+                        <h5>vergangen</h5>
+                        @foreach($periods_year_now_past as $period)
                             <div class="row m-1 my-2 pl-5"
                                  style="background-color: {{ $period->pendingColor()}}; color: #000000 ">
                                 {{ $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText() }}
@@ -91,9 +101,6 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
 
 @push('foot-scripts')

@@ -67,6 +67,7 @@ class Datamap
         ])->sortBy('title');
     }
 
+
     /**
      * @param $id
      * @return array|null
@@ -117,5 +118,60 @@ class Datamap
             'admin' => true,
             'password' => bcrypt('Qwertz123'),
         ];
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getMonth()
+    {
+        return collect([
+            [
+                'id' => 1,
+                'title' => __('Januar'),
+            ], [
+                'id' => 2,
+                'title' => __('Februar'),
+            ], [
+                'id' => 3,
+                'title' => __('März'),
+            ], [
+                'id' => 4,
+                'title' => __('April'),
+            ], [
+                'id' => 5,
+                'title' => __('Mai'),
+            ], [
+                'id' => 6,
+                'title' => __('Juni'),
+            ], [
+                'id' => 7,
+                'title' => __('Juli'),
+            ], [
+                'id' => 8,
+                'title' => __('August'),
+            ], [
+                'id' => 9,
+                'title' => __('September'),
+            ], [
+                'id' => 10,
+                'title' => __('Oktober'),
+            ], [
+                'id' => 11,
+                'title' => __('November'),
+            ], [
+                'id' => 12,
+                'title' => __('Dezember'),
+            ],
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getMonthName($id)
+    {
+        return self::getMonth()->where('id', $id)->pluck('title')->first();
     }
 }

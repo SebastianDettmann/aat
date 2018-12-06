@@ -79,3 +79,8 @@ nav.navbar-nav.mr-auto {
     margin: 0 100px;
 }
 
+/* colors for weekend columns fullcalender */
+
+.fc-sat, .fc-sun {
+    background-color: #ffebeb !important;
+}

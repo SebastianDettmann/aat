@@ -10,8 +10,31 @@ use Carbon\Carbon;
 class PeriodController extends Controller
 {
     protected $redirect = 'period.index'; #todo check for usability
+    protected $timezone = 'Europe/Berlin';
+    protected $first_day_of_year = null;
+    protected $current_date = null;
+    protected $calendar = null;
 
-    protected $timeZone = 'Europe/Berlin';
+    public function __construct()
+    {
+        $this->first_day_of_year = Carbon::now()->startOfYear();
+        $this->current_date = Carbon::now();
+
+        $this->calendar = \Calendar::setOptions([ //set fullcalendar options
+            'firstDay' => 1, //Week starts with Monday
+            'header' => [
+                'left' => 'prev,next today',
+                'center' => 'title',
+                'right' => 'month,basicWeek',
+            ],
+            'navLinks' => true, // can click day/week names to navigate views
+            'editable' => true,
+            'selectable' => true,
+            'eventLimit' => true, // allow "more" link when too many events
+            'locale' => 'de',
+            'contentHeight' => 500,
+        ]);
+    }
 
     /**
      * Display the specified \App\Period.
@@ -39,64 +62,46 @@ class PeriodController extends Controller
     public function index($year, $month)
     {
         #todo check for use ajax
-        #todo check for current month
+
+        $periods_year_now_past = [];
+        $periods_year_now_current = [];
+        $periods_year_now_future = [];
+        $calendar_periods = [];
 
         $reasons = Reason::get();
+        $periods = auth()->user()->periods->sortBy('start');
 
-        $periods = auth()->user()->periods; # todo scope dieses Jahr
-#dd($periods);
+        foreach ($periods as $period) {
+            if ($period->start->gte($this->first_day_of_year) || $period->end->gte($this->first_day_of_year)) {
+                if ($period->start->lte($this->current_date) && $period->end->gte($this->current_date)) {
+                    $periods_year_now_current[] = $period;
+                } elseif ($period->start->lte($this->current_date)) {
+                    $periods_year_now_past[] = $period;
+                } else {
+                    $periods_year_now_future[] = $period;
+                }
+            }
+            # add periods to Calendar
+            $calendar_periods[] = \Calendar::event(
+                $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText(), //event title
+                true, //full day event?
+                $period->start, //start time (you can also use Carbon instead of DateTime)
+                $period->end, //end time (you can also use Carbon instead of DateTime)
+                $period->id, //optionally, you can specify an event ID
+                [
+                    'color' => $period->reason->hex_color,
+                    'textColor' => '#000000']
+            );
+        }
 
-        /*  $calendar_periods = [];
-
-          foreach ($periods as $period) {
-              $calendar_periods = \Calendar::event($period->reason->title, true, $period->start, $period->end, $period->id, ['color' => $period->reason->hex_color]);
-          }
-
-          $calendar = \Calendar::addEvents( $calendar_periods);*/
-
-
-        $events = [];
-
-        $events[] = \Calendar::event(
-            'Event One', //event title
-            false, //full day event?
-            '2018-12-11T0800', //start time (you can also use Carbon instead of DateTime)
-            '2018-12-12T0800', //end time (you can also use Carbon instead of DateTime)
-            0 //optionally, you can specify an event ID
-        );
-
-        $events[] = \Calendar::event(
-            "Valentine's Day", //event title
-            true, //full day event?
-            new \DateTime('2018-12-14'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2018-12-14'), //end time (you can also use Carbon instead of DateTime)
-            10 //optionally, you can specify an event ID
-        );
-
-        $spezial = \Calendar::event(
-            "Vspezial mit farbe", //event title
-            true, //full day event?
-            new \DateTime('2018-12-19'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2018-12-20'), //end time (you can also use Carbon instead of DateTime)
-            23 //optionally, you can specify an event ID
-        );
-
-        $calendar = \Calendar::addEvents($events)//add an array with addEvents
-        ->addEvent($spezial, [ //set custom color fo this event
-            'color' => '#afafaf',
-        ])->setOptions([ //set fullcalendar options
-            'firstDay' => 1,
-        ])->setCallbacks([ //set fullcalendar callback options (will not be JSON encoded)
-            'viewRender' => 'function() {alert("Callbacks!");}',
-        ]);
-
-        $calendar->script();
-        $calendar->calendar();
+        $this->calendar->addEvents($calendar_periods);
 
         return view('period.index')->with([
-            'periods' => $periods,
+            'periods_year_now_future' => $periods_year_now_future,
+            'periods_year_now_current' => $periods_year_now_current,
+            'periods_year_now_past' => $periods_year_now_past,
             'reasons' => $reasons,
-            'calendar' => $calendar,
+            'calendar' => $this->calendar,
         ]);
     }
 
@@ -108,12 +113,29 @@ class PeriodController extends Controller
     public function indexAll($year, $month)
     {
         #todo check for use ajax
-        #todo check for current month
-
         $periods = Period::with('reason')->get();
+        $reasons = Reason::get();
+        $calendar_periods = [];
+
+        foreach ($periods as $period) {
+            # add periods to Calendar
+            $calendar_periods[] = \Calendar::event(
+                $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText(), //event title
+                true, //full day event?
+                $period->start, //start time (you can also use Carbon instead of DateTime)
+                $period->end, //end time (you can also use Carbon instead of DateTime)
+                $period->id, //optionally, you can specify an event ID
+                [
+                    'color' => $period->reason->hex_color,
+                    'textColor' => '#000000']
+            );
+        }
+
+        $this->calendar->addEvents($calendar_periods);
 
         return view('period.indexall')->with([
-            'periods' => $periods
+            'reasons' => $reasons,
+            'calendar' => $this->calendar,
         ]);
     }
 
@@ -127,8 +149,8 @@ class PeriodController extends Controller
     public function store(StorePeriodFormRequest $request)
     {
         $data = [
-            'start' => Carbon::createFromFormat('d.m.Y', $request->start)->timezone($this->timeZone),
-            'end' => Carbon::createFromFormat('d.m.Y', $request->end)->timezone($this->timeZone),
+            'start' => Carbon::createFromFormat('d.m.Y', $request->start)->timezone($this->timezone),
+            'end' => Carbon::createFromFormat('d.m.Y', $request->end)->timezone($this->timezone),
             'comment' => $request->comment,
             'reason_id' => $request->reason_id,
         ];
