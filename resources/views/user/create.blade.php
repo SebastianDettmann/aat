@@ -12,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {!! \Form::open(['route' => ['user.create']]) !!}
+                    {!! \Form::open(['route' => ['user.store']]) !!}
 
                     <div class="row">
                         <div class="col-md-6">

@@ -5953,6 +5953,7 @@
             var rsingleTag = (/^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i);
 
 
+
 // Implement the identical functionality for filter and not
             function winnow(elements, qualifier, not) {
                 if (isFunction(qualifier)) {
@@ -6333,6 +6334,7 @@
                 };
             });
             var rnothtmlwhite = (/[^\x20\t\r\n\f]+/g);
+
 
 
 // Convert String-formatted options into Object-formatted ones
@@ -7295,6 +7297,7 @@
             var dataUser = new Data();
 
 
+
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
@@ -7809,6 +7812,7 @@
             var rtagName = (/<([a-z][^\/\0>\x20\t\r\n\f]+)/i);
 
             var rscriptType = (/^$|^module$|\/(?:java|ecma)script/i);
+
 
 
 // We have to close these tags to support XHTML (#13200)
@@ -11510,6 +11514,7 @@
             var nonce = Date.now();
 
             var rquery = (/\?/);
+
 
 
 // Cross-browser xml parsing

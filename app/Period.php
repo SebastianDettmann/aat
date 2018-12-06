@@ -21,45 +21,82 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Period extends Model
 {
-   protected $fillable = [
+    /**
+     * @var array
+     * all attributes for mass assignment
+     */
+    protected $fillable = [
        'start',
        'end',
        'comment',
-   ];
+        'reason_id',
+    ];
 
-   protected $dates = [
+    /**
+     * @var array
+     * all Date attributes /cast to date / Carbon
+     */
+    protected $dates = [
        'start',
        'end',
        'confirmed'
-   ];
+    ];
 
+    /**
+     * @var array
+     * all eager loaded models
+     */
     protected $with = ['reason'];
 
-   public function reason()
-   {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function reason()
+    {
        return $this->belongsTo(Reason::class);
-   }
+    }
 
-   public function user()
-   {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
        return $this->belongsTo(User::class);
-   }
+    }
 
+    /**
+     * @param Builder $query
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function scopeByConfirmed(Builder $query)
     {
         return $query->where('has_to_confirm', true)->whereNotNull('confirmed');
     }
 
+    /**
+     * @param Builder $query
+     * @return $this
+     */
     public function scopeByNotConfirmed(Builder $query)
     {
         return $query->where('has_to_confirm', true)->whereNull('confirmed');
     }
 
+    /**
+     * @param Builder $query
+     * @param Carbon $date
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function scopeByOlderThen(Builder $query, Carbon $date)
     {
         return $query->whereDate('start', '<',  $date);
     }
 
+    /**
+     * @param Builder $query
+     * @param Carbon $date
+     * @return Builder|\Illuminate\Database\Query\Builder|static
+     */
     public function scopeByInMonth(Builder $query, Carbon $date)
     {
         $firstDayofMonth = $date->startOfMonth()->toDateString();
@@ -74,5 +111,29 @@ class Period extends Model
                     ['end', '>', $lastDayofMonth]
                     ]);
             });
+    }
+
+    /**
+     * @return bool
+     */
+    public function pending()
+    {
+        return (!$this->confirmed && $this->reason->has_to_confirm);
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function pendingColor()
+    {
+        return $this->pending() ? '#bbbbbb' : $this->reason->hex_color;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function pendingText()
+    {
+        return $this->pending() ? $this->reason->title . __(' - unbestätigt') : $this->reason->title;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePeriodsTable extends Migration
 {
@@ -19,7 +19,6 @@ class CreatePeriodsTable extends Migration
             $table->date('end');
             $table->text('comment')->nullable();
             $table->dateTime('confirmed')->nullable();
-            #todo check using nullable
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('reason_id')->unsigned()->nullable();
             $table->timestamps();
