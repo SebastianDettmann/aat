@@ -54,7 +54,19 @@ class User extends Authenticatable
     public function setAdminAttribute($value)
     {
         $this->attributes['admin'] = $value ?? 0;
+    }
 
+    /**
+     * hash password when saved
+     * Mutator
+     *
+     * @param  string $pass
+     * @return void
+     */
+    public function setPasswordAttribute($pass)
+    {
+
+        $this->attributes['password'] = bcrypt($pass);
     }
 
     /**

@@ -19,4 +19,7 @@ return [
     'report' => __('Bericht'),
     'start_at' => __('Von'),
     'end_at' => __('Bis'),
+    'start' => __('Von'),
+    'end' => __('Bis'),
+    'comment' => __('Kommentar'),
 ];

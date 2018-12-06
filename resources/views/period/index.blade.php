@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Abwesenheit in diesem Jahr') }}</div>
                     <div class="card-body">
-                        <h5>zukünftig</h5>
+                        <h5>{{ __('zukünftig') }}</h5>
                         @foreach($periods_year_now_future as $period)
                             <div class="row m-1 my-2">
                                 <div class="btn-group col-md-2 mr-2">
@@ -61,7 +61,7 @@
                             </div>
                         @endforeach
                         <hr/>
-                        <h5>aktuell</h5>
+                        <h5>{{ __('aktuell') }}</h5>
                         @foreach($periods_year_now_current as $period)
                             <div class="row m-1 my-2">
                                 <div class="btn-group col-md-1 mr-2">
@@ -80,7 +80,7 @@
                             </div>
                         @endforeach
                         <hr/>
-                        <h5>vergangen</h5>
+                        <h5>{{ __('vergangen') }}</h5>
                         @foreach($periods_year_now_past as $period)
                             <div class="row m-1 my-2">
                                 <div class="btn-group col-md-1 mr-2">

@@ -67,7 +67,9 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>{{ __('Auswahl') }}</th>
+                                        @if(auth()->user()->admin)
+                                            <th>{{ __('Auswahl') }}</th>
+                                        @endif
                                         <th></th>
                                         <th>{{ __('Bezeichnung') }}</th>
                                     </tr>
@@ -75,11 +77,11 @@
                                     <tbody class="list">
                                     @foreach($accesses as $access)
                                         <tr>
-                                            <td>
-                                                @if(auth()->user()->admin)
+                                            @if(auth()->user()->admin)
+                                                <td>
                                                     {!! \Form::checkbox('accesses[]', $access->id, in_array($user->id, $user->getAccesses($access->slug))) !!}
-                                                @endif
-                                            </td>
+                                                </td>
+                                            @endif
                                             <td>
                                                 @if($access->image)
                                                     <img src="{{asset($access->image)}}" height="20"

@@ -88,7 +88,7 @@ class PeriodController extends Controller
                 $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingText(), //event title
                 true, //full day event?
                 $period->start, //start time (you can also use Carbon instead of DateTime)
-                $period->end, //end time (you can also use Carbon instead of DateTime)
+                $period->end->addDay(), //end time (you can also use Carbon instead of DateTime) !!!nessesery to add a day!!!
                 $period->id, //optionally, you can specify an event ID
                 [
                     'color' => $period->pendingColor(),
@@ -122,10 +122,10 @@ class PeriodController extends Controller
         foreach ($periods as $period) {
             # add periods to Calendar
             $calendar_periods[] = \Calendar::event(
-                $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingUser(), //event title
+                $period->pendingUser() . ' : ' . $period->reason->title . ' ' . $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y'), //event title
                 true, //full day event?
                 $period->start, //start time (you can also use Carbon instead of DateTime)
-                $period->end, //end time (you can also use Carbon instead of DateTime)
+                $period->end->addDay(), //end time (you can also use Carbon instead of DateTime) !!!nessesery to add a day!!!
                 $period->id, //optionally, you can specify an event ID
                 [
                     'color' => $period->pendingColor(),
