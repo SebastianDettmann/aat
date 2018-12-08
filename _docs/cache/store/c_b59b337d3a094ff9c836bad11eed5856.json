@@ -1,0 +1,99 @@
+{
+  "name": "App\\Http\\Controllers\\ConfirmController",
+  "line": 9,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Controllers",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Controllers\\ConfirmController.php",
+  "relative_file": null,
+  "hash": "2b255cfc7ddcf9430888a8ebe6b2f9c87c39cff0",
+  "parent": "App\\Http\\Controllers\\Controller",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Period": "App\\Period",
+    "Request": "Illuminate\\Http\\Request",
+    "Carbon": "Illuminate\\Support\\Carbon"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": [],
+  "methods": {
+    "index": {
+      "name": "index",
+      "line": 18,
+      "short_desc": "save all periods that are confirmed\nand all periods that has to confirm in session\nan show them in view",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\Factory",
+          false
+        ],
+        [
+          "\\Illuminate\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "confirm": {
+      "name": "confirm",
+      "line": 34,
+      "short_desc": "change the confirmation for Periods in Database",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 34,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Http\\Request",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Http",
+              "Request"
+            ],
+            "attributes": {
+              "startLine": 34,
+              "endLine": 34
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

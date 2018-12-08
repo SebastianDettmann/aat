@@ -37,29 +37,11 @@ class PeriodController extends Controller
     }
 
     /**
-     * Display the specified \App\Period.
-     *
-     * @param  \App\Period $period
-     * by model-key-binding
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * rendered as 404
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function show(Period $period)
-    {
-        $this->authorize('access', $period);
-
-        return view('period.show')->with([
-           'period' => $period
-        ]);
-    }
-
-    /**
      * Display a listing \App\Period by user.
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index($year, $month)
+    public function index()
     {
         #todo check for use ajax
 
@@ -83,7 +65,7 @@ class PeriodController extends Controller
             }
             # add periods to Calendar
             $calendar_periods[] = \Calendar::event(
-                $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText(), //event title
+                $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingText(), //event title
                 true, //full day event?
                 $period->start, //start time (you can also use Carbon instead of DateTime)
                 $period->end, //end time (you can also use Carbon instead of DateTime)
@@ -110,7 +92,7 @@ class PeriodController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function indexAll($year, $month)
+    public function indexAll()
     {
         #todo check for use ajax
         $periods = Period::with('reason')->get();
@@ -120,7 +102,7 @@ class PeriodController extends Controller
         foreach ($periods as $period) {
             # add periods to Calendar
             $calendar_periods[] = \Calendar::event(
-                $period->start->toDateString() . ' - ' . $period->end->toDateString() . ' : ' . $period->pendingText(), //event title
+                $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingUser(), //event title
                 true, //full day event?
                 $period->start, //start time (you can also use Carbon instead of DateTime)
                 $period->end, //end time (you can also use Carbon instead of DateTime)
@@ -157,7 +139,7 @@ class PeriodController extends Controller
 
         $period = auth()->user()->periods()->create($data);
 
-        // Todo update phpdoc
+        // Todo update phpdoc, if period has to confirm message model observer
 
         return redirect()->back();
     }
@@ -180,6 +162,8 @@ class PeriodController extends Controller
         $this->authorize('access', $period);
 
         $period->delete();
+
+        return redirect()->back();
     }
     #todo summery of all leave requests off the year
 }

@@ -1,0 +1,680 @@
+{
+  "name": "App\\Period",
+  "line": 22,
+  "short_desc": "App\\Period",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "property-read": [
+      [
+        [
+          [
+            "\\App\\Reason",
+            false
+          ]
+        ],
+        "reason",
+        ""
+      ],
+      [
+        [
+          [
+            "\\App\\User",
+            false
+          ]
+        ],
+        "user",
+        ""
+      ]
+    ],
+    "method": [
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Period",
+        "newModelQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Period",
+        "newQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Period",
+        "query()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Period",
+        "byConfirmed()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Period",
+        "byNotConfirmed()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Period",
+        "byOld()"
+      ]
+    ],
+    "mixin": [
+      [
+        "\\Eloquent"
+      ]
+    ]
+  },
+  "namespace": "App",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Period.php",
+  "relative_file": null,
+  "hash": "45235d1f34f200fcd99e3d6a5d3a7bcc377e9adb",
+  "parent": "Illuminate\\Database\\Eloquent\\Model",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Carbon": "Carbon\\Carbon",
+    "Builder": "Illuminate\\Database\\Eloquent\\Builder",
+    "Model": "Illuminate\\Database\\Eloquent\\Model"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "fillable": {
+      "name": "fillable",
+      "line": 28,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "all attributes for mass assignment",
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "start",
+              "attributes": {
+                "startLine": 29,
+                "endLine": 29,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 29,
+              "endLine": 29
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "end",
+              "attributes": {
+                "startLine": 30,
+                "endLine": 30,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 30,
+              "endLine": 30
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "comment",
+              "attributes": {
+                "startLine": 31,
+                "endLine": 31,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 31,
+              "endLine": 31
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "reason_id",
+              "attributes": {
+                "startLine": 32,
+                "endLine": 32,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 32,
+              "endLine": 32
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 28,
+          "endLine": 33,
+          "kind": 2
+        }
+      },
+      "errors": []
+    },
+    "dates": {
+      "name": "dates",
+      "line": 39,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "all Date attributes \/cast to date \/ Carbon",
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "start",
+              "attributes": {
+                "startLine": 40,
+                "endLine": 40,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 40,
+              "endLine": 40
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "end",
+              "attributes": {
+                "startLine": 41,
+                "endLine": 41,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 41,
+              "endLine": 41
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "confirmed",
+              "attributes": {
+                "startLine": 42,
+                "endLine": 42,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 42,
+              "endLine": 42
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 39,
+          "endLine": 43,
+          "kind": 2
+        }
+      },
+      "errors": []
+    },
+    "with": {
+      "name": "with",
+      "line": 49,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "all eager loaded models",
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "reason",
+              "attributes": {
+                "startLine": 49,
+                "endLine": 49,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 49,
+              "endLine": 49
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 49,
+          "endLine": 49,
+          "kind": 2
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "reason": {
+      "name": "reason",
+      "line": 54,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "user": {
+      "name": "user",
+      "line": 62,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "scopeByConfirmed": {
+      "name": "scopeByConfirmed",
+      "line": 71,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Database\\Query\\Builder",
+          false
+        ],
+        [
+          "App\\Period",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "query": {
+          "name": "query",
+          "line": 71,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Database\\Eloquent\\Builder",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Database",
+              "Eloquent",
+              "Builder"
+            ],
+            "attributes": {
+              "startLine": 71,
+              "endLine": 71
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "scopeByNotConfirmed": {
+      "name": "scopeByNotConfirmed",
+      "line": 80,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "$this",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "query": {
+          "name": "query",
+          "line": 80,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Database\\Eloquent\\Builder",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Database",
+              "Eloquent",
+              "Builder"
+            ],
+            "attributes": {
+              "startLine": 80,
+              "endLine": 80
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "scopeByOlderThen": {
+      "name": "scopeByOlderThen",
+      "line": 90,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Database\\Query\\Builder",
+          false
+        ],
+        [
+          "App\\Period",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "query": {
+          "name": "query",
+          "line": 90,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Database\\Eloquent\\Builder",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Database",
+              "Eloquent",
+              "Builder"
+            ],
+            "attributes": {
+              "startLine": 90,
+              "endLine": 90
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "date": {
+          "name": "date",
+          "line": 90,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Carbon\\Carbon",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Carbon",
+              "Carbon"
+            ],
+            "attributes": {
+              "startLine": 90,
+              "endLine": 90
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "scopeByInMonth": {
+      "name": "scopeByInMonth",
+      "line": 100,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Database\\Eloquent\\Builder",
+          false
+        ],
+        [
+          "\\Illuminate\\Database\\Query\\Builder",
+          false
+        ],
+        [
+          "App\\Period",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "query": {
+          "name": "query",
+          "line": 100,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Database\\Eloquent\\Builder",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Database",
+              "Eloquent",
+              "Builder"
+            ],
+            "attributes": {
+              "startLine": 100,
+              "endLine": 100
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "date": {
+          "name": "date",
+          "line": 100,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Carbon\\Carbon",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Carbon",
+              "Carbon"
+            ],
+            "attributes": {
+              "startLine": 100,
+              "endLine": 100
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "pending": {
+      "name": "pending",
+      "line": 119,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "bool",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "pendingColor": {
+      "name": "pendingColor",
+      "line": 127,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ],
+        [
+          "string",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "pendingText": {
+      "name": "pendingText",
+      "line": 135,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ],
+        [
+          "string",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    }
+  },
+  "constants": []
+}

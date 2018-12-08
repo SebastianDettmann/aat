@@ -136,4 +136,12 @@ class Period extends Model
     {
         return $this->pending() ? $this->reason->title . __(' - unbestätigt') : $this->reason->title;
     }
+
+    /**
+     * @return mixed|string
+     */
+    public function pendingUser()
+    {
+        return $this->pending() ? $this->user->fullName() . __(' - unbestätigt') : $this->user->fullName();
+    }
 }

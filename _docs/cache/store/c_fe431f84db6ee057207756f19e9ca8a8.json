@@ -1,0 +1,452 @@
+{
+  "name": "App\\Http\\Controllers\\PeriodController",
+  "line": 10,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Controllers",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Controllers\\PeriodController.php",
+  "relative_file": null,
+  "hash": "f10ef3a5348f84a394b146e5eaeec6ced459da6e",
+  "parent": "App\\Http\\Controllers\\Controller",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "StorePeriodFormRequest": "App\\Http\\Requests\\StorePeriodFormRequest",
+    "Period": "App\\Period",
+    "Reason": "App\\Reason",
+    "Carbon": "Carbon\\Carbon"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "redirect": {
+      "name": "redirect",
+      "line": 12,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "period.index",
+        "attributes": {
+          "startLine": 12,
+          "endLine": 12,
+          "kind": 1
+        }
+      },
+      "errors": []
+    },
+    "timezone": {
+      "name": "timezone",
+      "line": 13,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "Europe\/Berlin",
+        "attributes": {
+          "startLine": 13,
+          "endLine": 13,
+          "kind": 1
+        }
+      },
+      "errors": []
+    },
+    "first_day_of_year": {
+      "name": "first_day_of_year",
+      "line": 14,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_ConstFetch",
+        "name": {
+          "nodeType": "Name",
+          "parts": [
+            "null"
+          ],
+          "attributes": {
+            "startLine": 14,
+            "endLine": 14,
+            "namespacedName": {
+              "nodeType": "Name_FullyQualified",
+              "parts": [
+                "App",
+                "Http",
+                "Controllers",
+                "null"
+              ],
+              "attributes": {
+                "startLine": 14,
+                "endLine": 14
+              }
+            }
+          }
+        },
+        "attributes": {
+          "startLine": 14,
+          "endLine": 14
+        }
+      },
+      "errors": []
+    },
+    "current_date": {
+      "name": "current_date",
+      "line": 15,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_ConstFetch",
+        "name": {
+          "nodeType": "Name",
+          "parts": [
+            "null"
+          ],
+          "attributes": {
+            "startLine": 15,
+            "endLine": 15,
+            "namespacedName": {
+              "nodeType": "Name_FullyQualified",
+              "parts": [
+                "App",
+                "Http",
+                "Controllers",
+                "null"
+              ],
+              "attributes": {
+                "startLine": 15,
+                "endLine": 15
+              }
+            }
+          }
+        },
+        "attributes": {
+          "startLine": 15,
+          "endLine": 15
+        }
+      },
+      "errors": []
+    },
+    "calendar": {
+      "name": "calendar",
+      "line": 16,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_ConstFetch",
+        "name": {
+          "nodeType": "Name",
+          "parts": [
+            "null"
+          ],
+          "attributes": {
+            "startLine": 16,
+            "endLine": 16,
+            "namespacedName": {
+              "nodeType": "Name_FullyQualified",
+              "parts": [
+                "App",
+                "Http",
+                "Controllers",
+                "null"
+              ],
+              "attributes": {
+                "startLine": 16,
+                "endLine": 16
+              }
+            }
+          }
+        },
+        "attributes": {
+          "startLine": 16,
+          "endLine": 16
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "__construct": {
+      "name": "__construct",
+      "line": 18,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "show": {
+      "name": "show",
+      "line": 48,
+      "short_desc": "Display the specified \\App\\Period.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Illuminate\\Auth\\Access\\AuthorizationException",
+          "rendered as 404"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "period": {
+          "name": "period",
+          "line": 48,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Period",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Period"
+            ],
+            "attributes": {
+              "startLine": 48,
+              "endLine": 48
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "index": {
+      "name": "index",
+      "line": 62,
+      "short_desc": "Display a listing \\App\\Period by user.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "year": {
+          "name": "year",
+          "line": 62,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": null,
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "month": {
+          "name": "month",
+          "line": 62,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": null,
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "indexAll": {
+      "name": "indexAll",
+      "line": 113,
+      "short_desc": "Display a listing of all \\App\\Period.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "year": {
+          "name": "year",
+          "line": 113,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": null,
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "month": {
+          "name": "month",
+          "line": 113,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": null,
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "store": {
+      "name": "store",
+      "line": 149,
+      "short_desc": "Store a newly created \\App\\Period in Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\Response",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 149,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Http\\Requests\\StorePeriodFormRequest",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Http",
+              "Requests",
+              "StorePeriodFormRequest"
+            ],
+            "attributes": {
+              "startLine": 149,
+              "endLine": 149
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "destroy": {
+      "name": "destroy",
+      "line": 176,
+      "short_desc": "Remove the specified \\App\\Period from Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\Response",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Illuminate\\Auth\\Access\\AuthorizationException",
+          "rendered as 404"
+        ],
+        [
+          "\\Exception",
+          "my throws an Exception if the Reason not Exists,"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "period": {
+          "name": "period",
+          "line": 176,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Period",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Period"
+            ],
+            "attributes": {
+              "startLine": 176,
+              "endLine": 176
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

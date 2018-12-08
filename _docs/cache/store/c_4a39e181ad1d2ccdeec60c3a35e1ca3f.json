@@ -1,0 +1,255 @@
+{
+  "name": "App\\Access",
+  "line": 17,
+  "short_desc": "App\\Access",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "property-read": [
+      [
+        [
+          [
+            "\\Illuminate\\Database\\Eloquent\\Collection",
+            false
+          ],
+          [
+            "\\App\\User",
+            true
+          ]
+        ],
+        "users",
+        ""
+      ]
+    ],
+    "method": [
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Access",
+        "newModelQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Access",
+        "newQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Access",
+        "query()"
+      ]
+    ],
+    "mixin": [
+      [
+        "\\Eloquent"
+      ]
+    ]
+  },
+  "namespace": "App",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Access.php",
+  "relative_file": null,
+  "hash": "fe57b7b5021d6cac5acc0686edba5f97f9643378",
+  "parent": "Illuminate\\Database\\Eloquent\\Model",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Builder": "Illuminate\\Database\\Eloquent\\Builder",
+    "Model": "Illuminate\\Database\\Eloquent\\Model"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "table": {
+      "name": "table",
+      "line": 19,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "accesses",
+        "attributes": {
+          "startLine": 19,
+          "endLine": 19,
+          "kind": 1
+        }
+      },
+      "errors": []
+    },
+    "fillable": {
+      "name": "fillable",
+      "line": 21,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "title",
+              "attributes": {
+                "startLine": 22,
+                "endLine": 22,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 22,
+              "endLine": 22
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "slug",
+              "attributes": {
+                "startLine": 23,
+                "endLine": 23,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 23,
+              "endLine": 23
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "url",
+              "attributes": {
+                "startLine": 24,
+                "endLine": 24,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 24,
+              "endLine": 24
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "image",
+              "attributes": {
+                "startLine": 25,
+                "endLine": 25,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 25,
+              "endLine": 25
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 21,
+          "endLine": 26,
+          "kind": 2
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "users": {
+      "name": "users",
+      "line": 28,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "scopeByAccess": {
+      "name": "scopeByAccess",
+      "line": 33,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "query": {
+          "name": "query",
+          "line": 33,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Database\\Eloquent\\Builder",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Database",
+              "Eloquent",
+              "Builder"
+            ],
+            "attributes": {
+              "startLine": 33,
+              "endLine": 33
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "access_slug_title": {
+          "name": "access_slug_title",
+          "line": 33,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "string",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": "string",
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

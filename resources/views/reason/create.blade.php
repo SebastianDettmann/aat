@@ -39,8 +39,8 @@
                                 <div class="form-group col-md-12 ">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="has_to_confirm" type="checkbox">
-                                            {{ __('Muß bestätigt werden') }}
+                                            <input name="has_to_confirm" type="checkbox" value="1">
+                                            {{ __('Muß bestätigt') }}
                                         </label>
                                     </div>
                                 </div>

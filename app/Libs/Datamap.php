@@ -112,8 +112,8 @@ class Datamap
     public static function getFirstAdmin()
     {
         return [
-            'firstname' => 'sebastian',
-            'lastname' => 'dettmann',
+            'firstname' => 'Sebastian',
+            'lastname' => 'Dettmann',
             'email' => 'sebastian.dettmann@absolute.de',
             'admin' => true,
             'password' => bcrypt('Qwertz123'),
@@ -173,5 +173,16 @@ class Datamap
     public static function getMonthName($id)
     {
         return self::getMonth()->where('id', $id)->pluck('title')->first();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getMailDistributor()
+    {
+        return [
+            'sebastian.dettmann@absolute.de',
+        ];
     }
 }

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Abwesenheiten</div>
+                    <div class="card-header">{{ __('Im Büro?') }}</div>
                     <div class="card-body">
                         {!! $calendar->calendar() !!}
                         @if (session('status'))

@@ -25,11 +25,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{{ route('period.index', [\Carbon\Carbon::now()->year, \Carbon\Carbon::now()->month]) }}">{{ __('Übersicht') }}</a>
+                           href="{{ route('period.index')}}">{{ __('Übersicht') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{{ route('period.indexall', [\Carbon\Carbon::now()->year, \Carbon\Carbon::now()->month]) }}">{{ __('Im Büro?') }}</a>
+                           href="{{ route('period.indexall')}}">{{ __('Im Büro?') }}</a>
                     </li>
                     @if(\Auth::user()->admin)
                         <li class="nav-item">

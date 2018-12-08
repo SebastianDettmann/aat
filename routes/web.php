@@ -29,9 +29,8 @@ Route::group([
     // absence tool routes
     Route::group(['middleware' => ['absence']
     ], function () {
-        Route::resource('period', PeriodController::class)->except(['index', 'edit', 'update', 'create']);
-        Route::get('period/index/{year}/{month}', 'PeriodController@index')->name('period.index');
-        Route::get('period/indexall/{year}/{month}', 'PeriodController@indexAll')->name('period.indexall');
+        Route::resource('period', PeriodController::class)->except(['show', 'edit', 'update', 'create']);
+        Route::get('period/indexall', 'PeriodController@indexAll')->name('period.indexall');
 
         //Routes / Controllers for admins
         Route::group([
