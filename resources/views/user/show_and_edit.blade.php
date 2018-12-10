@@ -36,13 +36,30 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-1">
-                                    {!! \Form::checkbox('admin', true) !!}
+                                <div class="col-md-6">
+                                    {!! \BTForm::password('password', __('Neues Passwort')) !!}
                                 </div>
-                                <div class="col-md-11">
-                                    {{ __('Admin') }}
+                                <div class="col-md-6">
+                                    {!! \BTForm::password('password_confirmation', __('Neues Passwort bestätigen')) !!}
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {!! \BTForm::password('password_old', __('Sicherheits Check: Passwort'),[
+                                    ]) !!}
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                            @if(auth()->user()->admin)
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        {!! \Form::checkbox('admin', true) !!}
+                                    </div>
+                                    <div class="col-md-11">
+                                        {{ __('Admin') }}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-5 offset-1">
                             <div class="row">
@@ -59,7 +76,9 @@
                                     @foreach($accesses as $access)
                                         <tr>
                                             <td>
-                                                {!!  \Form::checkbox('accesses[]', $access->id, in_array($access->id, $user->getAccesses($access->slug))) !!}
+                                                @if(auth()->user()->admin)
+                                                    {!! \Form::checkbox('accesses[]', $access->id, in_array($access->id, $user->getAccesses($access->slug))) !!}
+                                                @endif
                                             </td>
                                             <td>
                                                 @if($access->image)

@@ -19,30 +19,29 @@
                         ]) !!}
 
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-11 offset-md-1">
                                         {!! BTForm::text('title') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-11 offset-md-1">
                                         {!! BTForm::text('url') !!}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-11 offset-md-1">
                                         {!! BTForm::text('image') !!}
-                                    </div>
-                                    <div class="col-md-5">
-                                        @if($access->image)
-                                            <img src="{{asset($access->image)}}" height="20"
-                                                 alt="{{__('Logo für Zugang')}}"/>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-1"></div>
+                            <div class="col-md-4 offset-md-1 p-md-5">
+                                @if($access->image)
+                                    <img class="m-md-5" src="{{asset($access->image)}}" height="100"
+                                         alt="{{__('Logo für Zugang')}}"/>
+                                @endif
+                            </div>
                         </div>
                         @include('partials.form_bottom_buttons')
 

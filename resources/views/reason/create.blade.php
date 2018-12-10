@@ -40,7 +40,7 @@
                                     <div class="checkbox">
                                         <label>
                                             <input name="has_to_confirm" type="checkbox" value="1">
-                                            {{ __('Muß bestätigt') }}
+                                            {{ __('Muß bestätigt werden') }}
                                         </label>
                                     </div>
                                 </div>

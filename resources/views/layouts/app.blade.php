@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Absolute Absence Tool') }}</title>
+    <link rel="icon" href="{{ asset('images/absolute.ico') }}"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -37,6 +38,13 @@
 <div id="app">
     @include('partials.navbar')
     <main class="py-4">
+        <div id="alert-holder">
+            @foreach (\Alert::getMessages() as $type => $messages)
+                @foreach ($messages as $message)
+                    <div class="alert alert-{{ $type }}">{!! $message !!}</div>
+                @endforeach
+            @endforeach
+        </div>
         @foreach ($errors as $error)
             <div class="row col-lg-12">
                 <div class="alert alert-danger">

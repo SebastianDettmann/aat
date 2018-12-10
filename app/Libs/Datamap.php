@@ -49,19 +49,19 @@ class Datamap
                 'id' => 3,
                 'title' => __('Krank'),
                 'color' => 'Orange',
-                'hex_color' => 'ffa500',
+                'hex_color' => '#ffa500',
                 'has_to_confirm' => false,
             ], [
                 'id' => 4,
                 'title' => __('Außer Haus'),
                 'color' => 'Aquamarine',
-                'hex_color' => '7fffd4',
+                'hex_color' => '#7fffd4',
                 'has_to_confirm' => false,
             ], [
                 'id' => 5,
                 'title' => __('andere'),
                 'color' => 'DarkGray',
-                'hex_color' => 'a9a9a9',
+                'hex_color' => '#a9a9a9',
                 'has_to_confirm' => false,
             ]
         ])->sortBy('title');

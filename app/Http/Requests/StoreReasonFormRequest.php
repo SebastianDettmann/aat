@@ -2,21 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Libs\Datamap;
-use App\Reason;
-use Illuminate\Foundation\Http\FormRequest;
 
-class StoreReasonFormRequest extends FormRequest
+class StoreReasonFormRequest extends AbstractFormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
 
     /**
      * Get the validation rules that apply to the request.

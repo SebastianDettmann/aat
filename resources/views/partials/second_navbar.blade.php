@@ -7,7 +7,7 @@
         </li>
         <li class="mx-3">
             <a href="{{ route('access.index') }}">
-                <button class="btn btn-default btn-block">{{ __('Berechtigungen') }}</button>
+                <button class="btn btn-default btn-block">{{ __('Zugänge') }}</button>
             </a>
         </li>
     </ul>

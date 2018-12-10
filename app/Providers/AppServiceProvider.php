@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Access;
 use App\Libs\Datamap;
+use App\Observers\UserObserver;
+use App\Period;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +18,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::observe(UserObserver::class);
+        Access::observe(UserObserver::class);
+        Period::observe(UserObserver::class);
+
     }
 
     /**

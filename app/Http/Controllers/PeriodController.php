@@ -14,26 +14,27 @@ class PeriodController extends Controller
     protected $first_day_of_year = null;
     protected $current_date = null;
     protected $calendar = null;
+    protected $calendar_options = [ //set fullcalendar options
+        'firstDay' => 1, //Week starts with Monday
+        'header' => [
+            'left' => 'prev,next today',
+            'center' => 'title',
+            'right' => 'month,basicWeek',
+        ],
+        'navLinks' => true, // can click day/week names to navigate views
+        'editable' => true,
+        'selectable' => true,
+        'eventLimit' => true, // allow "more" link when too many events
+        'locale' => 'de',
+        'contentHeight' => 500,
+    ];
 
     public function __construct()
     {
         $this->first_day_of_year = Carbon::now()->startOfYear();
         $this->current_date = Carbon::now();
 
-        $this->calendar = \Calendar::setOptions([ //set fullcalendar options
-            'firstDay' => 1, //Week starts with Monday
-            'header' => [
-                'left' => 'prev,next today',
-                'center' => 'title',
-                'right' => 'month,basicWeek',
-            ],
-            'navLinks' => true, // can click day/week names to navigate views
-            'editable' => true,
-            'selectable' => true,
-            'eventLimit' => true, // allow "more" link when too many events
-            'locale' => 'de',
-            'contentHeight' => 500,
-        ]);
+        $this->calendar = \Calendar::setOptions($this->calendar_options);
     }
 
     /**

@@ -15,7 +15,7 @@ Auth::routes(['register' => false]);
 
 Route::group([
     'prefix' => 'app',
-    'middleware' => ['auth']
+    'middleware' => ['auth', 'localization'],
 ], function () {
     //general routes
     # Todo change to propper route
