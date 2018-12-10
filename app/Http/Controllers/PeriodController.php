@@ -33,7 +33,6 @@ class PeriodController extends Controller
     {
         $this->first_day_of_year = Carbon::now()->startOfYear();
         $this->current_date = Carbon::now();
-
         $this->calendar = \Calendar::setOptions($this->calendar_options);
     }
 
@@ -50,7 +49,6 @@ class PeriodController extends Controller
         $periods_year_now_current = [];
         $periods_year_now_future = [];
         $calendar_periods = [];
-
         $reasons = Reason::get();
         $periods = auth()->user()->periods->sortBy('start');
 
@@ -137,10 +135,7 @@ class PeriodController extends Controller
             'comment' => $request->comment,
             'reason_id' => $request->reason_id,
         ];
-
-        $period = auth()->user()->periods()->create($data);
-
-        // Todo update phpdoc, if period has to confirm message model observer
+        auth()->user()->periods()->create($data);
 
         return redirect()->back();
     }
@@ -158,13 +153,10 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
-        #Todo email notification, redirect, validation $period exist update phpdoc
-
         $this->authorize('access', $period);
-
         $period->delete();
 
         return redirect()->back();
     }
-    #todo summery of all leave requests off the year
+
 }

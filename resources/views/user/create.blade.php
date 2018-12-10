@@ -59,7 +59,7 @@
                                                 {!!  \Form::checkbox('accesses[]', $access->id) !!}
                                             </td>
                                             <td>
-                                                @if($assess->image)
+                                                @if($access->image)
                                                     <img height="20" src="{{asset($access->image)}}"
                                                          alt="{{__('Logo für Zugang')}}"/>
                                                 @endif
