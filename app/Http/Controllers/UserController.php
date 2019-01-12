@@ -59,7 +59,8 @@ class UserController extends Controller
      */
     public function store(StoreUserFormRequest $request)
     {
-        User::create($request->all());
+        $user = User::create($request->all());
+        $user->accesses()->sync($request->accesses);
 
         return redirect(route($this->redirectAdmin));
     }
@@ -99,7 +100,9 @@ class UserController extends Controller
     public function update(UpdateUserFormRequest $request, User $user)
     {
         $this->authorize('edit', $user);
+        $user->admin = $request->admin;
         $user->update($request->all());
+        $user->accesses()->sync($request->accesses);
 
         return redirect(route(auth()->user()->admin ? $this->redirectAdmin : $this->redirectUser));
     }

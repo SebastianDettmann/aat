@@ -33,6 +33,9 @@ class StoreUserFormRequest extends AbstractFormRequest
             ],
             'admin' => [
                 'nullable'
+            ],
+            'accesses' => [
+                'nullable',
             ]
         ];
     }

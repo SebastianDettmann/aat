@@ -70,7 +70,7 @@ class PeriodController extends Controller
                 $period->end, //end time (you can also use Carbon instead of DateTime)
                 $period->id, //optionally, you can specify an event ID
                 [
-                    'color' => $period->reason->hex_color,
+                    'color' => $period->pendingColor(),
                     'textColor' => '#000000']
             );
         }
@@ -107,7 +107,7 @@ class PeriodController extends Controller
                 $period->end, //end time (you can also use Carbon instead of DateTime)
                 $period->id, //optionally, you can specify an event ID
                 [
-                    'color' => $period->reason->hex_color,
+                    'color' => $period->pendingColor(),
                     'textColor' => '#000000']
             );
         }

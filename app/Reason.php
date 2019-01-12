@@ -21,4 +21,17 @@ class Reason extends Model
         'hex_color',
         'has_to_confirm'
     ];
+
+    /**
+     * Cast has_to_confirm to 0/false when it is null and stored in DB
+     * Mutator
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setHasToConfirmAttribute($value)
+    {
+        $this->attributes['has_to_confirm'] = $value ?? 0;
+
+    }
 }

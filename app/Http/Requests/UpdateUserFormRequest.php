@@ -15,7 +15,7 @@ class UpdateUserFormRequest extends AbstractFormRequest
     public function authorize()
     {
         if (\Auth::check()) {
-            return auth()->user()->can('edit', $this->user);;
+            return auth()->user()->can('edit', $this->user);
         }
         return false;
     }
@@ -56,6 +56,9 @@ class UpdateUserFormRequest extends AbstractFormRequest
             ],
             'password_old' => [
                 'required',
+            ],
+            'accesses' => [
+                'nullable',
             ]
         ];
     }

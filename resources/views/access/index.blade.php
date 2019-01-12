@@ -47,17 +47,17 @@
                                         </div>
                                     </td>
                                     <td>
-                                        {!!  $access->title !!}
+                                        {!! $access->title !!}
                                     </td>
                                     <td>
-                                        {!!   $access->url !!}
+                                        {!! $access->url !!}
                                     </td>
-                                    <td></td>
                                     <td>
-                                        @if($access->admin)
-                                            <img class="mt-1" src="{{asset($access->image)}}" height="30"
-                                                 alt="{{ __('Logo für ') . __($access->title) }}"/>
-                                        @endif
+                                        {!! $access->image !!}
+                                    </td>
+                                    <td>
+                                        <img class="mt-1" src="{{ asset($access->image) }}" height="30"
+                                             alt="{{ __('Logo für ') . __($access->title) }}"/>
                                     </td>
                                 </tr>
                             @endforeach

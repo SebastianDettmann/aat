@@ -75,6 +75,7 @@ class ReasonController extends Controller
      */
     public function update(UpdateReasonFormRequest $request, Reason $reason)
     {
+        $reason->has_to_confirm = $request->has_to_confirm;
         $reason->update($request->all());
 
         return redirect(route($this->redirect));

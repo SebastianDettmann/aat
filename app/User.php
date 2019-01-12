@@ -44,6 +44,19 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Cast admin to 0/false when it is null and stored in DB
+     * Mutator
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setAdminAttribute($value)
+    {
+        $this->attributes['admin'] = $value ?? 0;
+
+    }
+
     public function fullName()
     {
         return $this->firstname . ' ' . $this->lastname;
