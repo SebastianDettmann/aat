@@ -121,12 +121,16 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                {!! \BTForm::text('start', null, '', ['class' => 'datepicker']) !!}
+                                {!! \BTForm::text('start', null, '', [
+                                'class' => 'datepicker',
+                                'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                {!! \BTForm::text('end', null, '', ['class' => 'datepicker']) !!}
+                                {!! \BTForm::text('end', null, '', [
+                                'class' => 'datepicker',
+                                'autocomplete' => 'off']) !!}
                             </div>
                         </div>
                         <div class="row">
