@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -34,4 +35,14 @@ class Reason extends Model
         $this->attributes['has_to_confirm'] = $value ?? 0;
 
     }
+
+    /**
+     * @param Builder $query
+     * @return \Illuminate\Database\Query\Builder|static
+     */
+    public function scopeToConfirm($query)
+    {
+        return $query->where('has_to_confirm', 1);
+    }
+
 }

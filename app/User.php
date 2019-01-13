@@ -57,21 +57,35 @@ class User extends Authenticatable
 
     }
 
+    /**
+     * @return string
+     */
     public function fullName()
     {
         return $this->firstname . ' ' . $this->lastname;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function periods()
     {
         return $this->hasMany(Period::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function accesses()
     {
         return $this->belongsToMany(Access::class);
     }
 
+    /**
+     * @param String $access_slug_title
+     * @return mixed
+     * @throws \Exception
+     */
     public function getAccesses(String $access_slug_title)
     {
         $accesses = cache()->remember('accesses_' . $access_slug_title, 10, function() use ($access_slug_title) {
@@ -84,6 +98,11 @@ class User extends Authenticatable
         return $accesses;
     }
 
+    /**
+     * @param String $access_slug_title
+     * @return bool
+     * @throws \Exception
+     */
     public function hasAccess(String $access_slug_title)
     {
         return in_array($this->id, $this->getAccesses($access_slug_title));

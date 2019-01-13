@@ -70,16 +70,36 @@ class Period extends Model
      */
     public function scopeByConfirmed(Builder $query)
     {
-        return $query->where('has_to_confirm', true)->whereNotNull('confirmed');
+        return $query->whereNotNull('confirmed');
     }
 
     /**
      * @param Builder $query
-     * @return $this
+     * @return \Illuminate\Database\Query\Builder|static
      */
     public function scopeByNotConfirmed(Builder $query)
     {
-        return $query->where('has_to_confirm', true)->whereNull('confirmed');
+        return $query->whereNull('confirmed');
+    }
+
+    /**
+     * @param Builder $query
+     * @return \Illuminate\Database\Query\Builder|static
+     */
+    public function scopeByHasToConfirm(Builder $query)
+    {
+        return $query->whereHas('reason', function ($query) {
+            $query->where('has_to_confirm', 1);
+        });
+    }
+
+    /**
+     * @param Builder $query
+     * @return \Illuminate\Database\Query\Builder|static
+     */
+    public function scopeByFuture(Builder $query)
+    {
+        return $query->whereDate('start', '>', Carbon::now()->toDateString());
     }
 
     /**

@@ -2,31 +2,31 @@
 
 @section('content')
     <div class="container mb-5">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Meine Abwesenheit') }}</div>
-                <div class="card-body">
-                    {!! $calendar->calendar() !!}
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        @foreach($reasons as $reason)
-                            <div class="col-md-2 m-1 pl-3 "
-                                 style="background-color: {{ $reason->hex_color}}; color: #000000 ">
-                                {{ $reason->title }}
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">{{ __('Meine Abwesenheit') }}</div>
+                    <div class="card-body">
+                        {!! $calendar->calendar() !!}
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
                             </div>
-                        @endforeach
+                        @endif
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            @foreach($reasons as $reason)
+                                <div class="col-md-2 m-1 pl-3 "
+                                     style="background-color: {{ $reason->hex_color}}; color: #000000 ">
+                                    {{ $reason->title }}
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="container">
         <div class="row">
