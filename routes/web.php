@@ -41,9 +41,7 @@ Route::group([
             Route::post('confirm/', 'ConfirmController@confirm')->name('confirm.confirm');
 
 
-            Route::get('report', function () {
-                return 'dummy reporting daten';
-            })->name('report');
+            Route::get('report', 'ReportingController@index')->name('report');
         });
     });
 });

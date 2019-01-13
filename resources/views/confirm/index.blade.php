@@ -6,12 +6,21 @@
         <div class="row justify-content-center">
             <div class="col-md-12 mb-5">
                 <div class="card">
-                    <div class="card-header">{{__('Zeitraum bestätigen')}}
+                    <div class="card-header"> {{ __('Zeitraum bestätigen') }} </div>
+                    <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <div class="row">
+                            @foreach($reasons as $reason)
+                                <div class="col-md-2 m-1 pl-3 "
+                                     style="background-color: {{ $reason->hex_color}}; color: #000000 ">
+                                    {{ $reason->title }}
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -23,10 +32,10 @@
                     <div class="card-body">
                         @foreach(session('periods_confirmed') ?? [] as $period)
                             <div class="row m-1 my-2">
-                                <div class="col-md-1 form-group mr-2">
+                                <div class="col-md-1">
                                     {!!  \Form::checkbox('periods_confirmed[]', $period->getKey(), true) !!}
                                 </div>
-                                <div class="col-md-1 mr-2">
+                                <div class="col-md-1 mr-3">
                                     <button class="btn btn-default btn-icon"
                                             data-toggle="modal" data-target="#showModal"
                                             data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->reason->title }}"
@@ -35,7 +44,7 @@
                                         <i class="fa fa-sm fa-eye"></i>
                                     </button>
                                 </div>
-                                <div class="col-md-10"
+                                <div class="col-md-9"
                                      style="background-color: {{ $period->reason->hex_color}}; color: #000000 ">
                                     {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->reason->title }}
                                 </div>
@@ -50,21 +59,21 @@
                     <div class="card-body">
                         @foreach(session('periods_unconfirmed') ?? [] as $period)
                             <div class="row m-1 my-2">
-                                <div class="col-md-1 mr-2 form-group">
+                                <div class="col-md-1">
                                     {!!  \Form::checkbox('periods_new_confirmed[]', $period->getKey()) !!}
                                 </div>
-                                <div class="col-md-1 mr-2">
+                                <div class="col-md-1 mr-3">
                                     <button class="btn btn-default btn-icon"
                                             data-toggle="modal" data-target="#showModal"
-                                            data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->reason->title }}"
+                                            data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' / ' . $period->reason->title. ' : ' . $period->user->fullName() }}"
                                             data-comment="{{ __('Bemerkung: ') . $period->comment }}"
                                             dusk="button-show-modal">
                                         <i class="fa fa-sm fa-eye"></i>
                                     </button>
                                 </div>
-                                <div class="col-md-10"
+                                <div class="col-md-9"
                                      style="background-color: {{ $period->reason->hex_color}}; color: #000000 ">
-                                    {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->reason->title }}
+                                    {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') .  ' / ' . $period->reason->title. ' : ' . $period->user->fullName() }}
                                 </div>
                             </div>
                         @endforeach

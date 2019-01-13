@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Period;
+use App\Reason;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -26,8 +27,11 @@ class ConfirmController extends Controller
             'periods_unconfirmed' => Period::with('user')->byHasToConfirm()->byNotConfirmed()->get() ?? [],  #TODO scope confirmed and start
             'periods_confirmed' => Period::with('user')->byHasToConfirm()->byConfirmed()->byFuture()->get() ?? [] #TODO scope confirmed and start
         ]);
+        $reasons = Reason::get();
 
-        return view('confirm.index');
+        return view('confirm.index')->with([
+            'reasons' => $reasons,
+        ]);
     }
 
     /**

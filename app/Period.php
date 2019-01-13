@@ -119,18 +119,33 @@ class Period extends Model
      */
     public function scopeByInMonth(Builder $query, Carbon $date)
     {
-        $firstDayofMonth = $date->startOfMonth()->toDateString();
-        $lastDayofMonth = $date->endOfMonth()->toDateString();
+        $firstDayOfMonth = $date->startOfMonth()->toDateString();
+        $lastDayOfMonth = $date->endOfMonth()->toDateString();
 
         return $query
-            ->whereBetween('start', [$firstDayofMonth, $lastDayofMonth])
-            ->orWhereBetween('end', [$firstDayofMonth, $lastDayofMonth])
-            ->orWhere(function($query) use ($firstDayofMonth, $lastDayofMonth){
+            ->whereBetween('start', [$firstDayOfMonth, $lastDayOfMonth])
+            ->orWhereBetween('end', [$firstDayOfMonth, $lastDayOfMonth])
+            ->orWhere(function ($query) use ($firstDayOfMonth, $lastDayOfMonth) {
                 $query->where([
-                    ['start', '<', $firstDayofMonth],
-                    ['end', '>', $lastDayofMonth]
-                    ]);
+                    ['start', '<', $firstDayOfMonth],
+                    ['end', '>', $lastDayOfMonth],
+                ]);
             });
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder|\Illuminate\Database\Query\Builder|static
+     */
+    public function scopeByCurrentYear(Builder $query)
+    {
+        $currentYear = Carbon::now()->year;
+
+        #Todo check is it necessary to pay attenchien for periods longer  then 1 year
+
+        return $query
+            ->whereYear('start', $currentYear)
+            ->orWhereYear('end', $currentYear);
     }
 
     /**

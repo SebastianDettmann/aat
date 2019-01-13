@@ -33,7 +33,6 @@
 @push('foot-scripts')
     <script type="application/javascript">
         window.addEventListener('load', function () {
-            $(".datepicker").datepicker($.datepicker.regional["de"]);
             $('#calendar-{{ $calendar->getId() }}').fullCalendar({!! $calendar->getOptionsJson() !!});
             $('#calendar-{{ $calendar->getId() }}').fullCalendar('option', 'contentHeight', 800);
         });

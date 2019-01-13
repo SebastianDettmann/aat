@@ -70,7 +70,7 @@ class User extends Authenticatable
      */
     public function periods()
     {
-        return $this->hasMany(Period::class);
+        return $this->hasMany(Period::class)->orderBy('reason_id')->orderBy('start');
     }
 
     /**
