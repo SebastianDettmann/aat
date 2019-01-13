@@ -38,20 +38,22 @@
 <div id="app">
     @include('partials.navbar')
     <main class="py-4">
-        <div id="alert-holder">
-            @foreach (\Alert::getMessages() as $type => $messages)
-                @foreach ($messages as $message)
-                    <div class="alert alert-{{ $type }}">{!! $message !!}</div>
+        <div class="container">
+            <div id="alert-holder">
+                @foreach (\Alert::getMessages() as $type => $messages)
+                    @foreach ($messages as $message)
+                        <div class="alert alert-{{ $type }}">{!! $message !!}</div>
+                    @endforeach
                 @endforeach
+            </div>
+            @foreach ($errors as $error)
+                <div class="row col-lg-12">
+                    <div class="alert alert-danger">
+                        <span>{{ $error }}</span>
+                    </div>
+                </div>
             @endforeach
         </div>
-        @foreach ($errors as $error)
-            <div class="row col-lg-12">
-                <div class="alert alert-danger">
-                    <span>{{ $error }}</span>
-                </div>
-            </div>
-        @endforeach
         @yield('content')
     </main>
 </div>

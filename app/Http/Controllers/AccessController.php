@@ -45,6 +45,7 @@ class AccessController extends Controller
     public function store(StoreAccessFormRequest $request)
     {
         Access::create($request->all());
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route($this->redirect));
     }
@@ -74,6 +75,7 @@ class AccessController extends Controller
     public function update(UpdateAccessFormRequest $request, Access $access)
     {
         $access->update($request->all());
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route($this->redirect));
     }
@@ -92,6 +94,7 @@ class AccessController extends Controller
     {
         #Todo check if this Access is in use
         $access->delete();
+        \Alert::success(trans('alerts.delete_success'))->flash();
 
         return redirect(route($this->redirect));
     }

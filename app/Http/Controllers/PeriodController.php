@@ -9,11 +9,29 @@ use Carbon\Carbon;
 
 class PeriodController extends Controller
 {
+    /**
+     * @var string
+     */
     protected $redirect = 'period.index'; #todo check for usability
+    /**
+     * @var string
+     */
     protected $timezone = 'Europe/Berlin';
+    /**
+     * @var null|static
+     */
     protected $first_day_of_year = null;
+    /**
+     * @var null|static
+     */
     protected $current_date = null;
+    /**
+     * @var $this |null
+     */
     protected $calendar = null;
+    /**
+     * @var array
+     */
     protected $calendar_options = [ //set fullcalendar options
         'firstDay' => 1, //Week starts with Monday
         'header' => [
@@ -29,6 +47,9 @@ class PeriodController extends Controller
         'contentHeight' => 500,
     ];
 
+    /**
+     * PeriodController constructor.
+     */
     public function __construct()
     {
         $this->first_day_of_year = Carbon::now()->startOfYear();
@@ -136,6 +157,7 @@ class PeriodController extends Controller
             'reason_id' => $request->reason_id,
         ];
         auth()->user()->periods()->create($data);
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect()->back();
     }
@@ -155,6 +177,7 @@ class PeriodController extends Controller
     {
         $this->authorize('access', $period);
         $period->delete();
+        \Alert::success(trans('alerts.delete_success'))->flash();
 
         return redirect()->back();
     }

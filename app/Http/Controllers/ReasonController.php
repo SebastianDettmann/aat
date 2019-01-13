@@ -46,6 +46,7 @@ class ReasonController extends Controller
     public function store(StoreReasonFormRequest $request)
     {
         Reason::create($request->all());
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route($this->redirect));
     }
@@ -77,6 +78,7 @@ class ReasonController extends Controller
     {
         $reason->has_to_confirm = $request->has_to_confirm;
         $reason->update($request->all());
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route($this->redirect));
     }
@@ -95,6 +97,7 @@ class ReasonController extends Controller
     {
         #todo check if it used
         $reason->delete();
+        \Alert::success(trans('alerts.delete_success'))->flash();
 
         return redirect(route($this->redirect));
     }
