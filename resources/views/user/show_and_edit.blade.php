@@ -77,7 +77,7 @@
                                         <tr>
                                             <td>
                                                 @if(auth()->user()->admin)
-                                                    {!! \Form::checkbox('accesses[]', $access->id, in_array($access->id, $user->getAccesses($access->slug))) !!}
+                                                    {!! \Form::checkbox('accesses[]', $access->id, in_array($user->id, $user->getAccesses($access->slug))) !!}
                                                 @endif
                                             </td>
                                             <td>

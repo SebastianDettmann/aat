@@ -102,7 +102,8 @@ class UserController extends Controller
         $this->authorize('edit', $user);
         $user->admin = $request->admin;
         $user->update($request->all());
-        $user->accesses()->sync($request->accesses);
+
+        $user->accesses()->sync($request->accesses ?? []);
 
         return redirect(route(auth()->user()->admin ? $this->redirectAdmin : $this->redirectUser));
     }
