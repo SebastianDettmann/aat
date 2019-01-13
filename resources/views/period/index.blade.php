@@ -159,11 +159,11 @@
                     </button>
                 </div>
                 <div class="modal-body p-2">
-                    <div class="row m-2 pl-2">
-                        <div class="col-md-12" id="period-discription"></div>
+                    <div class="row m-2">
+                        <div class="col-md-11 offset-md-1" id="period-discription"></div>
                     </div>
-                    <div class="row m2 pl-2">
-                        <div class="col-md-12 pl-2" id="period-comment"></div>
+                    <div class="row m2 pl-3">
+                        <div class="col-md-11 offset-md-1" id="period-comment"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
