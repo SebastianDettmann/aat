@@ -1,7 +1,6 @@
 <nav class="navbar navbar-default navbar-expand-lg bg-light">
-
-    <a class="navbar-brand" href="{{ route('dashboard') }}">
-        <img class="mt-1" src="{{asset('images/absolute.png')}}" height="30" alt="{{__('Absolute Logo')}}"/>
+    <a class="navbar-brand mt-1" href="{{ route('dashboard') }}">
+        <img class="mr-2" src="{{asset('images/absolute.png')}}" height="30" alt="{{__('Absolute Logo')}}"/>
         {{ config('app.name', 'Absolute Absence Tool') }}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,12 +23,10 @@
                         <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('period.index')}}">{{ __('Übersicht') }}</a>
+                        <a class="nav-link" href="{{ route('period.index')}}">{{ __('Übersicht') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('period.indexall')}}">{{ __('Im Büro?') }}</a>
+                        <a class="nav-link" href="{{ route('period.indexall')}}">{{ __('Im Büro?') }}</a>
                     </li>
                     @if(\Auth::user()->admin)
                         <li class="nav-item">
@@ -65,7 +62,7 @@
                             <!-- Authentication Links -->
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                                     document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

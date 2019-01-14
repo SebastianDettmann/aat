@@ -18,10 +18,8 @@ Route::group([
     'middleware' => ['auth', 'localization'],
 ], function () {
     //general routes
-    # Todo change to propper route
-    Route::get('dashboard', function () {
-        return view('home');
-    })->name('dashboard');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::resource('user', UserController::class)->except(['show']);
     Route::resource('access', AccessController::class)->except(['show'])->middleware('admin');
