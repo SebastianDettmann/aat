@@ -1,0 +1,101 @@
+{
+  "name": "App\\Http\\Middleware\\Admin",
+  "line": 12,
+  "short_desc": "Class Admin",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "package": [
+      [
+        "App\\Http\\Middleware"
+      ]
+    ]
+  },
+  "namespace": "App\\Http\\Middleware",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Middleware\\Admin.php",
+  "relative_file": null,
+  "hash": "5f1b2b08bf097a1ca94c08fe2e46d92305b24a30",
+  "parent": null,
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Closure": "Closure",
+    "HttpException": "Symfony\\Component\\HttpKernel\\Exception\\HttpException"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": [],
+  "methods": {
+    "handle": {
+      "name": "handle",
+      "line": 23,
+      "short_desc": "Handle an incoming request.",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Symfony\\Component\\HttpKernel\\Exception\\HttpException",
+          "if not admin returns 404"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 23,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Http\\Request",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "next": {
+          "name": "next",
+          "line": 23,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Closure",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Closure"
+            ],
+            "attributes": {
+              "startLine": 23,
+              "endLine": 23
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

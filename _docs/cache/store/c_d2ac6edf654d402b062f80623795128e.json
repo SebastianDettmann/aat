@@ -1,0 +1,356 @@
+{
+  "name": "App\\Http\\Controllers\\UserController",
+  "line": 10,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Controllers",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Controllers\\UserController.php",
+  "relative_file": null,
+  "hash": "f9fcc2a082dee1d1ead4ea225e30aded50d2a2a7",
+  "parent": "App\\Http\\Controllers\\Controller",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Access": "App\\Access",
+    "StoreUserFormRequest": "App\\Http\\Requests\\StoreUserFormRequest",
+    "UpdateUserFormRequest": "App\\Http\\Requests\\UpdateUserFormRequest",
+    "User": "App\\User"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "redirectAdmin": {
+      "name": "redirectAdmin",
+      "line": 13,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "user.index",
+        "attributes": {
+          "startLine": 13,
+          "endLine": 13,
+          "kind": 1
+        }
+      },
+      "errors": []
+    },
+    "redirectUser": {
+      "name": "redirectUser",
+      "line": 15,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "dashboard",
+        "attributes": {
+          "startLine": 15,
+          "endLine": 15,
+          "kind": 1
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "__construct": {
+      "name": "__construct",
+      "line": 21,
+      "short_desc": "UserController constructor.",
+      "long_desc": "handles admin middleware",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "index": {
+      "name": "index",
+      "line": 31,
+      "short_desc": "Display a listing of \\App\\User.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "create": {
+      "name": "create",
+      "line": 45,
+      "short_desc": "Show the form for creating a new \\App\\User.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "store": {
+      "name": "store",
+      "line": 60,
+      "short_desc": "Store a newly created \\App\\User in Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 60,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Http\\Requests\\StoreUserFormRequest",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Http",
+              "Requests",
+              "StoreUserFormRequest"
+            ],
+            "attributes": {
+              "startLine": 60,
+              "endLine": 60
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "edit": {
+      "name": "edit",
+      "line": 77,
+      "short_desc": "Show the form for editing the specified \\App\\User.",
+      "long_desc": "used to, for displaying the user",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Illuminate\\Auth\\Access\\AuthorizationException",
+          "rendered as 404"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "user": {
+          "name": "user",
+          "line": 77,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\User",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "User"
+            ],
+            "attributes": {
+              "startLine": 77,
+              "endLine": 77
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "update": {
+      "name": "update",
+      "line": 99,
+      "short_desc": "Update the specified \\App\\User in Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Illuminate\\Auth\\Access\\AuthorizationException",
+          "rendered as 404"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 99,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Http\\Requests\\UpdateUserFormRequest",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Http",
+              "Requests",
+              "UpdateUserFormRequest"
+            ],
+            "attributes": {
+              "startLine": 99,
+              "endLine": 99
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "user": {
+          "name": "user",
+          "line": 99,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\User",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "User"
+            ],
+            "attributes": {
+              "startLine": 99,
+              "endLine": 99
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "destroy": {
+      "name": "destroy",
+      "line": 116,
+      "short_desc": "Remove the specified resource from storage.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\Response",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Exception",
+          "my throws an Exception if the User not Exists,\nnot validated, because is only available for Admins"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "user": {
+          "name": "user",
+          "line": 116,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\User",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "User"
+            ],
+            "attributes": {
+              "startLine": 116,
+              "endLine": 116
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

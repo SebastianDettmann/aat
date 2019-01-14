@@ -1,0 +1,160 @@
+{
+  "name": "App\\Reason",
+  "line": 15,
+  "short_desc": "App\\Reason",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "method": [
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Reason",
+        "newModelQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Reason",
+        "newQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\Reason",
+        "query()"
+      ]
+    ],
+    "mixin": [
+      [
+        "\\Eloquent"
+      ]
+    ]
+  },
+  "namespace": "App",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Reason.php",
+  "relative_file": null,
+  "hash": "02ceb4929fff076d2fdd8a688e77f87287d0897d",
+  "parent": "Illuminate\\Database\\Eloquent\\Model",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Model": "Illuminate\\Database\\Eloquent\\Model"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "fillable": {
+      "name": "fillable",
+      "line": 17,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "title",
+              "attributes": {
+                "startLine": 18,
+                "endLine": 18,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 18,
+              "endLine": 18
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "description",
+              "attributes": {
+                "startLine": 19,
+                "endLine": 19,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 19,
+              "endLine": 19
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "color",
+              "attributes": {
+                "startLine": 20,
+                "endLine": 20,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 20,
+              "endLine": 20
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "hex_color",
+              "attributes": {
+                "startLine": 21,
+                "endLine": 21,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 21,
+              "endLine": 21
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "has_to_confirm",
+              "attributes": {
+                "startLine": 22,
+                "endLine": 22,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 22,
+              "endLine": 22
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 17,
+          "endLine": 23,
+          "kind": 2
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": [],
+  "constants": []
+}

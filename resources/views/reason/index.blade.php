@@ -12,6 +12,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <a href="{{ route('reason.create') }}">
+                        <button class="btn btn-default btn-block col-md-3 mb-4">{{ __('Neuer Grund') }}</button>
+                    </a>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -20,7 +23,7 @@
                             <th>{{ __('Beschreibung') }}</th>
                             <th></th>
                             <th>{{ __('Farbe') }}</th>
-                            <th>{{ __('zu bestätigen?') }}</th>
+                            <th>{{ __('Zu bestätigen?') }}</th>
                         </tr>
                         </thead>
                         <tbody class="list">
@@ -33,16 +36,15 @@
                                                 <i class="fa  fa-sm fa-edit"></i>
                                             </button>
                                         </a>
-                                        {{-- @if($reason->id !== 1) Todo check if the reason is used--}}
+                                        {{--  Todo check if the reason is used--}}
                                         {!! \Form::open([
                                             'route' => ['reason.destroy',$reason->id],
                                             'method' => 'DELETE'
                                         ]) !!}
                                         <button class="btn btn-danger btn-icon" type="submit" dusk="button-delete">
-                                            <i class="fa fa-sm fa-trash-o"></i>
+                                            <i class="fa fa-sm fa-trash"></i>
                                         </button>
                                         {!! \Form::close() !!}
-                                        {{--@endif--}}
                                     </div>
                                 </td>
                                 <td>

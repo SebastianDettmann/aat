@@ -1,0 +1,229 @@
+{
+  "name": "App\\Libs\\Datamap",
+  "line": 10,
+  "short_desc": "Class Datamap\nstores same basic static data",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "package": [
+      [
+        "App\\Libs"
+      ]
+    ]
+  },
+  "namespace": "App\\Libs",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Libs\\Datamap.php",
+  "relative_file": null,
+  "hash": "01213f739e950afd5ce5c97bce306d23c487a768",
+  "parent": null,
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": [],
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": [],
+  "methods": {
+    "getAppLanguages": {
+      "name": "getAppLanguages",
+      "line": 15,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Support\\Collection",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "getAbsenceReasons": {
+      "name": "getAbsenceReasons",
+      "line": 33,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Support\\Collection",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "getOneReason": {
+      "name": "getOneReason",
+      "line": 75,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ],
+        [
+          "null",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "id": {
+          "name": "id",
+          "line": 75,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [],
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "getAccessPoints": {
+      "name": "getAccessPoints",
+      "line": 83,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Support\\Collection",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "getOneAccessPoint": {
+      "name": "getOneAccessPoint",
+      "line": 104,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ],
+        [
+          "null",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "id": {
+          "name": "id",
+          "line": 104,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [],
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "getFirstAdmin": {
+      "name": "getFirstAdmin",
+      "line": 112,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "getMonth": {
+      "name": "getMonth",
+      "line": 126,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Support\\Collection",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "getMonthName": {
+      "name": "getMonthName",
+      "line": 173,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 9,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "id": {
+          "name": "id",
+          "line": 173,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [],
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

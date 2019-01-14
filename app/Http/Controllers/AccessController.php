@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Access;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreAccessFormRequest;
+use App\Http\Requests\UpdateAccessFormRequest;
 
+/**
+ * Class AccessController
+ * @package App\Http\Controllers
+ */
 class AccessController extends Controller
 {
     protected $redirect = 'access.index';
@@ -34,12 +39,13 @@ class AccessController extends Controller
     /**
      * Store a newly created \App\Access in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreAccessFormRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreAccessFormRequest $request)
     {
         Access::create($request->all());
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route($this->redirect));
     }
@@ -61,14 +67,15 @@ class AccessController extends Controller
     /**
      * Update the specified \App\Access in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateAccessFormRequest $request
      * @param  \App\Access  $access
      * by model-key-binding
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Access $access)
+    public function update(UpdateAccessFormRequest $request, Access $access)
     {
         $access->update($request->all());
+        \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route($this->redirect));
     }
@@ -87,6 +94,7 @@ class AccessController extends Controller
     {
         #Todo check if this Access is in use
         $access->delete();
+        \Alert::success(trans('alerts.delete_success'))->flash();
 
         return redirect(route($this->redirect));
     }

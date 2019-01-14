@@ -4,27 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePeriodFormRequest;
 use App\Period;
+use App\Reason;
+use Carbon\Carbon;
 
 class PeriodController extends Controller
 {
+    /**
+     * @var string
+     */
     protected $redirect = 'period.index'; #todo check for usability
+    /**
+     * @var string
+     */
+    protected $timezone = 'Europe/Berlin';
+    /**
+     * @var null|static
+     */
+    protected $first_day_of_year = null;
+    /**
+     * @var null|static
+     */
+    protected $current_date = null;
+    /**
+     * @var $this |null
+     */
+    protected $calendar = null;
+    /**
+     * @var array
+     */
+    protected $calendar_options = [ //set fullcalendar options
+        'firstDay' => 1, //Week starts with Monday
+        'header' => [
+            'left' => 'prev,next today',
+            'center' => 'title',
+            'right' => 'month,basicWeek',
+        ],
+        'navLinks' => true, // can click day/week names to navigate views
+        'editable' => true,
+        'selectable' => true,
+        'eventLimit' => true, // allow "more" link when too many events
+        'locale' => 'de',
+        'contentHeight' => 500,
+    ];
 
     /**
-     * Display the specified \App\Period.
-     *
-     * @param  \App\Period $period
-     * by model-key-binding
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * rendered as 404
-     * @return \Illuminate\Contracts\View\View
+     * PeriodController constructor.
      */
-    public function show(Period $period)
+    public function __construct()
     {
-        $this->authorize('access', $period);
-
-        return view('period.show')->with([
-           'period' => $period
-        ]);
+        $this->first_day_of_year = Carbon::now()->startOfYear();
+        $this->current_date = Carbon::now();
+        $this->calendar = \Calendar::setOptions($this->calendar_options);
     }
 
     /**
@@ -32,15 +62,48 @@ class PeriodController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index($year, $month)
+    public function index()
     {
         #todo check for use ajax
-        #todo check for current month
 
-        $periods = auth()->user()->periods()->with('reasons');
+        $periods_year_now_past = [];
+        $periods_year_now_current = [];
+        $periods_year_now_future = [];
+        $calendar_periods = [];
+        $reasons = Reason::get();
+        $periods = auth()->user()->periods->sortBy('start');
+
+        foreach ($periods as $period) {
+            if ($period->start->gte($this->first_day_of_year) || $period->end->gte($this->first_day_of_year)) {
+                if ($period->start->lte($this->current_date) && $period->end->gte($this->current_date)) {
+                    $periods_year_now_current[] = $period;
+                } elseif ($period->start->lte($this->current_date)) {
+                    $periods_year_now_past[] = $period;
+                } else {
+                    $periods_year_now_future[] = $period;
+                }
+            }
+            # add periods to Calendar
+            $calendar_periods[] = \Calendar::event(
+                $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingText(), //event title
+                true, //full day event?
+                $period->start, //start time (you can also use Carbon instead of DateTime)
+                $period->end->addDay(), //end time (you can also use Carbon instead of DateTime) !!!nessesery to add a day!!!
+                $period->id, //optionally, you can specify an event ID
+                [
+                    'color' => $period->pendingColor(),
+                    'textColor' => '#000000']
+            );
+        }
+
+        $this->calendar->addEvents($calendar_periods);
 
         return view('period.index')->with([
-            'periods' => $periods
+            'periods_year_now_future' => $periods_year_now_future,
+            'periods_year_now_current' => $periods_year_now_current,
+            'periods_year_now_past' => $periods_year_now_past,
+            'reasons' => $reasons,
+            'calendar' => $this->calendar,
         ]);
     }
 
@@ -49,26 +112,33 @@ class PeriodController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function indexAll($year, $month)
+    public function indexAll()
     {
         #todo check for use ajax
-        #todo check for current month
-
         $periods = Period::with('reason')->get();
+        $reasons = Reason::get();
+        $calendar_periods = [];
+
+        foreach ($periods as $period) {
+            # add periods to Calendar
+            $calendar_periods[] = \Calendar::event(
+                $period->pendingUser() . ' : ' . $period->reason->title . ' ' . $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y'), //event title
+                true, //full day event?
+                $period->start, //start time (you can also use Carbon instead of DateTime)
+                $period->end->addDay(), //end time (you can also use Carbon instead of DateTime) !!!nessesery to add a day!!!
+                $period->id, //optionally, you can specify an event ID
+                [
+                    'color' => $period->pendingColor(),
+                    'textColor' => '#000000']
+            );
+        }
+
+        $this->calendar->addEvents($calendar_periods);
 
         return view('period.indexall')->with([
-            'periods' => $periods
+            'reasons' => $reasons,
+            'calendar' => $this->calendar,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new /App/User.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function create()
-    {
-        return view('period.create');
     }
 
     /**
@@ -80,9 +150,16 @@ class PeriodController extends Controller
      */
     public function store(StorePeriodFormRequest $request)
     {
-        $period = Period::make($request->all(''));
-        auth()->user()->periods()->save($period);
-        // Todo redirect, update phpdoc
+        $data = [
+            'start' => Carbon::createFromFormat('d.m.Y', $request->start)->timezone($this->timezone),
+            'end' => Carbon::createFromFormat('d.m.Y', $request->end)->timezone($this->timezone),
+            'comment' => $request->comment,
+            'reason_id' => $request->reason_id,
+        ];
+        auth()->user()->periods()->create($data);
+        \Alert::success(trans('alerts.save_success'))->flash();
+
+        return redirect()->back();
     }
 
     /**
@@ -98,11 +175,11 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
-        #Todo email notification, redirect, validation $period exist update phpdoc
-
         $this->authorize('access', $period);
-
         $period->delete();
+        \Alert::success(trans('alerts.delete_success'))->flash();
+
+        return redirect()->back();
     }
-    #todo summery of all leave requests off the year
+
 }

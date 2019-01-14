@@ -1,0 +1,163 @@
+{
+  "name": "App\\Http\\Middleware\\XSSProtection",
+  "line": 8,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Middleware",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Middleware\\XSSProtection.php",
+  "relative_file": null,
+  "hash": "3c9489a2616f575df50034b7c186af8dc5d1c764",
+  "parent": null,
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Closure": "Closure",
+    "Request": "Illuminate\\Http\\Request"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "excepted": {
+      "name": "excepted",
+      "line": 10,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "_token",
+              "attributes": {
+                "startLine": 11,
+                "endLine": 11,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 11,
+              "endLine": 11
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 10,
+          "endLine": 12,
+          "kind": 2
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "handle": {
+      "name": "handle",
+      "line": 14,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 14,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Http\\Request",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Http",
+              "Request"
+            ],
+            "attributes": {
+              "startLine": 14,
+              "endLine": 14
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "next": {
+          "name": "next",
+          "line": 14,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Closure",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Closure"
+            ],
+            "attributes": {
+              "startLine": 14,
+              "endLine": 14
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "shouldPassThrough": {
+      "name": "shouldPassThrough",
+      "line": 30,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "key": {
+          "name": "key",
+          "line": 30,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": null,
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

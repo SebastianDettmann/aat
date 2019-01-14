@@ -36,13 +36,30 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-1">
-                                    {!! \Form::checkbox('admin', true) !!}
+                                <div class="col-md-6">
+                                    {!! \BTForm::password('password', __('Neues Passwort')) !!}
                                 </div>
-                                <div class="col-md-11">
-                                    {{ __('Admin') }}
+                                <div class="col-md-6">
+                                    {!! \BTForm::password('password_confirmation', __('Neues Passwort bestätigen')) !!}
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {!! \BTForm::password('password_old', __('Sicherheits Check: Passwort'),[
+                                    ]) !!}
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                            @if(auth()->user()->admin)
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        {!! \Form::checkbox('admin', true) !!}
+                                    </div>
+                                    <div class="col-md-11">
+                                        {{ __('Admin') }}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-5 offset-1">
                             <div class="row">
@@ -50,7 +67,9 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>{{ __('Auswahl') }}</th>
+                                        @if(auth()->user()->admin)
+                                            <th>{{ __('Auswahl') }}</th>
+                                        @endif
                                         <th></th>
                                         <th>{{ __('Bezeichnung') }}</th>
                                     </tr>
@@ -58,11 +77,13 @@
                                     <tbody class="list">
                                     @foreach($accesses as $access)
                                         <tr>
+                                            @if(auth()->user()->admin)
+                                                <td>
+                                                    {!! \Form::checkbox('accesses[]', $access->id, in_array($user->id, $user->getAccesses($access->slug))) !!}
+                                                </td>
+                                            @endif
                                             <td>
-                                                {!!  \Form::checkbox('accesses[]', $access->id, in_array($access->id, $user->getAccesses($access->slug))) !!}
-                                            </td>
-                                            <td>
-                                                @if($assess->image)
+                                                @if($access->image)
                                                     <img src="{{asset($access->image)}}" height="20"
                                                          alt="{{__('Logo für Zugang')}}"/>
                                                 @endif

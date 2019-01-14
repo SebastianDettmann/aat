@@ -1,0 +1,108 @@
+{
+  "name": "App\\Http\\Middleware\\Absence",
+  "line": 13,
+  "short_desc": "Class Absence\ngrand|deny Access for Absence Tool",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "package": [
+      [
+        "App\\Http\\Middleware"
+      ]
+    ]
+  },
+  "namespace": "App\\Http\\Middleware",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Middleware\\Absence.php",
+  "relative_file": null,
+  "hash": "0241411ad39b860232966df715e6ac992cf240d0",
+  "parent": null,
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Closure": "Closure",
+    "HttpException": "Symfony\\Component\\HttpKernel\\Exception\\HttpException"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": [],
+  "methods": {
+    "handle": {
+      "name": "handle",
+      "line": 29,
+      "short_desc": "Handle an incoming request.",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Symfony\\Component\\HttpKernel\\Exception\\HttpException",
+          "throws 404 if User don't have Access for Absence Tool"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 29,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Http\\Request",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": null,
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "next": {
+          "name": "next",
+          "line": 29,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Closure",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Closure"
+            ],
+            "attributes": {
+              "startLine": 29,
+              "endLine": 29
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": {
+    "ACCESS_SLUG": {
+      "name": "ACCESS_SLUG",
+      "line": 18,
+      "short_desc": "",
+      "long_desc": ""
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "App\\Http\\Requests\\StorePeriodFormRequest",
+  "line": 8,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Requests",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Requests\\StorePeriodFormRequest.php",
+  "relative_file": null,
+  "hash": "bbeaaf84abcc2964a6e027ecf3a5ca514288f17c",
+  "parent": "Illuminate\\Foundation\\Http\\FormRequest",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Carbon": "Carbon\\Carbon",
+    "FormRequest": "Illuminate\\Foundation\\Http\\FormRequest"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": [],
+  "methods": {
+    "authorize": {
+      "name": "authorize",
+      "line": 15,
+      "short_desc": "Determine if the user is authorized to make this request.",
+      "long_desc": "",
+      "hint": [
+        [
+          "bool",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "rules": {
+      "name": "rules",
+      "line": 25,
+      "short_desc": "Get the validation rules that apply to the request.",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    }
+  },
+  "constants": []
+}

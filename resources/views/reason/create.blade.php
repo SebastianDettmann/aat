@@ -12,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {!! \Form::open(['route' => ['reason.create']]) !!}
+                    {!! \Form::open(['route' => ['reason.store']]) !!}
 
                     <div class="row">
                         <div class="col-md-8 offset-1">
@@ -23,23 +23,26 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    {!! BTForm::textarea('description') !!}
+                                    {!! BTForm::text('description') !!}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-1">
-                                    {!! Form::color('hex_color') !!}
+                                <div class="col-md-2">
+                                    <label for="hexcolor">{{ __('Picker') }}</label>
+                                    <input type="color" name="hex_color" id="hex_color" style="width: 30px">
                                 </div>
-                                <div class="col-md-11">
+                                <div class="col-md-10">
                                     {!! BTForm::text('color') !!}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-1">
-                                    {!! \Form::checkbox('has_to_confirm', true) !!}
-                                </div>
-                                <div class="col-md-11">
-                                    {{ __('Muß bestätigt werden') }}
+                            <div class="row mt-3">
+                                <div class="form-group col-md-12 ">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="has_to_confirm" type="checkbox" value="1">
+                                            {{ __('Muß bestätigt werden') }}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

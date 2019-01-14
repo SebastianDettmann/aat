@@ -1,0 +1,308 @@
+{
+  "name": "App\\Http\\Controllers\\AccessController",
+  "line": 8,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Controllers",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Controllers\\AccessController.php",
+  "relative_file": null,
+  "hash": "213bd78f70d4c0dc3db5e410345b1bab8a586e5e",
+  "parent": "App\\Http\\Controllers\\Controller",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Access": "App\\Access",
+    "Request": "Illuminate\\Http\\Request"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "redirect": {
+      "name": "redirect",
+      "line": 10,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "access.index",
+        "attributes": {
+          "startLine": 10,
+          "endLine": 10,
+          "kind": 1
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "index": {
+      "name": "index",
+      "line": 17,
+      "short_desc": "Display a listing of \\App\\Access.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "create": {
+      "name": "create",
+      "line": 29,
+      "short_desc": "Show the form for creating a new \\App\\Access.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "store": {
+      "name": "store",
+      "line": 40,
+      "short_desc": "Store a newly created \\App\\Access in storage.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 40,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Http\\Request",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Http",
+              "Request"
+            ],
+            "attributes": {
+              "startLine": 40,
+              "endLine": 40
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "edit": {
+      "name": "edit",
+      "line": 54,
+      "short_desc": "Show the form for editing \\App\\Access.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "access": {
+          "name": "access",
+          "line": 54,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Access",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Access"
+            ],
+            "attributes": {
+              "startLine": 54,
+              "endLine": 54
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "update": {
+      "name": "update",
+      "line": 69,
+      "short_desc": "Update the specified \\App\\Access in Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 69,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\Illuminate\\Http\\Request",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "Illuminate",
+              "Http",
+              "Request"
+            ],
+            "attributes": {
+              "startLine": 69,
+              "endLine": 69
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "access": {
+          "name": "access",
+          "line": 69,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Access",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Access"
+            ],
+            "attributes": {
+              "startLine": 69,
+              "endLine": 69
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "destroy": {
+      "name": "destroy",
+      "line": 86,
+      "short_desc": "Remove the specified \\App\\Access from Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Exception",
+          "my throws an Exception if the Reason not Exists,\nnot validated, because is only available for Admins"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "access": {
+          "name": "access",
+          "line": 86,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Access",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Access"
+            ],
+            "attributes": {
+              "startLine": 86,
+              "endLine": 86
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

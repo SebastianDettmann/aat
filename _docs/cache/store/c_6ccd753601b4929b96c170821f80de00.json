@@ -1,0 +1,66 @@
+{
+  "name": "App\\Http\\Requests\\UpdateUserFormRequest",
+  "line": 9,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Requests",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Requests\\UpdateUserFormRequest.php",
+  "relative_file": null,
+  "hash": "28d2026dd0e2b18665a1c1ece1844f4a8d9962c4",
+  "parent": "Illuminate\\Foundation\\Http\\FormRequest",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Datamap": "App\\Libs\\Datamap",
+    "FormRequest": "Illuminate\\Foundation\\Http\\FormRequest",
+    "Rule": "Illuminate\\Validation\\Rule"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": [],
+  "methods": {
+    "authorize": {
+      "name": "authorize",
+      "line": 16,
+      "short_desc": "Determine if the user is authorized to make this request.",
+      "long_desc": "",
+      "hint": [
+        [
+          "bool",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "rules": {
+      "name": "rules",
+      "line": 26,
+      "short_desc": "Get the validation rules that apply to the request.",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    }
+  },
+  "constants": []
+}

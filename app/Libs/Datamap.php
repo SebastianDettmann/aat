@@ -49,23 +49,24 @@ class Datamap
                 'id' => 3,
                 'title' => __('Krank'),
                 'color' => 'Orange',
-                'hex_color' => 'ffa500',
+                'hex_color' => '#ffa500',
                 'has_to_confirm' => false,
             ], [
                 'id' => 4,
                 'title' => __('Außer Haus'),
                 'color' => 'Aquamarine',
-                'hex_color' => '7fffd4',
+                'hex_color' => '#7fffd4',
                 'has_to_confirm' => false,
             ], [
                 'id' => 5,
                 'title' => __('andere'),
                 'color' => 'DarkGray',
-                'hex_color' => 'a9a9a9',
+                'hex_color' => '#a9a9a9',
                 'has_to_confirm' => false,
             ]
         ])->sortBy('title');
     }
+
 
     /**
      * @param $id
@@ -90,7 +91,7 @@ class Datamap
                 'id' => 1,
                 'title' => $titles[0],
                 'slug' => str_slug($titles[0], '_'),
-                'url' => config('app.url' . '/app/dashboard'),
+                'url' => config('app.url') . '/app/period',
                 'image' => 'images/absolute.png'
             ]
         ]);
@@ -111,11 +112,77 @@ class Datamap
     public static function getFirstAdmin()
     {
         return [
-            'firstname' => 'sebastian',
-            'lastname' => 'dettmann',
+            'firstname' => 'Sebastian',
+            'lastname' => 'Dettmann',
             'email' => 'sebastian.dettmann@absolute.de',
             'admin' => true,
             'password' => bcrypt('Qwertz123'),
+        ];
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getMonth()
+    {
+        return collect([
+            [
+                'id' => 1,
+                'title' => __('Januar'),
+            ], [
+                'id' => 2,
+                'title' => __('Februar'),
+            ], [
+                'id' => 3,
+                'title' => __('März'),
+            ], [
+                'id' => 4,
+                'title' => __('April'),
+            ], [
+                'id' => 5,
+                'title' => __('Mai'),
+            ], [
+                'id' => 6,
+                'title' => __('Juni'),
+            ], [
+                'id' => 7,
+                'title' => __('Juli'),
+            ], [
+                'id' => 8,
+                'title' => __('August'),
+            ], [
+                'id' => 9,
+                'title' => __('September'),
+            ], [
+                'id' => 10,
+                'title' => __('Oktober'),
+            ], [
+                'id' => 11,
+                'title' => __('November'),
+            ], [
+                'id' => 12,
+                'title' => __('Dezember'),
+            ],
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getMonthName($id)
+    {
+        return self::getMonth()->where('id', $id)->pluck('title')->first();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getMailDistributor()
+    {
+        return [
+            'sebastian.dettmann@absolute.de',
         ];
     }
 }

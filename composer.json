@@ -6,15 +6,17 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+      "barryvdh/laravel-ide-helper": "^2.5",
       "ezyang/htmlpurifier": "^4.10",
         "fideloper/proxy": "^4.0",
+      "kkomelin/laravel-translatable-string-exporter": "^1.0",
         "laravel/framework": "5.7.*",
       "laravel/tinker": "^1.0",
+      "maddhatter/laravel-fullcalendar": "^1.3",
+      "prologue/alerts": "^0.4.2",
       "watson/bootstrap-form": "^1.2"
     },
     "require-dev": {
-      "kkomelin/laravel-translatable-string-exporter": "^1.0",
-      "barryvdh/laravel-ide-helper": "^2.5",
       "barryvdh/laravel-debugbar": "^3.2",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",

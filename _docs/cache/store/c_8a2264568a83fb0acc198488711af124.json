@@ -1,0 +1,106 @@
+{
+  "name": "App\\Policies\\UserPolicy",
+  "line": 8,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Policies",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Policies\\UserPolicy.php",
+  "relative_file": null,
+  "hash": "f4212c31e1ec7336b846cf13d653bb6fe5b373e1",
+  "parent": null,
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "User": "App\\User",
+    "HandlesAuthorization": "Illuminate\\Auth\\Access\\HandlesAuthorization"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": {
+    "Illuminate\\Auth\\Access\\HandlesAuthorization": "Illuminate\\Auth\\Access\\HandlesAuthorization"
+  },
+  "properties": [],
+  "methods": {
+    "edit": {
+      "name": "edit",
+      "line": 19,
+      "short_desc": "Determine whether the user can update the model.",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [
+        "The \"user\" @param tag variable name is wrong (should be \"auth\")",
+        "The \"model\" @param tag variable name is wrong (should be \"user\")"
+      ],
+      "parameters": {
+        "auth": {
+          "name": "auth",
+          "line": 19,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\User",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "User"
+            ],
+            "attributes": {
+              "startLine": 19,
+              "endLine": 19
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "user": {
+          "name": "user",
+          "line": 19,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\User",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "User"
+            ],
+            "attributes": {
+              "startLine": 19,
+              "endLine": 19
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

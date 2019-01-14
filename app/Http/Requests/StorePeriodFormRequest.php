@@ -3,19 +3,9 @@
 namespace App\Http\Requests;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Http\FormRequest;
 
-class StorePeriodFormRequest extends FormRequest
+class StorePeriodFormRequest extends AbstractFormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -27,13 +17,13 @@ class StorePeriodFormRequest extends FormRequest
         return [
             'start' => [
                 'required',
-                'after:' . Carbon::yesterday()->toDateString(),
-               # 'date_format:' . trans('helpers.dateformat.php'),
+                'after:' . Carbon::yesterday()->format('d.m.Y'),
+                'date_format:d.m.Y',
             ],
             'end' => [
                 'required',
-                'gte:start',
-               # 'date_format:' . trans('helpers.dateformat.php')
+                'after:start_at -1',
+                'date_format:d.m.Y',
 
             ],
             'comment' => [
