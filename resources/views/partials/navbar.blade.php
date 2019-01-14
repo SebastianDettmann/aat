@@ -55,7 +55,8 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item"
                                href="{{ route('user.edit', [\Auth::user()->id]) }}">{{ __('Profil') }}</a>
-                            <a class="dropdown-item" href="#">{{ __('Hilfe') }}</a>
+                            <a class="dropdown-item"
+                               href="{{ asset('userdocumentation/aat_benutzerhandbuch.pdf') }}">{{ __('Hilfe') }}</a>
                             @if(\Auth::user()->admin)
                                 <a class="dropdown-item" href="{{ route('user.index') }}">{{ __('Verwaltung') }}</a>
                             @endif

@@ -38,7 +38,7 @@
                                 <div class="col-md-1 mr-3">
                                     <button class="btn btn-default btn-icon"
                                             data-toggle="modal" data-target="#showModal"
-                                            data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->reason->title }}"
+                                            data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' / ' . $period->reason->title. ' : ' . $period->user->fullName() }}"
                                             data-comment="{{ __('Bemerkung: ') . $period->comment }}"
                                             dusk="button-show-modal">
                                         <i class="fa fa-sm fa-eye"></i>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-md-9"
                                      style="background-color: {{ $period->reason->hex_color}}; color: #000000 ">
-                                    {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->reason->title }}
+                                    {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->user->fullName() }}
                                 </div>
                             </div>
                         @endforeach
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-md-9"
                                      style="background-color: {{ $period->reason->hex_color}}; color: #000000 ">
-                                    {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') .  ' / ' . $period->reason->title. ' : ' . $period->user->fullName() }}
+                                    {{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') .  ' : ' . $period->user->fullName() }}
                                 </div>
                             </div>
                         @endforeach
