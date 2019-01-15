@@ -37,6 +37,22 @@ class Reason extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function periods()
+    {
+        return $this->hasMany(Period::class)->orderBy('reason_id')->orderBy('start');
+    }
+
+    /**
+     * @return Boolean
+     */
+    public function hasNotPeriods()
+    {
+        return $this->periods()->count() == 0;
+    }
+
+    /**
      * @param Builder $query
      * @return \Illuminate\Database\Query\Builder|static
      */
@@ -44,5 +60,6 @@ class Reason extends Model
     {
         return $query->where('has_to_confirm', 1);
     }
+
 
 }

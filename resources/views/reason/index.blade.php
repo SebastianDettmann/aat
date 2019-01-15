@@ -36,15 +36,16 @@
                                                 <i class="fa  fa-sm fa-edit"></i>
                                             </button>
                                         </a>
-                                        {{--  Todo check if the reason is used--}}
-                                        {!! \Form::open([
-                                            'route' => ['reason.destroy',$reason->id],
-                                            'method' => 'DELETE'
-                                        ]) !!}
-                                        <button class="btn btn-danger btn-icon" type="submit" dusk="button-delete">
-                                            <i class="fa fa-sm fa-trash"></i>
-                                        </button>
-                                        {!! \Form::close() !!}
+                                        @if($reason->hasNotPeriods())
+                                            {!! \Form::open([
+                                                'route' => ['reason.destroy',$reason->id],
+                                                'method' => 'DELETE'
+                                            ]) !!}
+                                            <button class="btn btn-danger btn-icon" type="submit" dusk="button-delete">
+                                                <i class="fa fa-sm fa-trash"></i>
+                                            </button>
+                                            {!! \Form::close() !!}
+                                        @endif
                                     </div>
                                 </td>
                                 <td>
