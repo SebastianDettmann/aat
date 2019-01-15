@@ -116,7 +116,7 @@ class Datamap
             'lastname' => 'Dettmann',
             'email' => 'sebastian.dettmann@absolute.de',
             'admin' => true,
-            'password' => bcrypt('Qwertz123'),
+            'password' => 'Qwertz123',
         ];
     }
 
