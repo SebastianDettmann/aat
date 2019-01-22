@@ -118,13 +118,13 @@ class UserControllerTest extends TestCase
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
-            'admin' => (bool)$data['admin'],
         ]);
     }
 
     private function can_update_user($user)
     {
         $data = $this->generateUserData($user);
+        unset($data['admin']);
         $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
         $this->dbAssertion($data);
     }

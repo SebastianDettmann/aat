@@ -95,9 +95,17 @@ class ReasonController extends Controller
      */
     public function destroy(Reason $reason)
     {
-        #todo check if it used
-        $reason->delete();
-        \Alert::success(trans('alerts.delete_success'))->flash();
+        $success = false;
+
+        if ($reason->hasNotPeriods()) {
+            $success = $reason->delete();
+        }
+
+        if ($success) {
+            \Alert::success(trans('alerts.delete_success'))->flash();
+        } else {
+            \Alert::warning(trans('alerts.save_failed'))->flash();
+        }
 
         return redirect(route($this->redirect));
     }
