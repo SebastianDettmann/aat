@@ -15,7 +15,6 @@ class UserTest extends TestCase
             'firstname' => 'Max',
             'lastname' => 'Mustermann',
             'email' => 'muster@email.de',
-            'admin' => false,
             'password' => bcrypt('Qwertz123'),
         ];
 

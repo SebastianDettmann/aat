@@ -12,7 +12,7 @@ class ReasonControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('reason.index'))->assertSee('Alle Gründe');
+        $this->get(route('reason.index'))->assertSee(__('Alle Gründe'));
         $this->get(route('reason.index'))->assertViewHas('reasons');
     }
 
@@ -21,7 +21,7 @@ class ReasonControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('reason.create'))->assertSee('Grund anlegen');
+        $this->get(route('reason.create'))->assertSee(__('Grund anlegen'));
     }
 
     /** @test */
@@ -30,7 +30,7 @@ class ReasonControllerViewTest extends TestCase
         $this->withAutentification($this->admin);
         $reason = Reason::first();
 
-        $this->get(route('reason.edit', [$reason->id]))->assertSee('Grund bearbeiten');
+        $this->get(route('reason.edit', [$reason->id]))->assertSee(__('Grund bearbeiten'));
         $this->get(route('reason.edit', [$reason->id]))->assertViewHas('reason');
     }
 }

@@ -46,7 +46,7 @@ abstract class TestCase extends BaseTestCase
         $this->artisan('db:seed');
         $this->faker = Faker::create();
         $this->user = factory(User::class)->create();
-        $this->admin = factory(User::class)->states('admin')->create();
+        $this->admin = $this->createAdmin();
         $this->access = Access::firstOrFail();
         $this->access->users()->attach([
             $this->admin->id,
@@ -80,5 +80,14 @@ abstract class TestCase extends BaseTestCase
         ];
 
         return $data;
+    }
+
+    protected function createAdmin()
+    {
+        $adminUser = factory(User::class)->create();
+        $adminUser->admin = 1;
+        $adminUser->save();
+
+        return $adminUser;
     }
 }

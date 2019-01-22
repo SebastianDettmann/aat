@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Period;
 use App\Reason;
 use Tests\TestCase;
 
@@ -56,8 +57,6 @@ class ReasonControllerTest extends TestCase
         $this->assertDatabaseHas('reasons', $data);
     }
 
-    #TODO cant delete used reasons
-
     /** @test */
     public function can_update_reason()
     {
@@ -79,6 +78,23 @@ class ReasonControllerTest extends TestCase
         $this->delete(route('reason.destroy' , [$reason->id]))->assertStatus(200);
         $this->assertDatabaseMissing('reasons', [
             'id' => $reason->id
+        ]);
+    }
+
+    /** @test */
+    public function cant_delete_reason_having_periods()
+    {
+        $this->withAutentification($this->admin);
+        $reason = factory(Reason::class)->create();
+        $period = factory(Period::class)->create([
+            'reason_id' => $reason->id,
+        ]);
+
+        $this->delete(route('reason.destroy', [$reason->id]))
+            ->assertStatus(200)
+            ->assertSee(trans('alerts.save_failed'));
+        $this->assertDatabaseHas('reasons', [
+            'id' => $reason->id,
         ]);
     }
 }

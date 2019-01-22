@@ -60,6 +60,7 @@ class UserController extends Controller
     public function store(StoreUserFormRequest $request)
     {
         $user = User::create($request->all());
+        $user->admin = $request->admin;
         $user->accesses()->sync($request->accesses);
         \Alert::success(trans('alerts.save_success'))->flash();
 

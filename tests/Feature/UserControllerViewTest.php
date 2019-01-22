@@ -13,7 +13,7 @@ class UserControllerViewTest extends TestCase
         $this->withAutentification($this->admin);
 
         $this->get(route('user.index'))
-            ->assertSee('Alle User')
+            ->assertSee(__('Verwaltung: Alle User'))
             ->assertViewHas('users');
     }
 
@@ -23,7 +23,7 @@ class UserControllerViewTest extends TestCase
         $this->withAutentification($this->admin);
 
         $this->get(route('user.create'))
-            ->assertSee('User anlegen')
+            ->assertSee(__('User anlegen'))
             ->assertViewHas('accesses');
     }
 
@@ -33,7 +33,7 @@ class UserControllerViewTest extends TestCase
         $this->withAutentification($this->admin);
         $user = User::first();
 
-        $this->get(route('user.edit', [$user->id]))->assertSee('User bearbeiten');
+        $this->get(route('user.edit', [$user->id]))->assertSee(__('User bearbeiten'));
         $this->get(route('user.edit', [$user->id]))->assertViewHas('user');
     }
 
@@ -43,7 +43,7 @@ class UserControllerViewTest extends TestCase
         $this->withAutentification($this->user);
         $user = auth()->user();
 
-        $this->get(route('user.edit', [$user->id]))->assertSee('User bearbeiten');
+        $this->get(route('user.edit', [$user->id]))->assertSee(__('User bearbeiten'));
         $this->get(route('user.edit', [$user->id]))->assertViewHas('user');
     }
 }

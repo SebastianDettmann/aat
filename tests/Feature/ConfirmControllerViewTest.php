@@ -11,6 +11,6 @@ class ConfirmControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('confirm.index'))->assertSee('Zeitraum bestätigen');
+        $this->get(route('confirm.index'))->assertSee(__('Zeitraum bestätigen'));
     }
 }

@@ -56,8 +56,6 @@ class AccessControllerTest extends TestCase
         $this->assertDatabaseHas('accesses', $data);
     }
 
-    #TODO cant delete used accesss
-
     /** @test */
     public function can_update_access()
     {

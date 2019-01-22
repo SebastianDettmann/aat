@@ -12,7 +12,7 @@ class AccessControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('access.index'))->assertSee('Alle Zugänge');
+        $this->get(route('access.index'))->assertSee(__('Verwaltung: Alle Zugänge'));
         $this->get(route('access.index'))->assertViewHas('accesses');
     }
 
@@ -21,7 +21,7 @@ class AccessControllerViewTest extends TestCase
     {
         $this->withAutentification($this->admin);
 
-        $this->get(route('access.create'))->assertSee('Zugang anlegen');
+        $this->get(route('access.create'))->assertSee(__('Zugang anlegen'));
     }
 
     /** @test */
@@ -30,7 +30,7 @@ class AccessControllerViewTest extends TestCase
         $this->withAutentification($this->admin);
         $access = Access::first();
 
-        $this->get(route('access.edit', [$access->id]))->assertSee('Zugang bearbeiten');
+        $this->get(route('access.edit', [$access->id]))->assertSee(__('Zugang bearbeiten'));
         $this->get(route('access.edit', [$access->id]))->assertViewHas('access');
     }
 }

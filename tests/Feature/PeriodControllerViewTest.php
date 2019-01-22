@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Period;
 use Tests\TestCase;
 
 class PeriodControllerViewTest extends TestCase
@@ -12,8 +11,14 @@ class PeriodControllerViewTest extends TestCase
     {
         $this->withAutentification($this->user);
 
-        $this->get(route('period.index',[rand(2000, 2020), rand(1, 12)]))->assertSee('Alle Zeiträume');
-        $this->get(route('period.index',[rand(2000, 2020), rand(1, 12)]))->assertViewHas('periods');
+        $this->get(route('period.index'))->assertSee(__('Meine Abwesenheit'));
+        $this->get(route('period.index'))->assertViewHasAll([
+            'periods_year_now_future',
+            'periods_year_now_current',
+            'periods_year_now_past',
+            'reasons',
+            'calendar',
+        ]);
     }
 
     /** @test */
@@ -21,19 +26,10 @@ class PeriodControllerViewTest extends TestCase
     {
         $this->withAutentification($this->user);
 
-        $this->get(route('period.indexall',[rand(2000, 2020), rand(1, 12)]))->assertSee('Alle Zeiträume für alle User');
-        $this->get(route('period.indexall',[rand(2000, 2020), rand(1, 12)]))->assertViewHas('periods');
-    }
-
-
-    /** @test */
-    public function can_see_period_show()
-    {
-        $this->withAutentification($this->user);
-        $period = factory(Period::class)->create();
-        $this->user->periods()->save($period);
-
-        $this->get(route('period.show', [$period->id]))->assertSee('Zeitraum anzeigen');
-        $this->get(route('period.show', [$period->id]))->assertViewHas('period');
+        $this->get(route('period.indexall'))->assertSee(__('Im Büro?'));
+        $this->get(route('period.indexall'))->assertViewHasAll([
+            'reasons',
+            'calendar',
+        ]);
     }
 }

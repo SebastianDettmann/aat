@@ -24,6 +24,10 @@ class PeriodController extends Controller
     /**
      * @var null|static
      */
+    protected $last_day_of_year = null;
+    /**
+     * @var null|static
+     */
     protected $current_date = null;
     /**
      * @var $this |null
@@ -53,6 +57,7 @@ class PeriodController extends Controller
     public function __construct()
     {
         $this->first_day_of_year = Carbon::now()->startOfYear();
+        $this->last_day_of_year = Carbon::now()->endOfYear();
         $this->current_date = Carbon::now();
         $this->calendar = \Calendar::setOptions($this->calendar_options);
     }
@@ -74,10 +79,10 @@ class PeriodController extends Controller
         $periods = auth()->user()->periods->sortBy('start');
 
         foreach ($periods as $period) {
-            if ($period->start->gte($this->first_day_of_year) || $period->end->gte($this->first_day_of_year)) {
-                if ($period->start->lte($this->current_date) && $period->end->gte($this->current_date)) {
+            if ($period->start->between($this->first_day_of_year, $this->last_day_of_year) || $period->end->between($this->first_day_of_year, $this->last_day_of_year)) {
+                if ($this->current_date->between($period->start, $period->end)) {
                     $periods_year_now_current[] = $period;
-                } elseif ($period->start->lte($this->current_date)) {
+                } elseif ($this->current_date->gt($period->end)) {
                     $periods_year_now_past[] = $period;
                 } else {
                     $periods_year_now_future[] = $period;
@@ -176,10 +181,18 @@ class PeriodController extends Controller
     public function destroy(Period $period)
     {
         $this->authorize('access', $period);
-        $period->delete();
-        \Alert::success(trans('alerts.delete_success'))->flash();
+        $success = false;
+
+        if ($period->start->gt($this->current_date)) {
+            $success = $period->delete();
+        }
+
+        if ($success) {
+            \Alert::success(trans('alerts.delete_success'))->flash();
+        } else {
+            \Alert::warning(trans('alerts.save_failed'))->flash();
+        }
 
         return redirect()->back();
     }
-
 }
