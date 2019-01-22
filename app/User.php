@@ -31,7 +31,6 @@ class User extends Authenticatable
         'email',
         'password',
         'language',
-        'admin'
     ];
 
     /**

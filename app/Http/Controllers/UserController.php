@@ -101,10 +101,12 @@ class UserController extends Controller
     public function update(UpdateUserFormRequest $request, User $user)
     {
         $this->authorize('edit', $user);
-        $user->admin = $request->admin;
+        if (auth()->user()->admin) {
+            $user->admin = $user->id !== 1 ? $request->admin : 1;
+            $user->accesses()->sync($request->accesses ?? []);
+        }
         $user->update($request->all());
 
-        $user->accesses()->sync($request->accesses ?? []);
         \Alert::success(trans('alerts.save_success'))->flash();
 
         return redirect(route(auth()->user()->admin ? $this->redirectAdmin : $this->redirectUser));

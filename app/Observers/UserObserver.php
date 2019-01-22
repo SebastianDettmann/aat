@@ -28,6 +28,9 @@ class UserObserver
         # clears up pivot table
         $user->accesses()->detach();
 
+        # delete related periods
+        $user->periods()->delete();
+
         return true;
     }
 }
