@@ -36,8 +36,8 @@
                     <div class="card-body">
                         <h5>{{ __('zukünftig') }}</h5>
                         @foreach($periods_year_now_future as $period)
-                            <div class="row m-1 my-2">
-                                <div class="btn-group col-md-2 mr-2">
+                            <div class="row my-2">
+                                <div class="btn-group col-md-2 mr-1">
                                     <button class="btn btn-default btn-icon"
                                             data-toggle="modal" data-target="#showModal"
                                             data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingText() }}"
@@ -63,8 +63,8 @@
                         <hr/>
                         <h5>{{ __('aktuell') }}</h5>
                         @foreach($periods_year_now_current as $period)
-                            <div class="row m-1 my-2">
-                                <div class="btn-group col-md-1 mr-2">
+                            <div class="row my-2">
+                                <div class="btn-group col-md-1 mr-1">
                                     <button class="btn btn-default btn-icon"
                                             data-toggle="modal" data-target="#showModal"
                                             data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingText() }}"
@@ -82,8 +82,8 @@
                         <hr/>
                         <h5>{{ __('vergangen') }}</h5>
                         @foreach($periods_year_now_past as $period)
-                            <div class="row m-1 my-2">
-                                <div class="btn-group col-md-1 mr-2">
+                            <div class="row my-2">
+                                <div class="btn-group col-md-1 mr-1">
                                     <button class="btn btn-default btn-icon"
                                             data-toggle="modal" data-target="#showModal"
                                             data-period="{{ $period->start->format('d.m.y') . ' - ' . $period->end->format('d.m.y') . ' : ' . $period->pendingText() }}"

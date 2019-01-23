@@ -60,7 +60,7 @@ class UserController extends Controller
     public function store(StoreUserFormRequest $request)
     {
         $user = User::create($request->all());
-        $user->admin = $request->admin;
+        $user->admin = $request->admin ?? 0;
         $user->accesses()->sync($request->accesses);
         \Alert::success(trans('alerts.save_success'))->flash();
 
@@ -103,7 +103,7 @@ class UserController extends Controller
     {
         $this->authorize('edit', $user);
         if (auth()->user()->admin) {
-            $user->admin = $user->id !== 1 ? $request->admin : 1;
+            $user->admin = $user->id !== 1 ? $request->admin ?? 0 : 1;
             $user->accesses()->sync($request->accesses ?? []);
         }
         $user->update($request->all());
@@ -124,11 +124,16 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $success = false;
+
         if ($user->id !== 1) {
-            $user->delete();
+            $success = $user->delete();
+        }
+
+        if ($success) {
             \Alert::success(trans('alerts.delete_success'))->flash();
         } else {
-            \Alert::warning(trans('alerts.delete_failed'))->flash();
+            \Alert::warning(trans('alerts.save_failed'))->flash();
         }
 
         return redirect(route($this->redirectAdmin));

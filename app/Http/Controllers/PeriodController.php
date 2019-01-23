@@ -20,14 +20,6 @@ class PeriodController extends Controller
     /**
      * @var null|static
      */
-    protected $first_day_of_year = null;
-    /**
-     * @var null|static
-     */
-    protected $last_day_of_year = null;
-    /**
-     * @var null|static
-     */
     protected $current_date = null;
     /**
      * @var $this |null
@@ -56,8 +48,6 @@ class PeriodController extends Controller
      */
     public function __construct()
     {
-        $this->first_day_of_year = Carbon::now()->startOfYear();
-        $this->last_day_of_year = Carbon::now()->endOfYear();
         $this->current_date = Carbon::now();
         $this->calendar = \Calendar::setOptions($this->calendar_options);
     }
@@ -74,12 +64,13 @@ class PeriodController extends Controller
         $periods_year_now_past = [];
         $periods_year_now_current = [];
         $periods_year_now_future = [];
+        $current_year = $this->current_date->year;
         $calendar_periods = [];
         $reasons = Reason::get();
         $periods = auth()->user()->periods->sortBy('start');
 
         foreach ($periods as $period) {
-            if ($period->start->between($this->first_day_of_year, $this->last_day_of_year) || $period->end->between($this->first_day_of_year, $this->last_day_of_year)) {
+            if ($period->start->year == $current_year || $period->end->year == $current_year) {
                 if ($this->current_date->between($period->start, $period->end)) {
                     $periods_year_now_current[] = $period;
                 } elseif ($this->current_date->gt($period->end)) {
@@ -119,7 +110,6 @@ class PeriodController extends Controller
      */
     public function indexAll()
     {
-        #todo check for use ajax
         $periods = Period::with('reason')->get();
         $reasons = Reason::get();
         $calendar_periods = [];
@@ -155,6 +145,8 @@ class PeriodController extends Controller
      */
     public function store(StorePeriodFormRequest $request)
     {
+
+        # TODO check for using mutators
         $data = [
             'start' => Carbon::createFromFormat('d.m.Y', $request->start)->timezone($this->timezone),
             'end' => Carbon::createFromFormat('d.m.Y', $request->end)->timezone($this->timezone),
