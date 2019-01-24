@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+#use Notifications\ResetPasswordNotification;
+
 /**
  * App\User
  *
@@ -121,4 +123,10 @@ class User extends Authenticatable
 
     #todo check for update holidays
     #todo add soft deletes?
+
+    /* public function sendPasswordResetNotification($token)
+     {
+         //overwrites
+         $this->notify(new ResetPasswordNotification($token));
+     }*/
 }

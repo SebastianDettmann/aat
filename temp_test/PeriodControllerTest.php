@@ -10,7 +10,7 @@ class PeriodControllerTest extends TestCase
 {
     protected $timezone = 'Europe/Berlin';
 
-    /** @test */
+    #/** @test */
     public function user_can_access_controller_functions()
     {
         $this->withAutentification($this->user);
@@ -30,14 +30,13 @@ class PeriodControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    /** @test */
+    #/** @test */
     public function can_store_period()
     {
         $this->withoutExceptionHandling();
         $this->withAutentification($this->user);
         $period = factory(Period::class)->make();
         $data = $period->getAttributes();
-#Period::truncate();
         $this->post(route('period.store'), $this->castToRequestAttributes($period));
 
         $this->assertDatabaseHas('periods', [
@@ -46,7 +45,7 @@ class PeriodControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #/** @test */
     public function can_delete_period()
     {
         $this->withAutentification($this->user);
@@ -57,14 +56,14 @@ class PeriodControllerTest extends TestCase
         ]);
         $this->user->periods()->save($period);
 
-        /* $this->delete(route('period.destroy' , [$period->id]))->assertStatus(200);
+        $this->delete(route('period.destroy', [$period->id]))->assertStatus(200);
          $this->assertDatabaseMissing('periods', [
              'id' => $period->id
-         ]);*/
-        $this->assertTrue(true);
+         ]);
+
     }
 
-    /** @test */
+    #/** @test */
     public function cant_delete_period_lte_today()
     {
         $this->withAutentification($this->user);
@@ -75,13 +74,12 @@ class PeriodControllerTest extends TestCase
         ]);
         $this->user->periods()->save($period);
 
-        /* $this->delete(route('period.destroy', [$period->id]))
+        $this->delete(route('period.destroy', [$period->id]))
              ->assertStatus(200)
              ->assertSee(trans('alerts.save_failed'));
          $this->assertDatabaseHas('periods', [
              'id' => $period->id,
-         ]);*/
-        $this->assertTrue(true);
+         ]);
     }
 
     private function castToRequestAttributes($period)

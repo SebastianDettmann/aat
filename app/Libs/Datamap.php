@@ -112,9 +112,9 @@ class Datamap
     public static function getFirstAdmin()
     {
         return [
-            'firstname' => 'Sebastian',
-            'lastname' => 'Dettmann',
-            'email' => 'sebastian.dettmann@absolute.de',
+            'firstname' => 'admin',
+            'lastname' => 'admin',
+            'email' => 'admin@admin.de',
             'admin' => true,
             'password' => 'Qwertz123',
         ];
