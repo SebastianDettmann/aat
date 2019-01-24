@@ -23,7 +23,7 @@ class UserControllerTest extends TestCase
         // $this->get(route('user.show', [$user->id]))->assertStatus(200);
         //server error, when updating unique DB email column with the same value, seams to be a problem with SQLlight test DB
 
-        $data = $this->generateUserData(factory(User::class)->make());
+        $data = $this->request_data_with_pw(factory(User::class)->make());
 
         $this->get(route('user.edit', [$user->id]))->assertStatus(200);
         $this->followingRedirects()
@@ -40,7 +40,7 @@ class UserControllerTest extends TestCase
     {
         $this->withAutentification($this->user);
         $user = auth()->user();
-        $data = $this->generateUserData(factory(User::class)->make());
+        $data = $this->request_data_with_pw($user);
 
         // removed show route, use edit route for showing user
         // $this->get(route('user.show', [$user->id]))->assertStatus(200);
@@ -48,7 +48,6 @@ class UserControllerTest extends TestCase
         $this->followingRedirects()
             ->put(route('user.update', [$user->id]), $data)
             ->assertStatus(200);
-
     }
 
     /** @test */
@@ -56,7 +55,7 @@ class UserControllerTest extends TestCase
     {
         $this->withAutentification($this->user);
         $user = factory(User::class)->create();
-        $data = $this->generateUserData(factory(User::class)->make());
+        $data = $this->request_data_with_pw(factory(User::class)->make());
 
         $this->get(route('user.edit', [$user->id]))->assertStatus(404);
         $this->put(route('user.update', [$user->id]), $data)->assertStatus(404);
@@ -123,9 +122,25 @@ class UserControllerTest extends TestCase
 
     private function can_update_user($user)
     {
-        $data = $this->generateUserData($user);
-        unset($data['admin']);
+        $this->withoutExceptionHandling();
+
+        $data = $this->request_data_with_pw($user);
+
         $this->put(route('user.update', [$user->id]), $data)->assertStatus(200);
         $this->dbAssertion($data);
+    }
+
+    private function request_data_with_pw($user)
+    {
+        $data = $this->generateUserData($user);
+        # pw are default from User factory
+        $passwords = [
+            'password_old' => 'Qwertz123',
+            'password' => 'Qwertz123456',
+            'password_confirmation' => 'Qwertz123456',
+        ];
+        $data = array_merge($data, $passwords);
+
+        return $data;
     }
 }

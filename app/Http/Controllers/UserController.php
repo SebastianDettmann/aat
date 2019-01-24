@@ -106,6 +106,10 @@ class UserController extends Controller
             $user->admin = $user->id !== 1 ? $request->admin ?? 0 : 1;
             $user->accesses()->sync($request->accesses ?? []);
         }
+
+        if (empty($request['password'])) {
+            unset($request['password']);
+        }
         $user->update($request->all());
 
         \Alert::success(trans('alerts.save_success'))->flash();

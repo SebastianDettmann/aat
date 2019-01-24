@@ -53,7 +53,7 @@ class ReasonControllerTest extends TestCase
         $data = factory(Reason::class)->make()->getAttributes();
 
         $this->post(route('reason.store'), $data);
-
+        $data["has_to_confirm"] = $data["has_to_confirm"] ? '1' : '0';
         $this->assertDatabaseHas('reasons', $data);
     }
 
@@ -66,6 +66,7 @@ class ReasonControllerTest extends TestCase
         $data = factory(Reason::class)->make()->getAttributes();
 
         $this->put(route('reason.update', [$reason->id]), $data)->assertStatus(200);
+        $data["has_to_confirm"] = $data["has_to_confirm"] ? '1' : '0';
         $this->assertDatabaseHas('reasons', $data);
     }
 

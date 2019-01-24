@@ -145,7 +145,6 @@ class PeriodController extends Controller
      */
     public function store(StorePeriodFormRequest $request)
     {
-
         # TODO check for using mutators
         $data = [
             'start' => Carbon::createFromFormat('d.m.Y', $request->start)->timezone($this->timezone),
@@ -153,9 +152,8 @@ class PeriodController extends Controller
             'comment' => $request->comment,
             'reason_id' => $request->reason_id,
         ];
-        auth()->user()->periods()->create($data);
         \Alert::success(trans('alerts.save_success'))->flash();
-
+        dd($data . ' : ' . Period::get());
         return redirect()->back();
     }
 

@@ -27,9 +27,18 @@ abstract class AbstractFormRequest extends FormRequest
         return $validator->getMessageBag()->toArray();
     }
 
+    /**
+     * Handle a failed validation attempt.
+     * overrides Illuminate\Foundation\Http\FormRequest
+     * add Alert::error('errortext')->flash()
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function failedValidation(Validator $validator)
     {
-        //overrides Illuminate\Foundation\Http\FormRequest
         \Alert::error(trans('alerts.' . $this->failedMessage))->flash();
 
         throw (new ValidationException($validator))
