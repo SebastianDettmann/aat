@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,6 +47,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (($exception instanceof AuthorizationException) && (app()->environment() !== 'local')){
+            abort(404);
+        }
+        if ($exception instanceof ValidationException) {
+            if (!\Alert::getMessages()) {
+                \Alert::error(trans('alerts.action_failed'))->flash();
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

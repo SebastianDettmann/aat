@@ -1,0 +1,104 @@
+{
+  "name": "App\\Policies\\PeriodPolicy",
+  "line": 9,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Policies",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Policies\\PeriodPolicy.php",
+  "relative_file": null,
+  "hash": "66d83ae1966f979d6546399f41b8616d87dc2542",
+  "parent": null,
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "User": "App\\User",
+    "Period": "App\\Period",
+    "HandlesAuthorization": "Illuminate\\Auth\\Access\\HandlesAuthorization"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": {
+    "Illuminate\\Auth\\Access\\HandlesAuthorization": "Illuminate\\Auth\\Access\\HandlesAuthorization"
+  },
+  "properties": [],
+  "methods": {
+    "access": {
+      "name": "access",
+      "line": 20,
+      "short_desc": "Determine whether the user can view the period.",
+      "long_desc": "",
+      "hint": [
+        [
+          "mixed",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "user": {
+          "name": "user",
+          "line": 20,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\User",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "User"
+            ],
+            "attributes": {
+              "startLine": 20,
+              "endLine": 20
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "period": {
+          "name": "period",
+          "line": 20,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Period",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Period"
+            ],
+            "attributes": {
+              "startLine": 20,
+              "endLine": 20
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

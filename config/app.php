@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Absolute Absence Tool'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Berlin',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,10 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locales' => [
+        'de-de',
+        'en-us',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +94,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'de-de',
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +107,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'de-de',
 
     /*
     |--------------------------------------------------------------------------
@@ -222,6 +225,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'BTForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
     ],
 
 ];

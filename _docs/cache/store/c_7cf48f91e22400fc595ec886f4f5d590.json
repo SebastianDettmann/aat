@@ -1,0 +1,399 @@
+{
+  "name": "App\\User",
+  "line": 19,
+  "short_desc": "App\\User",
+  "long_desc": "",
+  "hint": null,
+  "tags": {
+    "property-read": [
+      [
+        [
+          [
+            "\\Illuminate\\Notifications\\DatabaseNotificationCollection",
+            false
+          ],
+          [
+            "\\Illuminate\\Notifications\\DatabaseNotification",
+            true
+          ]
+        ],
+        "notifications",
+        ""
+      ],
+      [
+        [
+          [
+            "\\Illuminate\\Database\\Eloquent\\Collection",
+            false
+          ],
+          [
+            "\\App\\Period",
+            true
+          ]
+        ],
+        "periods",
+        ""
+      ],
+      [
+        [
+          [
+            "\\Illuminate\\Database\\Eloquent\\Collection",
+            false
+          ],
+          [
+            "\\App\\Access",
+            true
+          ]
+        ],
+        "accesses",
+        ""
+      ]
+    ],
+    "method": [
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\User",
+        "newModelQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\User",
+        "newQuery()"
+      ],
+      [
+        "static",
+        "\\Illuminate\\Database\\Eloquent\\Builder|\\App\\User",
+        "query()"
+      ]
+    ],
+    "mixin": [
+      [
+        "\\Eloquent"
+      ]
+    ]
+  },
+  "namespace": "App",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\User.php",
+  "relative_file": null,
+  "hash": "8864cc13037f2b3812059896327bc38f2416c91d",
+  "parent": "Illuminate\\Foundation\\Auth\\User",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "Authenticatable": "Illuminate\\Foundation\\Auth\\User",
+    "Notifiable": "Illuminate\\Notifications\\Notifiable"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": {
+    "Illuminate\\Notifications\\Notifiable": "Illuminate\\Notifications\\Notifiable"
+  },
+  "properties": {
+    "fillable": {
+      "name": "fillable",
+      "line": 28,
+      "short_desc": "The attributes that are mass assignable.",
+      "long_desc": "!!! attention requests from default user has to filter 'admin' attribute",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "firstname",
+              "attributes": {
+                "startLine": 29,
+                "endLine": 29,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 29,
+              "endLine": 29
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "lastname",
+              "attributes": {
+                "startLine": 30,
+                "endLine": 30,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 30,
+              "endLine": 30
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "email",
+              "attributes": {
+                "startLine": 31,
+                "endLine": 31,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 31,
+              "endLine": 31
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "password",
+              "attributes": {
+                "startLine": 32,
+                "endLine": 32,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 32,
+              "endLine": 32
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "language",
+              "attributes": {
+                "startLine": 33,
+                "endLine": 33,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 33,
+              "endLine": 33
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "admin",
+              "attributes": {
+                "startLine": 34,
+                "endLine": 34,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 34,
+              "endLine": 34
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 28,
+          "endLine": 35,
+          "kind": 2
+        }
+      },
+      "errors": []
+    },
+    "hidden": {
+      "name": "hidden",
+      "line": 42,
+      "short_desc": "The attributes that should be hidden for arrays.",
+      "long_desc": "",
+      "hint": [
+        [
+          "array",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Expr_Array",
+        "items": [
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "password",
+              "attributes": {
+                "startLine": 43,
+                "endLine": 43,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 43,
+              "endLine": 43
+            }
+          },
+          {
+            "nodeType": "Expr_ArrayItem",
+            "key": null,
+            "value": {
+              "nodeType": "Scalar_String",
+              "value": "remember_token",
+              "attributes": {
+                "startLine": 44,
+                "endLine": 44,
+                "kind": 1
+              }
+            },
+            "byRef": false,
+            "attributes": {
+              "startLine": 44,
+              "endLine": 44
+            }
+          }
+        ],
+        "attributes": {
+          "startLine": 42,
+          "endLine": 45,
+          "kind": 2
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "fullName": {
+      "name": "fullName",
+      "line": 47,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "periods": {
+      "name": "periods",
+      "line": 52,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "accesses": {
+      "name": "accesses",
+      "line": 57,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "getAccesses": {
+      "name": "getAccesses",
+      "line": 62,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "access_slug_title": {
+          "name": "access_slug_title",
+          "line": 62,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "string",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": "string",
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "hasAccess": {
+      "name": "hasAccess",
+      "line": 74,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": null,
+      "hint_desc": null,
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "access_slug_title": {
+          "name": "access_slug_title",
+          "line": 74,
+          "short_desc": null,
+          "long_desc": null,
+          "hint": [
+            [
+              "string",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": "string",
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}

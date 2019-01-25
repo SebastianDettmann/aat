@@ -1,0 +1,316 @@
+{
+  "name": "App\\Http\\Controllers\\ReasonController",
+  "line": 9,
+  "short_desc": "",
+  "long_desc": "",
+  "hint": null,
+  "tags": [],
+  "namespace": "App\\Http\\Controllers",
+  "file": "C:\\xampp\\htdocs\\aat\\app\\Http\\Controllers\\ReasonController.php",
+  "relative_file": null,
+  "hash": "b2e1f65dbd168caf36b186cc4a66662fd06bff41",
+  "parent": "App\\Http\\Controllers\\Controller",
+  "modifiers": 0,
+  "is_trait": false,
+  "is_interface": false,
+  "aliases": {
+    "StoreReasonFormRequest": "App\\Http\\Requests\\StoreReasonFormRequest",
+    "UpdateReasonFormRequest": "App\\Http\\Requests\\UpdateReasonFormRequest",
+    "Reason": "App\\Reason"
+  },
+  "errors": [],
+  "interfaces": [],
+  "traits": [],
+  "properties": {
+    "redirect": {
+      "name": "redirect",
+      "line": 14,
+      "short_desc": "",
+      "long_desc": "",
+      "hint": [
+        [
+          "string",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 2,
+      "default": {
+        "nodeType": "Scalar_String",
+        "value": "reason.index",
+        "attributes": {
+          "startLine": 14,
+          "endLine": 14,
+          "kind": 1
+        }
+      },
+      "errors": []
+    }
+  },
+  "methods": {
+    "index": {
+      "name": "index",
+      "line": 21,
+      "short_desc": "Display a listing of \\App\\Reason.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "create": {
+      "name": "create",
+      "line": 35,
+      "short_desc": "Show the form for creating a new \\App\\Reason.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": []
+    },
+    "store": {
+      "name": "store",
+      "line": 46,
+      "short_desc": "Store a newly created \\App\\Reason in Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 46,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Http\\Requests\\StoreReasonFormRequest",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Http",
+              "Requests",
+              "StoreReasonFormRequest"
+            ],
+            "attributes": {
+              "startLine": 46,
+              "endLine": 46
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "edit": {
+      "name": "edit",
+      "line": 61,
+      "short_desc": "Show the form for editing \\App\\Reason.",
+      "long_desc": "used to as show view",
+      "hint": [
+        [
+          "\\Illuminate\\Contracts\\View\\View",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "reason": {
+          "name": "reason",
+          "line": 61,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Reason",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Reason"
+            ],
+            "attributes": {
+              "startLine": 61,
+              "endLine": 61
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "update": {
+      "name": "update",
+      "line": 76,
+      "short_desc": "Update the specified \\App\\Reason in Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [],
+      "errors": [],
+      "parameters": {
+        "request": {
+          "name": "request",
+          "line": 76,
+          "short_desc": "",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Http\\Requests\\UpdateReasonFormRequest",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Http",
+              "Requests",
+              "UpdateReasonFormRequest"
+            ],
+            "attributes": {
+              "startLine": 76,
+              "endLine": 76
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        },
+        "reason": {
+          "name": "reason",
+          "line": 76,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Reason",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Reason"
+            ],
+            "attributes": {
+              "startLine": 76,
+              "endLine": 76
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    },
+    "destroy": {
+      "name": "destroy",
+      "line": 93,
+      "short_desc": "Remove the specified \\App\\Reason From Database.",
+      "long_desc": "",
+      "hint": [
+        [
+          "\\Illuminate\\Http\\RedirectResponse",
+          false
+        ]
+      ],
+      "hint_desc": "",
+      "tags": [],
+      "modifiers": 1,
+      "is_by_ref": "",
+      "exceptions": [
+        [
+          "\\Exception",
+          "my throws an Exception if the Reason not Exists,\nnot validated, because is only available for Admins"
+        ]
+      ],
+      "errors": [],
+      "parameters": {
+        "reason": {
+          "name": "reason",
+          "line": 93,
+          "short_desc": "by model-key-binding",
+          "long_desc": null,
+          "hint": [
+            [
+              "\\App\\Reason",
+              false
+            ]
+          ],
+          "tags": [],
+          "modifiers": {
+            "nodeType": "Name_FullyQualified",
+            "parts": [
+              "App",
+              "Reason"
+            ],
+            "attributes": {
+              "startLine": 93,
+              "endLine": 93
+            }
+          },
+          "default": null,
+          "variadic": false,
+          "is_by_ref": false
+        }
+      }
+    }
+  },
+  "constants": []
+}
