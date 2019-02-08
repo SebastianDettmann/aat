@@ -104,7 +104,7 @@ class ReasonController extends Controller
         if ($success) {
             \Alert::success(trans('alerts.delete_success'))->flash();
         } else {
-            \Alert::warning(trans('alerts.save_failed'))->flash();
+            \Alert::warning(trans('alerts.delete_failed'))->flash();
         }
 
         return redirect(route($this->redirect));
