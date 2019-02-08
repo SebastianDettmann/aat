@@ -147,13 +147,19 @@ class PeriodController extends Controller
     {
         # TODO check for using mutators
         $data = [
-            'start' => Carbon::createFromFormat('d.m.Y', $request->start)->timezone($this->timezone),
-            'end' => Carbon::createFromFormat('d.m.Y', $request->end)->timezone($this->timezone),
+            'start' => Carbon::createFromFormat('d.m.Y', $request->start),
+            'end' => Carbon::createFromFormat('d.m.Y', $request->end),
             'comment' => $request->comment,
             'reason_id' => $request->reason_id,
         ];
-        \Alert::success(trans('alerts.save_success'))->flash();
-        dd($data . ' : ' . Period::get());
+        $period = auth()->user()->periods()->create($data);
+
+        if ($period) {
+            \Alert::success(trans('alerts.save_success'))->flash();
+        } else {
+            \Alert::warning(trans('alerts.save_failed'))->flash();
+        }
+
         return redirect()->back();
     }
 
@@ -180,7 +186,7 @@ class PeriodController extends Controller
         if ($success) {
             \Alert::success(trans('alerts.delete_success'))->flash();
         } else {
-            \Alert::warning(trans('alerts.save_failed'))->flash();
+            \Alert::warning(trans('alerts.delete_failed'))->flash();
         }
 
         return redirect()->back();

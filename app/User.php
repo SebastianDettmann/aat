@@ -2,10 +2,10 @@
 
 namespace App;
 
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-#use Notifications\ResetPasswordNotification;
 
 /**
  * App\User
@@ -20,7 +20,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SendsPasswordResetEmails;
 
     /**
      * The attributes that are mass assignable.
@@ -66,7 +66,6 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($pass)
     {
-
         $this->attributes['password'] = bcrypt($pass);
     }
 
@@ -101,7 +100,7 @@ class User extends Authenticatable
      */
     public function getAccesses(String $access_slug_title)
     {
-        $accesses = cache()->remember('accesses_' . $access_slug_title, 10, function() use ($access_slug_title) {
+        $accesses = cache()->remember('accesses_' . $access_slug_title, 10, function () use ($access_slug_title) {
             return self::whereHas('accesses', function ($q) use ($access_slug_title) {
                 $q->where('slug', $access_slug_title);
             })->get()->pluck('id')->toArray();
@@ -121,12 +120,23 @@ class User extends Authenticatable
         return in_array($this->id, $this->getAccesses($access_slug_title));
     }
 
-    #todo check for update holidays
-    #todo add soft deletes?
+    public function sendPasswordResetNotification($token)
+    {
+        //overwrites
+        $this->notify(new ResetPasswordNotification($token));
+    }
 
-    /* public function sendPasswordResetNotification($token)
-     {
-         //overwrites
-         $this->notify(new ResetPasswordNotification($token));
-     }*/
+    protected function invideUser()
+    {
+        $this->sendResetLinkEmail($this->email);
+    }
+
+    public function sendResetLinkEmail($email)
+    {
+        $this->broker()->sendResetLink(['email' => $email]);
+    }
+
+    /*protected function getEmailForPasswordReset()
+    {
+    }*/
 }

@@ -4,12 +4,18 @@ namespace App\Observers;
 
 use App\User;
 
+#use App\Mail\UserCreatedMail;
+#use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+#use Illuminate\Support\Facades\Password;
+
 class UserObserver
 {
-    public function creating(User $user)
-    {
-        #todo email mit pw an user
+    #use SendsPasswordResetEmails;
 
+    public function created(User $user)
+    {
+        # \Mail::to($user)->queue((new UserCreatedMail($user))->onQueue('email'));
+        $user->sendResetLinkEmail($user->email);
         return true;
     }
 
@@ -17,7 +23,7 @@ class UserObserver
     {
         # set language for localization / used by localization middleware via session
         if (!session()->has('localization')) {
-            session(['localization' => auth()->user()->language]);
+            session(['localization' => $user->language]);
         }
         \App::setLocale(session('localization'));
         return true;
